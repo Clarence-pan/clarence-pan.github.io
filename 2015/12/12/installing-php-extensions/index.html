@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>安装PHP扩展 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,extension">
+    <meta name="description" content="前言PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装PHP扩展">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/12/12/installing-php-extensions/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="前言PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装PHP扩展">
+<meta name="twitter:description" content="前言PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">安装PHP扩展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">安装PHP扩展</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-12-12T08:08:49.000Z" itemprop="datePublished" class="page-time">
+  2015-12-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pecl-pear的安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">pecl/pear的安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装intl扩展"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装intl扩展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用包管理进行安装"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">使用包管理进行安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用pecl进行安装"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">使用pecl进行安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从源码安装"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">从源码安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题：icu-config找不到？"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">问题：icu-config找不到？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装mcrypt扩展"><span class="post-toc-number">4.</span> <span class="post-toc-text">安装mcrypt扩展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用包管理功能安装"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">使用包管理功能安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从源码安装-1"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">从源码安装</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个常用的PHP编译配置参数"><span class="post-toc-number">5.</span> <span class="post-toc-text">一个常用的PHP编译配置参数</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-installing-php-extensions"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">安装PHP扩展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年12月12日 16:08" datetime="2015-12-12T08:08:49.000Z"  itemprop="datePublished">2015-12-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。</p>
+<a id="more"></a>
+<p>由于PHP版本也是在不断地更新，某些问题的解决方案以后可能会失效，所以此文仅作参考。</p>
+<p>若有发现某个解决方案失效了，还请见谅，并欢迎指出以便更正。</p>
+<h2 id="pecl-pear的安装"><a href="#pecl-pear的安装" class="headerlink" title="pecl/pear的安装"></a>pecl/pear的安装</h2><p>使用pecl/pear可以很方便地安装一些PHP扩展。<br>下载go-pear: <a href="http://pear.PHP.net/go-pear.phar" target="_blank" rel="external">http://pear.PHP.net/go-pear.phar</a><br>然后执行这个phar文件：</p>
+<pre><code class="sh">sudo PHP go-pear.phar
+</code></pre>
+<p>至于提示的目录设置，一般而言默认的就够用了。如需定制请自便。</p>
+<p>安装好了后，建议将pear和pecl的目录加入到PATH中，或者可以加个软连接到path的某个目录中，以便以后使用，如：</p>
+<pre><code class="sh">ln -s /usr/local/Cellar/php56/5.6.16/bin/pecl /usr/local/bin/
+ln -s /usr/local/Cellar/php56/5.6.16/bin/pear /usr/local/bin/
+</code></pre>
+<h2 id="安装intl扩展"><a href="#安装intl扩展" class="headerlink" title="安装intl扩展"></a>安装intl扩展</h2><h3 id="使用包管理进行安装"><a href="#使用包管理进行安装" class="headerlink" title="使用包管理进行安装"></a>使用包管理进行安装</h3><p>在debian/ubuntu/centos上都有对应的包：php5-intl, 直接使用apt或yum来安装即可:</p>
+<pre><code class="sh">sudo apt-get install -y php5-intl
+</code></pre>
+<p>可惜在 mac OS X 上并不能这样安装，只能通过pecl或源码安装</p>
+<h3 id="使用pecl进行安装"><a href="#使用pecl进行安装" class="headerlink" title="使用pecl进行安装"></a>使用pecl进行安装</h3><pre><code class="sh">sudo pecl update-channels
+sudo pecl install intl
+</code></pre>
+<p>如遇到询问icu的路径，则请寻找其路径并提供给安装程序，如：/usr/local/Cellar/icu4c/56.1</p>
+<h3 id="从源码安装"><a href="#从源码安装" class="headerlink" title="从源码安装"></a>从源码安装</h3><p>下载地址： <a href="http://pecl.PHP.net/package/intl" target="_blank" rel="external">http://pecl.PHP.net/package/intl</a><br>下载最新版本，然后解压缩后：</p>
+<pre><code class="sh">phpize
+./configure
+make
+sudo make install
+</code></pre>
+<p>成功的安装将创建 intl.so 并放置于 PHP 的扩展库目录中。需要调整 PHP.ini，加入 extension=intl.so 这一行之后才能使用此扩展库。</p>
+<h3 id="问题：icu-config找不到？"><a href="#问题：icu-config找不到？" class="headerlink" title="问题：icu-config找不到？"></a>问题：icu-config找不到？</h3><p>现象：</p>
+<pre><code>checking for icu-config... no
+checking for location of ICU headers and libraries... not found
+configure: error: Unable to detect ICU prefix or no failed. Please verify ICU install prefix and make sure icu-config works.
+</code></pre><p>解决方案：<br>对于debian/ubuntu/centos则可以安装下<code>icu libicu libicu-devel</code>：</p>
+<pre><code class="sh">sudo apt-get install -y icu libicu libicu-devel
+</code></pre>
+<p>对于mac OS X则需要安装<code>icu4c</code>:</p>
+<pre><code class="sh">brew install icu4c
+</code></pre>
+<p>然后再编译intl的时候提供这个icu的路径，如：</p>
+<pre><code class="sh">cd path/to/intl-v3.0.0
+./configure --with-icu-dir=/usr/local/Cellar/icu4c/56.1
+</code></pre>
+<p>注意：替换下版本号。</p>
+<h2 id="安装mcrypt扩展"><a href="#安装mcrypt扩展" class="headerlink" title="安装mcrypt扩展"></a>安装mcrypt扩展</h2><p>mcrypt是一个功能很强大的加密算法扩展库，一般直接有这个的包</p>
+<h3 id="使用包管理功能安装"><a href="#使用包管理功能安装" class="headerlink" title="使用包管理功能安装"></a>使用包管理功能安装</h3><pre><code class="sh"># for ubuntu/debian
+sudo apt-get install php5-mcrypt
+
+# for centos
+sudo yum install libmcrypt libmcrypt-devel
+sudo yum install PHP-mcrypt
+
+# for OS X
+brew install php56-mcrypt
+</code></pre>
+<h3 id="从源码安装-1"><a href="#从源码安装-1" class="headerlink" title="从源码安装"></a>从源码安装</h3><p>// TODO: 待续 -- 目前在安装其依赖的mhash的时候一直有问题还没解决</p>
+<h2 id="一个常用的PHP编译配置参数"><a href="#一个常用的PHP编译配置参数" class="headerlink" title="一个常用的PHP编译配置参数"></a>一个常用的PHP编译配置参数</h2><pre><code class="sh">./configure --prefix=/usr/local/PHP\
+ --with-libdir=lib64\
+ --enable-fpm\
+ --with-fpm-user=PHP-fpm\
+ --with-fpm-group=www\
+ --enable-mysqlnd\
+ --with-mysql=mysqlnd\
+ --with-mysqli=mysqlnd\
+ --with-pdo-mysql=mysqlnd\
+ --enable-opcache\
+ --enable-pcntl\
+ --enable-mbstring\
+ --enable-soap\
+ --enable-zip\
+ --enable-calendar\
+ --enable-bcmath\
+ --enable-exif\
+ --enable-ftp\
+ --enable-intl\
+ --with-openssl\
+ --with-zlib\
+ --with-curl\
+ --with-gd\
+ --with-zlib-dir=/usr/lib\
+ --with-png-dir=/usr/lib\
+ --with-jpeg-dir=/usr/lib\
+ --with-gettext\
+ --with-mhash\
+ --with-ldap
+</code></pre>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2015/12/12/installing-php-extensions/" target="_blank" rel="external">http://clarence-pan.github.io/2015/12/12/installing-php-extensions/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/extension/">extension</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&title=《安装PHP扩展》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&title=《安装PHP扩展》 — Clarence的博客&source=前言PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《安装PHP扩展》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/12/16/how-to-enable-crontab-on-osx/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">在MAC OS X上如何启用crontab？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/11/30/about-clarence-pan.gitcafe.io/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">关于clarence-pan.gitcafe.io</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="installing-php-extensions" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&title=《安装PHP扩展》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&title=《安装PHP扩展》 — Clarence的博客&source=前言PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《安装PHP扩展》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/12/installing-php-extensions/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3aQW4bMRAEQP//0wmQkwHbq+4Z0tGh9iTI0i6LBshRDz8+4uvPv+vz68/X1888f/frX2ffPXbh4eHhjYb+0/XM2zz4mZSM5/kzeHh4eLd5s83geflupynfGJIx4+Hh4b0D77kszged3GdfvuPh4eG9A++5tN0MKL8nHh4e3vvw8h//bTibBLXPxfovZS14eHh4MW/WAPu/r6/39/Dw8PBGXfV8yU6W+FmQkW8G3zwdDw8P7wIvj1P3xXc7QbMQZJgW4+Hh4cW8WUDQTkob784CiG/uiYeHh3eBN2tZtQVxu6Dvw2I8PDy83+HlBXTUsC+L6U308OLOeHh4eEd57Y//TbO/vc+mfK+TZjw8PLxFn70NEdoSeRZPtOcE8PDw8O7xkuU7Ka/zpte+SZaHFHh4eHg3eG0tmpTa+3iiZa+2Fjw8PLyS18YB+RYym6y8uRXFynh4eHjXePsAYra4J1tIezDrSr6Ch4eHV956toi3d8vL6GKDwcPDw7vA20er7eaxucMqCsHDw8M7xMuT3Ty2aLeWTZzxYmx4eHh4F3ibFtcmck36crPC+ptx4uHh4R3l5ScI2nMHbZjbRsnJtOLh4eHd4G1C2FmMmwQcOaNOWfDw8PAO8dplvX1Y/fgywmjjDDw8PLwN70UxWs5THlvsAfXc4OHh4R3lJTtG+377rPx18S/Bw8PDu8DLH9wGAW1bK4luZ4ex8PDw8M7y8oihDQtmhXudmszCCDw8PLzLvHwpT4rvfPrao1rRoQE8PDy8NW+WiJ6aiHzQx4JdPDw8vEO82YGAWeSaD302EfXuh4eHh7fg5ZvBfgVu329X/rp3h4eHh3eNN2tobY5wJfHui+nAw8PDexve6pGj+GN2uAEPDw/vHm9fCrfxaxt/tG02PDw8vHu8zTI92wBmBwgO9/Tw8PDwJry/zmSSl1/57MMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

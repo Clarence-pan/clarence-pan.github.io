@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu下配置DNS服务器 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="linux,DNS">
+    <meta name="description" content="一、安装DNS服务器-bind9bind9可以直接用apt-get安装：
+sudo apt-get install bind9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下配置DNS服务器">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="一、安装DNS服务器-bind9bind9可以直接用apt-get安装：
+sudo apt-get install bind9">
+<meta property="og:updated_time" content="2015-09-09T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu下配置DNS服务器">
+<meta name="twitter:description" content="一、安装DNS服务器-bind9bind9可以直接用apt-get安装：
+sudo apt-get install bind9">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu下配置DNS服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu下配置DNS服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-07-29T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-07-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/DNS/">DNS</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、安装DNS服务器-bind9"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、安装DNS服务器-bind9</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、-如何增加一条DNS记录"><span class="post-toc-number">2.</span> <span class="post-toc-text">三、 如何增加一条DNS记录</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#附-什么是A记录"><span class="post-toc-number">3.</span> <span class="post-toc-text">附 - 什么是A记录?</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-how-to-config-dns-server-in-ubuntu"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu下配置DNS服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年07月30日 0:00" datetime="2015-07-29T16:00:00.000Z"  itemprop="datePublished">2015-07-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/">linux</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/linux/DNS/">DNS</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、安装DNS服务器-bind9"><a href="#一、安装DNS服务器-bind9" class="headerlink" title="一、安装DNS服务器-bind9"></a>一、安装DNS服务器-bind9</h1><p>bind9可以直接用apt-get安装：</p>
+<pre><code>sudo apt-get install bind9
+</code></pre><a id="more"></a>
+<p>#二、配置服务器<br>bind9的配置文件在<code>/etc/bind/</code>目录下，入口文件是<code>named.conf</code>，这个文件包含了<code>named.conf.options</code>, <code>named.conf.local</code>和<code>named.conf.default-zones</code>。<br>其中<code>named.conf.options</code>中包含了以下内容：</p>
+<pre><code>options {
+    // 缓存目录
+    directory &quot;/var/cache/bind&quot;;
+
+    // 本机解析不了的DNS该转发到哪里
+    forwarders {
+        8.8.8.8;
+    };  
+
+    dnssec-validation auto;
+
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+};
+</code></pre><p><code>named.conf.local</code>一般是空的，不用管它。<br><code>named.conf.default-zones</code>中包含了解析的域名的配置，节选如下：</p>
+<pre><code>// 正向解析配置，即从域名localhost解析到127.0.0.1
+zone &quot;localhost&quot; {
+        type master;
+        file &quot;/etc/bind/db.local&quot;;
+};
+
+// 反向解析配置，即从IP 127.0.0.1解析到localhost
+zone &quot;127.in-addr.arpa&quot; {
+        type master;
+        file &quot;/etc/bind/db.127&quot;;
+};
+</code></pre><p>具体的配置都在文件<code>db.xxxx</code>中，比如<code>db.local</code>中如下：</p>
+<pre><code>;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+
+; 下面的root.localhost.是管理员邮箱，其中的&#39;@&#39;被替换为了&#39;.&#39;
+@       IN      SOA     localhost. root.localhost. (
+                              2         ; Serial 即序列号，或者说版本号，每次改动后应修改下这里
+                         604800         ; Refresh 刷新时间(单位秒，下同)
+                          86400         ; Retry 重试时间
+                        2419200         ; Expire 过期时间
+                         604800 )       ; Negative Cache TTL 缓存TTL
+;
+@       IN      NS      localhost.      ; 指定域名
+@       IN      A       127.0.0.1        ; A记录，即指向IPv4地址的记录
+@       IN      AAAA    ::1             ; 指向IPv6地址的记录
+</code></pre><h1 id="三、-如何增加一条DNS记录"><a href="#三、-如何增加一条DNS记录" class="headerlink" title="三、 如何增加一条DNS记录"></a>三、 如何增加一条DNS记录</h1><p>最简单的办法，copy+paste，然后改吧改吧试试，比如增加<code>example.com</code>的记录:</p>
+<ol>
+<li>从<code>db.local</code>拷贝成<code>db.example</code>, 然后把里面的<code>localhost</code>都改成<code>example.com</code>:<pre><code>$TTL    604800
+@       IN      SOA     example. root.example. (
+                           2         ; Serial
+                      604800         ; Refresh
+                       86400         ; Retry
+                     2419200         ; Expire
+                      604800 )       ; Negative Cache TTL
+;
+@       IN      NS      example.
+@       IN      A       127.0.0.1
+@       IN      AAAA    ::1
+</code></pre></li>
+<li>将<code>named.conf.default-zones</code>中的<code>localhost</code>的zone拷贝一份，将<code>localhost</code>都改成<code>example.com</code>:<pre><code>zone &quot;example.com&quot; {
+     type master;
+     file &quot;/etc/bind/db.example&quot;;
+};
+</code></pre></li>
+<li>重启bind9服务<pre><code>$ sudo /etc/init.d/bind9 restart
+* Stopping domain name service... bind9                                                                                waiting for pid 2759 to die
+                                                                                        [ OK ]
+* Starting domain name service... bind9                                                   [ OK ]
+</code></pre></li>
+<li>好了，试试解析<code>example.com</code>，此处就使用简单方便的<code>dig</code>:<br>```<br>$  dig @localhost example.com</li>
+</ol>
+<p>; &lt;&lt;&gt;&gt; DiG 9.9.5-4.3ubuntu0.3-Ubuntu &lt;&lt;&gt;&gt; @localhost example.com<br>; (1 server found)<br>;; global options: +cmd<br>;; Got answer:<br>;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 59594<br>;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1</p>
+<p>;; OPT PSEUDOSECTION:<br>; EDNS: version: 0, flags:; udp: 4096<br>;; QUESTION SECTION:<br>;example.com.            IN    A</p>
+<p>;; ANSWER SECTION:<br>example.com.        604800    IN    A    127.0.0.1</p>
+<p>;; AUTHORITY SECTION:<br>example.com.        604800    IN    NS    example.</p>
+<p>;; Query time: 4 msec<br>;; SERVER: 127.0.0.1#53(127.0.0.1)<br>;; WHEN: Tue Aug 04 10:14:15 CST 2015<br>;; MSG SIZE  rcvd: 77<br><code>``
+看到了</code>ANSWER SECTION: example.com.        604800  IN  A   127.0.0.1`，就说明OK了。</p>
+<h1 id="附-什么是A记录"><a href="#附-什么是A记录" class="headerlink" title="附 - 什么是A记录?"></a>附 - 什么是A记录?</h1><p>A记录，即主机记录，根据RFC 1035的定义，A记录用于将特定主机名映射到对应主机的IP地址上。<br>常见的DNS资源记录还有：</p>
+<ul>
+<li>CNAME - 别名记录，将某个主机名映射到另外一个主机名</li>
+<li>AAAA - IPv6记录，类似A记录，是映射到IPv6地址</li>
+<li>NAPTR - 正则表达式匹配域名然后映射</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2015-09-09T16:00:00.000Z" itemprop="dateUpdated">2015年9月10日 0:00</time>
+</span><br>
+
+
+        <a href="/2015/07/30/how-to-config-dns-server-in-ubuntu/" target="_blank" rel="external">http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DNS/">DNS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&title=《Ubuntu下配置DNS服务器》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&title=《Ubuntu下配置DNS服务器》 — Clarence的博客&source=一、安装DNS服务器-bind9bind9可以直接用apt-get安装：
+sudo apt-get install bind9
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu下配置DNS服务器》 — Clarence的博客&url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/09/10/how-to-embed-comments-to-static-blog/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何在静态博客中嵌入评论</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/05/07/generate_gradient_color/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">又是一个渐变色生成算法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="how-to-config-dns-server-in-ubuntu" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&title=《Ubuntu下配置DNS服务器》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&title=《Ubuntu下配置DNS服务器》 — Clarence的博客&source=一、安装DNS服务器-bind9bind9可以直接用apt-get安装：
+sudo apt-get install bind9
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu下配置DNS服务器》 — Clarence的博客&url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/07/30/how-to-config-dns-server-in-ubuntu/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQXKDMAwF0Nz/0u22MynkS7IyLB6rDBDw88IWkl6v+Pj5c7yfT/579Zz73+/Ha+PAw8PDGwz96nHJ1YR0NcT8nnzMeHh4eNu85HH5tnG/GeTvyif08jweHh7eA3hX20A+iGQ7yacPDw8P7/m8yZ3V6XjQvoeHh4fXSkYkr+wt7tWhr+Ra8PDw8GJeXkV6zu+V+h4eHh7euKpeLUrlrQZ5M8FotHh4eHgLvEn6oBo6z4Pg6jjx8PDwtnnJsHpJ2F6jQH71w3vx8PDwjvLOBtC98v8kifwhfYyHh4e3xqsW+KtNVPfP6SGjceLh4eGt8aohcl6Uug+yk4lLvgkun4CHh4e3xssbm/LGgvxMEmT3gnI8PDy8bV51ie9djfLKrRarD18MeHh4eEd5Sdq0msbNl/veVhF9DODh4eEt8HpJgXxZn09cnlWo7Bh4eHh4fV6+WPfC3GoYnW8S0STi4eHhfYWXNwrkpMKAqm1V95OFh4eHt8abL+uT0PlsArfQU4aHh4fX4vWyF9W0bPKW+8H1wnE8PDy8Dd6kpWkeNN8jexP0TzICDw8P7yivl2bN49WEPb9aKIPh4eHhLfPypOqkSWvSUhB9EuDh4eEd5fVKTdU0QdRUGvw3T53g4eHh7fHyNoJJ81N1y6mW2aI34uHh4R3l9ZbjedmsUPgvBuiv+W6Dh4eHF/DyQlSyoPeGXk3mlnc8PDw8vKO86hKcBN/NvHIrLXI5fjw8PLyjvF5bVR589xqn5g0EeHh4eHu86lK7jek1KBw48PDw8Iq8vOhVLefnS3kVXAjB8fDw8NZ4vWRBPtxq08B8A8PDw8N7Du9A5rh4phqmjzYGPDw8vC/yNpIL80QzHh4e3h6vlwionqm2Xs1TzHh4eHgbvHlA3Gs1qLJXKnt4eHh4Nd4vlJ19goW15mYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

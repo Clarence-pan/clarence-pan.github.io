@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>外包、构件和黑盒抽象等杂想 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Project Management">
+    <meta name="description" content="cnblogs Post date: 2010-05-12 13:42
+外包是什么现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度一下，很多人在问这个问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="外包、构件和黑盒抽象等杂想">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-05-12 13:42
+外包是什么现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度一下，很多人在问这个问题。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="外包、构件和黑盒抽象等杂想">
+<meta name="twitter:description" content="cnblogs Post date: 2010-05-12 13:42
+外包是什么现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度一下，很多人在问这个问题。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">外包、构件和黑盒抽象等杂想</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">外包、构件和黑盒抽象等杂想</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-05-11T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-05-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Project-Management/">Project Management</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#外包是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">外包是什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构件的争议"><span class="post-toc-number">2.</span> <span class="post-toc-text">构件的争议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#黑盒测试与黑盒抽象"><span class="post-toc-number">3.</span> <span class="post-toc-text">黑盒测试与黑盒抽象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算是结语吧"><span class="post-toc-number">4.</span> <span class="post-toc-text">算是结语吧</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-p_2010_05_12_1733642"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">外包、构件和黑盒抽象等杂想</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年05月12日 0:00" datetime="2010-05-11T16:00:00.000Z"  itemprop="datePublished">2010-05-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Project-Management/">Project Management</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/05/12/1733642.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-05-12 13:42</p>
+<h3 id="外包是什么"><a href="#外包是什么" class="headerlink" title="外包是什么"></a>外包是什么</h3><p>现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度一下，很多人在问这个问题。</p>
+<a id="more"></a>
+<p>据<a href="http://baike.baidu.com/view/123205.htm?fr=ala0_1" target="_blank" rel="external">百度百科</a>的解释：</p>
+<blockquote>
+<p>外包是一个战略管理模型,所谓外包（Outsourcing），在讲究专业分工的二十世纪末，企业为维持组织竞争核心能力，且因组织人力不足的困境，可将组织的非核心业务委托给外部的专业公司，以降低营运成本，提高品质，集中人力资源，提高顾客满意度。</p>
+<p>外包的范围按工作性质可分为&quot;蓝领外包&quot;和&quot;白领外包&quot;。&quot;蓝领外包&quot;指产品制造过程外包。&quot;白领外包&quot;亦称&quot;服务外包&quot;，指技术开发与支持其他服务活动的外包。其中技术开发与支持的外包一般采用一次性项目合同的方式寻求第三方专业公司的服务，称为&quot;合同外包&quot;；其他服务活动的外包多通过签定长期合同的方式交由专业外包提供商进行，称为&quot;职能外包&quot;。</p>
+</blockquote>
+<p>相应而言，软件项目中的外包——&quot;软件外包&quot;：</p>
+<blockquote>
+<p>所谓软件外包就是一些发达国家的软件公司将他们的一些非核心的软件项目通过外包的形式交给人力资源成本相对较低的国家的公司开发，以达到降低<a href="http://baike.baidu.com/view/190611.htm" target="_blank" rel="external">软件开发</a>成本的目的。众所周知，软件开发的成本中70%是人力资源成本，所以，降低人力资源成本将有效地降低软件开发的成本。</p>
+</blockquote>
+<p>然而&quot;外包&quot;这个名词有时容易和&quot;离岸外包&quot;相混淆：</p>
+<blockquote>
+<p>外包和离岸外包经常被混用，但是外包主要是与组织的重组相关，而离岸外包更强调的是国家。当然，在当今全球化的前提下，这两个概念并不是互斥的。从根本和历史上讲，外包是一个有关在团体内和团体间对劳动力进行组织的术语。</p>
+</blockquote>
+<p>这种解释很功利却很现实。</p>
+<h3 id="构件的争议"><a href="#构件的争议" class="headerlink" title="构件的争议"></a>构件的争议</h3><p>&quot;构件&quot;、&quot;组件&quot;这两个词一直很令人费解。</p>
+<p>在《构件化软件——超越面向对象编程》（<em>Component Software: Beyond Object-Oriented Programming</em>）一书中构件是指Component, 其定义为：</p>
+<blockquote>
+<p>软件构件是一种组装单位，它具有规范的接口规约和显式的语境依赖。软件构件可以被独立地部署并由第三方任意地组装。</p>
+</blockquote>
+<p>在《.Net 组件开发》（<em>.NET Component-Oriented Programmlng</em>）一书中组件就是指.Net中的Component。</p>
+<p>由此可见&quot;组件&quot;和&quot;构件&quot;仅仅只是译法不同而已。</p>
+<p>另外， &quot;构件&quot;（Component）不能和&quot;控件&quot;（Control）搞混淆了。控件一般是指可视化的可操作的GUI单元。控件是一个构件，就如同Control派生自Component一样。</p>
+<h3 id="黑盒测试与黑盒抽象"><a href="#黑盒测试与黑盒抽象" class="headerlink" title="黑盒测试与黑盒抽象"></a>黑盒测试与黑盒抽象</h3><p>黑盒测试时软件工程中一种测试方法。</p>
+<p>黑盒测试是用来检测每个功能是否能正常使用，因此又称功能测试。之所以叫黑盒测试，是因为在测试中，把程序看作一个不能打开的黑盒子，在完全不考虑程序内部结构和内部特性的情况下，在程序接口进行测试，它只检查程序功能是否按照需求规格说明书的规定正常使用，程序是否能适当地接收输入数据而产生正确的输出信息。</p>
+<p>从黑盒测试的模式来做设计有黑盒抽象和黑盒重用。</p>
+<p>黑盒抽象的设计中，客户对接口和规约之外的实现细节一无所知。例如.Net 中的Thread类，我们不知道它是如何实现（虽然可能很好奇），但却可以直接创建它的实例来创建一个托管线程。相应的这个过程就叫黑盒重用，具体而言，要在重用时仅仅依赖接口和规约，不需要了解构件的实现细节。</p>
+<p>与黑盒抽象相反的是白盒抽象，它来自白盒测试，要求客户了解实现细节。</p>
+<p>相应的白盒重用就也是需要用户了解实现细节的。一个例子是MFC编程，在重用MFC类库来创建一个窗口时，一般要从CWnd或其子类来派生出一个新的子类，在新的子类中添加一些消息响应函数，重写父类的一些行为，这样达到自定义窗口的目的。一般而言白盒抽象中，在接口限制了用户行为并确保了封装性的情况下，客户仍然可以通过继承对构件的实现细节进行修改。当然为了修改实现细节，首先要对原构件的实现细节有一定的了解，这就是学MFC这样的类库学到深处总是需要研究其源代码的原因。</p>
+<p>事实上，白盒重用中，被重用的构件不可以轻易被替换（升级），否则，有可能破坏正在重用的客户，因为这些客户端依赖于那些在未来可能发生改变的实现细节。</p>
+<p>据了解，很多兼容性问题是由于白盒重用对实现细节的依赖引起的。</p>
+<h3 id="算是结语吧"><a href="#算是结语吧" class="headerlink" title="算是结语吧"></a>算是结语吧</h3><p>&quot;外包&quot;、&quot;构件&quot;和&quot;黑盒抽象&quot;是这两天学习的一个内容。</p>
+<p>软件构件的思想很早（上世纪六七十年代）就提出了，但直到了这个世纪，真正的软件构件的才成功形成市场。很多公司对构件进行了探索，如微软的VBX, COM, COM+, OLE/ActiveX到现在的.Net构件技术，OMG的CORMA, CCM, OMA和MDA， SUN公司的Java, JavaBean, EJB等。</p>
+<p>顺便说一句：然而在学校中，令人郁闷的是，学到的还是很古老（当然很经典的）面向过程式的软件工程分析设计，然后面向对象的分析和设计居然还只是选学（老师只是提了提），至于构件式的开发，则是根本没讲过。</p>
+<p>很传统的开发方式——从头开始，只借助开发工具和平台函数库——有人叫&quot;定制软件&quot;，定制软件可能具有一定的潜在的优势，但目前来看定制软件却又很多明显的内在不足，如开发代价和滞后性等。</p>
+<p>构件式的开发（多以外包的形式）则相对而言具有很大的优势，构件式能迅速适应变化的需求，良好的设计能给用户更多自由定制的空间。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/05/12/p_2010_05_12_1733642/" target="_blank" rel="external">http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Project-Management/">Project Management</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&title=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&title=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&source=cnblogs Post date: 2010-05-12 13:42
+外包是什么现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/05/19/p_2010_05_19_about_debug_trace_in_dotNet/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Debug和Trace使用小记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/05/03/p_2010_05_03_SharpSniffer/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SharpSniffer--C#版Sniffer</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_05_12_1733642" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&title=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&title=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&source=cnblogs Post date: 2010-05-12 13:42
+外包是什么现在有很多人（和公司）在做外包，但我对外包是什么一直都不太清楚，于是百度..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《外包、构件和黑盒抽象等杂想》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/12/p_2010_05_12_1733642/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3aSW7DMBAEwPz/0841QGCpmyMbEFU8GbEhsXiYzMKfn3i9/qy1b5PfHz/ngoWBgXFbxutw/d9Ku4kc+e69x3vDwMB4DiN/wecC6/HxnewZAwMDI04N8/QuD+4YGBgYOSN63OGm87CLgYGBsVbEJt/mG0qe85FaHAMD44aMNlx+8/NH5hsYGBi3YrwGay1BTIJvvRMMDIytGW0QzAHzYUCeOGJgYOzNmDS88tFjW8q2BTYGBsYTGPMych71k9Rz9B8DAwNjO0Z+hWLtotjkEsbbWhwDA2NTxvyCxVobLjmy5I31HAMDA+OGjE8MBtYCNAYGBsYxI0nj1rY1Oaw8AcXAwHgyI2/ln7TDynK3PVwMDIznMCZF5lWNtnaEiYGBgZEPHScHkRxNcdkCAwNja0ab6rXXLNY+X3BnBAMD4wGMtaD8neHlSS2OgYGxESMJrG0a16ae+aGcTGIxMDA2ZcwbZ+1Ism3AFSNMDAyM7RhRM6tMB/MAmieFER4DA2NTxjwRXGu6XfwcDAyMrRlXDSwTfPv3ukjGwMDYlPEqV7Kh9jftWOKka4iBgbEdI1/t9Yv2WtgaFQMD4zmMySixbaLlW2/bcBgYGE9g5FVvnrq1pexonImBgYGxNOBca7rlb8HAwMBoi8k2WWwD+uI8FgMDYyNGe50r33oeyvMrINEkFgMDYyPG5KZGHhDb8rW+FoaBgbEn4xcXRGWrQeg2twAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

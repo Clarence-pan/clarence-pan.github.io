@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>HTTP2试用小记 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="nginx">
+    <meta name="description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
+
+                
+                    
+                    
+                
+                
+            
+支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP2试用小记">
+<meta property="og:url" content="http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
+
+                
+                    
+                    
+                
+                
+            
+支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta property="og:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io//ww2.sinaimg.cn/large/bf5f3c73gw1f9v473ftnoj20a40f7myj.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v4aad7zsj216x02faag.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io//ww4.sinaimg.cn/large/bf5f3c73gw1f9v4ajjs6bj216w02i0te.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io//ww2.sinaimg.cn/large/bf5f3c73gw1f9v3l9va5nj20mc081acu.jpg">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP2试用小记">
+<meta name="twitter:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
+
+                
+                    
+                    
+                
+                
+            
+支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta name="twitter:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTTP2试用小记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTTP2试用小记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-16T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-11-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nginx/">nginx</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#升级nginx"><span class="post-toc-number">1.</span> <span class="post-toc-text">升级nginx</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#尝试通过HTTP2访问"><span class="post-toc-number">2.</span> <span class="post-toc-text">尝试通过HTTP2访问</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#性能PK"><span class="post-toc-number">3.</span> <span class="post-toc-text">性能PK</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-upgrade-nginx-to-support-http2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP2试用小记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年11月17日 0:00" datetime="2016-11-16T16:00:00.000Z"  itemprop="datePublished">2016-11-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nginx/">nginx</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这两天把公司的网站升级到了全站https. 顺便瞄到了<a href="http://caniuse.com/#search=http2" target="_blank" rel="external">HTTP2的浏览器支持情况</a>：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿<a href="https://www.clarencep.com" target="_blank" rel="external">本博客</a>来做示例了。</p>
+<a id="more"></a>
+<h2 id="升级nginx"><a href="#升级nginx" class="headerlink" title="升级nginx"></a>升级nginx</h2><p>主流浏览器基本上都支持了HTTP2，但是nginx只有升级到1.10以上版本才行 -- 鄙站之前用的还是nginx 1.6的某个版本。</p>
+<p>更新了下apt-get，发现仓库中没有1.10版本 -- 囧 -- 只好自己编译吧：</p>
+<p>首先，下载nginx和openssl：</p>
+<pre><code class="sh">cd /usr/local/src
+
+wget https://nginx.org/download/nginx-1.11.6.tar.gz
+tar xzf nginx-1.11.6.tar.gz
+
+wget https://www.openssl.org/source/openssl-1.1.0c.tar.gz
+tar xzvf openssl-1.1.0c.tar.gz
+</code></pre>
+<p>然后，编译nginx：</p>
+<pre><code class="sh">
+cd nginx-1.11.6
+./configure --prefix=/usr/local/nginx \
+  --conf-path=/etc/nginx/nginx.conf \
+  --with-openssl=../openssl-1.1.0c \
+  --with-http_v2_module \
+  --with-http_ssl_module \
+  --with-http_gzip_static_module
+
+make &amp;&amp; sudo make install
+
+# 为了方便全局执行，则创建个符号链接：
+sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
+</code></pre>
+<p>接着，就是移植老的配置了，老的配置都可以直接使用，直接拷贝过来即可。<br>最后，启用HTTP2 -- 目前HTTP2只能和ssl(https)一起使用，只要修改下listen语句即可：</p>
+<pre><code># 老的配置：
+# listen 443;
+# 新的配置（启用http2）:
+  listen 443 ssl http2;
+</code></pre><p>别忘了重启nginx (<code>sudo nginx -s reload</code>).</p>
+<h2 id="尝试通过HTTP2访问"><a href="#尝试通过HTTP2访问" class="headerlink" title="尝试通过HTTP2访问"></a>尝试通过HTTP2访问</h2><p>搞定nginx后，随手拿个chrome就可以使用HTTP2了 -- chrome 49及以上版本都支持HTTP2，还好chrome会自动升级，基本不用担心chrome太老。</p>
+<p>打开F12查看下HTTP头部，果然Request Headers都不一样了：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ww2.sinaimg.cn/large/bf5f3c73gw1f9v473ftnoj20a40f7myj.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>这些<code>:authority</code>, <code>:method</code> 和 <code>:path</code> 等冒号打头的就是HTTP2的特征之一 -- 手边没有抓包工具，只能这样粗浅的判断了。</p>
+<p>看看HTTP2的流水：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ww1.sinaimg.cn/large/bf5f3c73gw1f9v4aad7zsj216x02faag.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>再比比HTTP1.1的流水：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ww4.sinaimg.cn/large/bf5f3c73gw1f9v4ajjs6bj216w02i0te.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>HTTP2的流水简洁多了，有没有！</p>
+<h2 id="性能PK"><a href="#性能PK" class="headerlink" title="性能PK"></a>性能PK</h2><p>HTTP2的性能一般应该比HTTP1.1的高一些，但是，可不一定哟：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//ww2.sinaimg.cn/large/bf5f3c73gw1f9v3l9va5nj20mc081acu.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图是<a href="https://www.clarencep.com" target="_blank" rel="external">本博客首页</a>在相同nginx、相同PC、相同网络条件下对HTTP2和HTTP1.1分别测试的PK结果。 可见虽然HTTP2的网络加载时间（Load）比HTTP1.1要短，但是DOM渲染时间（DOMContentLoaded）却比HTTP1.1要长。。。</p>
+<p>可能是由于本博没有专门为HTTP2优化所至。也可能是浏览器渲染没有为HTTP2优化的缘故。</p>
+<p>最后总结一句：HTTP2入坑要谨慎。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2016/11/17/upgrade-nginx-to-support-http2/" target="_blank" rel="external">http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&title=《HTTP2试用小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&title=《HTTP2试用小记》 — Clarence的博客&source=这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
+
+                
+                 ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP2试用小记》 — Clarence的博客&url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/02/15/frustrations-in-developing-wechat-mini-application/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">微信小程序开发踩坑记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">一个将多说的头像变成https的简单方法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="upgrade-nginx-to-support-http2" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&title=《HTTP2试用小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&title=《HTTP2试用小记》 — Clarence的博客&source=这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
+
+                
+                 ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTTP2试用小记》 — Clarence的博客&url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3a0U7rMBAE0P7/T5dHkFByZ7x26JVOnlBKYx8jZc2sX6/4ev+4ft+/+p337XU1yv3zXycuPDw8vMHUryZxded+WvdPaBmLC4eHh4d3jNcOeQ/Oi8eEl5QWPDw8vE/g5cO0jPtFxMPDw/t/eWuYfOHut854eHh4n8NLwoj8W8kWPA9wH8pa8PDw8LreU9RF+pyfj/T38PDw8MZd9bzZn5eBtrU2mi0eHh7eAV7+wp1vlyfb3/z38fDw8J7kJVOfN/jbODiPSC7HxcPDw9vKmzT+2xd3HsK2gW+UoODh4eFt4iUNp6SRv7YRbxtpeRMODw8P7xne8w2qvJy0W3M8PDy8c7w2UMhLRd7iaqOHYnQ8PDy8A7x2e5oHCsm38vA3b7MVu3s8PDy8Tby14wL5C33yaf7HuCwMeHh4eJt4axvrtaVZCzLWCgkeHh7eCV7b8l/LiSeHAyahBh4eHt453qRInCgMeYD7j/c/Hh4e3jHe/NhTQlr7dK3w4OHh4Z3jtW2qtnjkIUI7Yt0kw8PDw9vEazev5w5aTY4vXM4KDw8P7wBv7dBVPvX8u/lWfnToCg8PD2/MywtAu4HOm2oJOJ/P5XErPDw8vK28tdi0vT+PiesDYXh4eHgHeOcwbSSxdqc9zoWHh4e3i5eI977c841y+5xX0fLDw8PDm/LallJ+p61FSYhcjIKHh4d3jNdGuvPd+iRELpYGDw8PbyvvXV55xHDi4FS+iHh4eHjneGsv3Hmwmwcc2xpdeHh4eFt580cnJaRtmLVPi1JqPDw8vK289oXe8toF3VzT8PDw8D6A17b/18pPHmdE/T08PDy8P+KttflzTL4oUVHBw8PDO8bbGwS0ZaNtgOULjYeHh3eCN/+Pfr69rk+KPRlY4OHh4X1fX9SUfYJ0HZRPAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

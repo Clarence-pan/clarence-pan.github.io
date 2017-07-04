@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>微信小程序开发踩坑记 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="微信,小程序,微信小程序,开发,坑">
+    <meta name="description" content="前言微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发踩坑记">
+<meta property="og:url" content="http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="前言微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序开发踩坑记">
+<meta name="twitter:description" content="前言微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">微信小程序开发踩坑记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">微信小程序开发踩坑记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-15T11:09:50.000Z" itemprop="datePublished" class="page-time">
+  2017-02-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信小程序/">微信小程序</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑1：scroll-view与onPullDownRefresh冲突"><span class="post-toc-number">2.</span> <span class="post-toc-text">坑1：scroll-view与onPullDownRefresh冲突</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑2：无法获取元素的高度"><span class="post-toc-number">3.</span> <span class="post-toc-text">坑2：无法获取元素的高度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑3：无法在bindXXX的事件处理的时候阻止冒泡"><span class="post-toc-number">4.</span> <span class="post-toc-text">坑3：无法在bindXXX的事件处理的时候阻止冒泡</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑4：-预览前构建时间比较长"><span class="post-toc-number">5.</span> <span class="post-toc-text">坑4： 预览前构建时间比较长</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑5：-组件复用好蛋疼"><span class="post-toc-number">6.</span> <span class="post-toc-text">坑5： 组件复用好蛋疼</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑6：不支持webview直接嵌入html代码"><span class="post-toc-number">7.</span> <span class="post-toc-text">坑6：不支持webview直接嵌入html代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑7：测试与发布"><span class="post-toc-number">8.</span> <span class="post-toc-text">坑7：测试与发布</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">9.</span> <span class="post-toc-text">后记</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-frustrations-in-developing-wechat-mini-application"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">微信小程序开发踩坑记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年02月15日 19:09" datetime="2017-02-15T11:09:50.000Z"  itemprop="datePublished">2017-02-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/微信小程序/">微信小程序</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。<br><a id="more"></a></p>
+<h2 id="坑1：scroll-view与onPullDownRefresh冲突"><a href="#坑1：scroll-view与onPullDownRefresh冲突" class="headerlink" title="坑1：scroll-view与onPullDownRefresh冲突"></a>坑1：scroll-view与onPullDownRefresh冲突</h2><p>由于有几个页面需要将导航tab栏自动置顶，所以使用了scroll-view。然而又想要下拉刷新，本来想直接使用onPullDownRefresh，结果却发现下拉的时候onPullDownRefresh根本没有！囧！</p>
+<p>研究了半天，最终监听touchXXX自己模拟了个下拉刷新。（具体实现方案改日再分享。）为了尽量接近微信原生的下拉刷新，还特意抄了半天微信原生的下拉刷新动画...</p>
+<pre><code class="html">&lt;div class=&quot;loading&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="css">.loading{
+    display: block;
+    width: 100%;
+    height: 20px;
+    padding: 20px 0;
+    text-align: center;
+    background: #eee;
+}
+.loading::before,
+.loading .dot,
+.loading::after
+{
+  content: &#39;&#39;;
+  display: inline-block;
+  color: transparent;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  margin: 0 8px;
+}
+
+.loading::before,
+.loading .dot,
+.loading::after{
+  -webkit-animation: pulldown-refresh-loader 1.4s infinite ease-in-out;
+  animation: pulldown-refresh-loader 1.4s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.loading::before{
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loading .dot{
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes pulldown-refresh-loader {
+  0%, 80%, 100% { background-color: #f0f0f0; }
+  40% { background-color: #fff; }
+}
+
+@keyframes pulldown-refresh-loader {
+  0%, 80%, 100% { background-color: #f0f0f0; }
+  40% { background-color: #fff; }
+}
+</code></pre>
+<div><style>.loading{display:block;width:100%;height:20px;padding:20px 0;text-align:center;background:#eee}.loading .dot,.loading::after,.loading::before{content:&quot;&quot;;display:inline-block;color:transparent;width:14px;height:14px;border-radius:14px;background:#fff;overflow:hidden;margin:0 8px;-webkit-animation:pulldown-refresh-loader 1.4s infinite ease-in-out;animation:pulldown-refresh-loader 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}.loading::before{-webkit-animation-delay:-.32s;animation-delay:-.32s}.loading .dot{-webkit-animation-delay:-.16s;animation-delay:-.16s}@-webkit-keyframes pulldown-refresh-loader{0%,100%,80%{background-color:#f0f0f0}40%{background-color:#fff}}@keyframes pulldown-refresh-loader{0%,100%,80%{background-color:#f0f0f0}40%{background-color:#fff}}</style><div class="loading"><div class="dot"></div></div></div>
+
+<h2 id="坑2：无法获取元素的高度"><a href="#坑2：无法获取元素的高度" class="headerlink" title="坑2：无法获取元素的高度"></a>坑2：无法获取元素的高度</h2><p>本来有个页面是要做成监听滚动，然后自动切换顶部tab的，类似 <a href="http://www.runoob.com/try/try.PHP?filename=bootstrap3-plugin-scrollspy&amp;basepath=0" target="_blank" rel="external"> bootstrap的滚动监听</a> 的效果。 然而里面有大段的文本，而文本的高度根本算不来，囧。还是放弃这个效果吧。</p>
+<h2 id="坑3：无法在bindXXX的事件处理的时候阻止冒泡"><a href="#坑3：无法在bindXXX的事件处理的时候阻止冒泡" class="headerlink" title="坑3：无法在bindXXX的事件处理的时候阻止冒泡"></a>坑3：无法在bindXXX的事件处理的时候阻止冒泡</h2><p>有人说，你可以使用catchXXX呀！然而，我在某些时候才需要阻止事件冒泡，另外一些时候是不需要阻止冒泡的，是需要默认行为...</p>
+<p>最终采用了一个很挫的方案来“解决” -- 复制那个<code>&lt;view&gt;</code>根据是否组织冒泡分别渲染成<code>bindXXX</code>或<code>catchXXX</code>...：</p>
+<pre><code>&lt;view class=&quot;{{preventDefault && 'hide'}}&quot; catchXXX=&quot;yyy&quot; &gt;zzz&lt;/view&gt;
+&lt;view class=&quot;{{!preventDefault && 'hide'}}&quot; bindXXX=&quot;yyy&quot; &gt;zzz&lt;/view&gt;
+</code></pre><p>这个还不能简单地使用<code>wx:if</code>，否则切换的成本太高了点。</p>
+<h2 id="坑4：-预览前构建时间比较长"><a href="#坑4：-预览前构建时间比较长" class="headerlink" title="坑4： 预览前构建时间比较长"></a>坑4： 预览前构建时间比较长</h2><p>貌似没有好办法，预览的构建貌似不是增量的，希望微信官方啥时候能改成增量的就好了。点击预览按钮后去倒杯水喝吧。</p>
+<h2 id="坑5：-组件复用好蛋疼"><a href="#坑5：-组件复用好蛋疼" class="headerlink" title="坑5： 组件复用好蛋疼"></a>坑5： 组件复用好蛋疼</h2><p>小程序里面虽然提供了<code>&lt;template&gt;</code>可以复用一部分模版，但是我们要是想复用一个具有完整功能组件（比如一个对话框 ）就会非常蛋疼 -- 数据怎么传呢？业务逻辑代码写在哪里？样式如何加载？</p>
+<p>目前解决方法是将组件封装成 <code>xxx.js</code>， <code>xxx.wxml</code> 和 <code>xxx.wxss</code>，用的时候都要引用下... 好麻烦！很怀念React里面的组件。</p>
+<p>回头考虑通过在微信小程序前面加一道构建，以便自动引用组件相关东东。</p>
+<h2 id="坑6：不支持webview直接嵌入html代码"><a href="#坑6：不支持webview直接嵌入html代码" class="headerlink" title="坑6：不支持webview直接嵌入html代码"></a>坑6：不支持webview直接嵌入html代码</h2><p>像后台通过富文本编辑器录入的文章页面没法直接显示了... 还好有<code>wxParse</code>。尽管样式调起来很蛋疼，起码能看了。</p>
+<h2 id="坑7：测试与发布"><a href="#坑7：测试与发布" class="headerlink" title="坑7：测试与发布"></a>坑7：测试与发布</h2><p>微信开发者工具的预览版本只能谁登录谁来扫，其他人扫根本开不了 --- 同是一个小程序的开发者也不行，囧。为了让测试人员方便测试，还得教会测试人员如何登录微信开发者工具，如何更新代码，如何构建并预览小程序。。。 </p>
+<p>啥，你说有“预览版本”，预览版本更麻烦，上传的时候只能管理员才能上传，上传完还必须选择为预览版本，预览版本还不是每个人能看的，而是加到预览者里面的才能看（开发者居然默认没有加到预览者里面！） -- 每一个操作都是要管理员扫码...</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>微信小程序坑还有很多，未完待续...</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2017/02/15/frustrations-in-developing-wechat-mini-application/" target="_blank" rel="external">http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/坑/">坑</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发/">开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&title=《微信小程序开发踩坑记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&title=《微信小程序开发踩坑记》 — Clarence的博客&source=前言微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微信小程序开发踩坑记》 — Clarence的博客&url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/18/edit-vue-file-via-vscode/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何优雅地使用 VSCode 来编辑 vue 文件？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/17/upgrade-nginx-to-support-http2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HTTP2试用小记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="frustrations-in-developing-wechat-mini-application" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&title=《微信小程序开发踩坑记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&title=《微信小程序开发踩坑记》 — Clarence的博客&source=前言微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微信小程序开发踩坑记》 — Clarence的博客&url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNElEQVR42u3aS47iQBAFQO5/6Z7tjHqA9zJBwkV4ZYFxOcotZefndouPn1/H35/fuz655veV947Hz3Z7x4GNjY19EXay2L3l89+25/fWSl5DtHHY2NjYx7HbIJQEmJ/yyLcjuf6JERsbGxs7Tk6STzYwbGxsbOwNe3aeFJUepyWPr8fGxsb+TnabHryjwLQPmW+ppWFjY2N/PDvvin7++Vv629jY2NgfzJ6V7zdpwKwI1ZainiiwsbGxD2LnASAf6Jm1bB8/Q5sUJeUnbGxs7DPYs31KwG34mYW6WfqEjY2NfRI7eax2+KYdx3lfQ7fojWBjY2MfzW4DTP55HiDb1m9xDTY2NvbF2a8aqcmHdZJvk8CWDwb95xViY2NjH8RO0om2vdomM69q99ajPNjY2NhHsGcBoKVumr6vSmyeTCphY2NjX5Y9SyqSK9sG7WzQJw+E2NjY2KeyZ0WlTdlo1rjNmxDR/bGxsbEPYs+WzFOUPFHZjwS9oJaGjY2NfVl2WzlvU5S2ZZtgNi1hbGxs7JPYs0fPi0pt+BkW+gP2bfOHgY2Njf3B7LZg1P4nn5eu8nX3JS1sbGzsk9ibAn0beGZN2VnQevItNjY29kHsfSjatA024zh563dVS8PGxsb+ePZjwCY5mW3lrIWQpDr/nGNjY2Mfyp61Wts7JA/Xhqu6LYGNjY19HDsHz4pK+cBlnq7MxjGxsbGxT2W3KUGeHmxGcPLNapsN2NjY2KeyZ+EqbxIk+E0Tong92NjY2Iey2xDSpiJ52Sjf0HxI6EktDRsbG/uy7Nc2aGeJx37IcsjDxsbGPoidBJKWMQtUs+ccJi3Y2NjYh7LbBdrSfDK4k49RbgY6sbGxsc9mbwJYUlrKW7ztiGfR6sDGxsY+gv1THu8Ie22BqQ1mUbUMGxsb+7LsTaugTTDa1GIzoPOCdi82Njb2pdgtYzZMk4erttGb3L9+k9jY2NgXZLeN1TZV2ATI2WjOsJaGjY2N/TXsvMSz2aDNYNCTZ8DGxsb+YnbSym23rw14+0QIGxsb+zz2vgCUbEQ+ptNuR746NjY29nnsNlTkWzP77WysZ7/d2NjY2Bdk/wGi8bqWfYu1ZAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

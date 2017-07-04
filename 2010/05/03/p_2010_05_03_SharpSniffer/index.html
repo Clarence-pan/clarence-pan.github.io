@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>SharpSniffer--C#版Sniffer | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C#,sniffer">
+    <meta name="description" content="cnblogs Post date: 2010-05-03 12:46
+虽然网上已经有了SharpSniffer这一个SharpSniffer还是原创的无他，唯为学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SharpSniffer--C#版Sniffer">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-05-03 12:46
+虽然网上已经有了SharpSniffer这一个SharpSniffer还是原创的无他，唯为学习">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SharpSniffer--C#版Sniffer">
+<meta name="twitter:description" content="cnblogs Post date: 2010-05-03 12:46
+虽然网上已经有了SharpSniffer这一个SharpSniffer还是原创的无他，唯为学习">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SharpSniffer--C#版Sniffer</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">SharpSniffer--C#版Sniffer</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-05-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-05-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要过程"><span class="post-toc-number">1.</span> <span class="post-toc-text">主要过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关键代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">关键代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不足之处"><span class="post-toc-number">3.</span> <span class="post-toc-text">不足之处</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-p_2010_05_03_SharpSniffer"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">SharpSniffer--C#版Sniffer</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年05月03日 0:00" datetime="2010-05-02T16:00:00.000Z"  itemprop="datePublished">2010-05-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/05/03/SharpSniffer.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-05-03 12:46</p>
+<p>虽然网上已经有了SharpSniffer<br>这一个SharpSniffer还是原创的<br>无他，唯为学习</p>
+<a id="more"></a>
+<p>工程文件下载：<a href="http://files.cnblogs.com/pcy0/SharpSniffer.rar" target="_blank" rel="external">SharpSniffer.rar</a></p>
+<h3 id="主要过程"><a href="#主要过程" class="headerlink" title="主要过程"></a>主要过程</h3><p>1、创建套接字<br>2、绑定到本机<br>3、设置IOControl<br>4、接收数据<br>5、处理（显示）数据</p>
+<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><p>创建socket ，据MSDN，IOControlCode.ReceiveAll（后面要使用到）使用时有以下限制：</p>
+<p><code>ReceiveAll</code> - 启用对网络上的所有 IPv4 数据包的接收。套接字必须有 InterNetwork地址族，套接字类型必须是 Raw，并且协议类型必须为 IP。当前用户必须属于本地计算机上的 Administrators 组，并且套接字必须绑定到特定端口。Windows 2000 及更高版本的操作系统支持此控制代码。此值等于 Winsock 2 SIO_RCVALL 常数。</p>
+<pre><code>    Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, ProtocolType.IP); //直接new一个
+</code></pre><p>绑架到本机，只有绑定到本机才可以监听数据包：</p>
+<pre><code>    socket.Bind(new IPEndPoint(GetHostAdress(), 0));
+</code></pre><p>获取本机IP地址，从一个主机名可能解析到好几个地址，这要看你电脑的网络适配器的状态了，这里只取第一个：</p>
+<pre><code>private static IPAddress GetHostAdress(){
+    string hostName=Dns.GetHostName();
+    var hostAddreses=Dns.GetHostAddresses(hostName);
+    return hostAddreses[0];
+}
+</code></pre><p>很关键的一步，对IOControl进行设置。这里输入参数为1表示RCVALL_ON（启用接收所有包），当输入参数为0时表示RCVALL_OFF，具体定义在MSDN中WSAIoctl函数的Remark中说的很清楚：</p>
+<pre><code>byte[] outValue = BitConverter.GetBytes(0);
+byte[] inValue = BitConverter.GetBytes(1);
+socket.IOControl(IOControlCode.ReceiveAll,inValue, outValue); //对IO设置为可以接受所有包
+</code></pre><p>很关键的，接收数据：</p>
+<pre><code>int recvedSize = socket.ReceiveFrom(buf, ref ep); //用ReceiveFrom接受数据
+// socket.Receive(buf); //用Receive也能接受到数据，不过使用ReceiveFrom可以直接获取发送方IP地址
+</code></pre><p>接下来要显示数据了，这里只是简单的把数据打印出来，如果想获取该数据包的更多信息则就需要按IP数据包的格式来解析包的内容了：</p>
+<pre><code>    string s = GetByteArrayHexString(buf, 0, recvedSize);   //此函数把字节数组格式化，详细参考源代码PrintLine(s);
+</code></pre><p>详细过程参考<a href="http://files.cnblogs.com/pcy0/SharpSniffer.rar" target="_blank" rel="external">源代码</a><br>本程序在WinXP sp3, VS2010, .Net Framework 4.0 Client &amp; .Net Framework 2.0下编译运行通过<br>能成功抓包，如ping发出和收到的数据包能抓到，打开网页的数据包也能抓到。</p>
+<h3 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h3><p>暂时没有分析包的内容</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/05/03/p_2010_05_03_SharpSniffer/" target="_blank" rel="external">http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sniffer/">sniffer</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&title=《SharpSniffer--C#版Sniffer》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&title=《SharpSniffer--C#版Sniffer》 — Clarence的博客&source=cnblogs Post date: 2010-05-03 12:46
+虽然网上已经有了SharpSniffer这一个SharpSniffer还是原创的无..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SharpSniffer--C#版Sniffer》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/05/12/p_2010_05_12_1733642/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">外包、构件和黑盒抽象等杂想</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C++类型转换小记（一）——C++转换操作符</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_05_03_SharpSniffer" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&title=《SharpSniffer--C#版Sniffer》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&title=《SharpSniffer--C#版Sniffer》 — Clarence的博客&source=cnblogs Post date: 2010-05-03 12:46
+虽然网上已经有了SharpSniffer这一个SharpSniffer还是原创的无..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《SharpSniffer--C#版Sniffer》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_SharpSniffer/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3awW7bMBAE0Pz/T6fXAm6smV2ydYHnk6A4Ch8DcFdDfn3Fn+/fPq/3X7/zev/1+v2Tk9899sHDw8NbDP39EPM7Pz0nQSZTkP8tPDw8vHu82aLcfqctP0mxefhbeHh4eB/DS0pFgslHgoeHh/f/8vYFY9a44+Hh4X0aLwkjzlLfX7eR8YGsBQ8PDy/mte3vJ1xf2d/Dw8PDW++qzzal2kU8DzXq0eLh4eFd4OULbh4TzEKENhwpDofh4eHhXeDlEUAe0Sb97eb5eVnCw8PDO8vLH90GAfvNrbY8RDt7eHh4eEd5eegwm5q2MLTHuR7eFfDw8PAO8U5tSs2W9XzLv2278fDw8O7x2tf+ZED5kalZCcmbcjw8PLx7vLxdnsFm0UMeED+8MeDh4eEd5c3a5WTos7Ixi3qLQ1d4eHh4a16OmYW2baO8mZQ/jBMPDw/vAq/doGoPE8ym7D24HhseHh7eZd6+mc63rzYBbrGFhoeHh3eUl2QVyeI+C3ZnxaA4j4qHh4d3gdcOZX8UtR3crLF+KBJ4eHh4C1674OaMWXTbHil4uMbDw8O7zGsHFOUcwWTdaM2HFQwPDw+v5CWD2xwUOHWYIC9meHh4eDd4bfM6G0p74GBWEn68g4eHh3eNlz+6XbjzdnzTZP84Kjw8PLxrvPYAQXsYq93iajfMokMDeHh4eEd5s8U3345KYt/v9WfVUuPh4eGVvDYy2LTCD8FrGVs8TBweHh7eUd5s2Z1tjA0PTuX/pX2dwcPDw+t2muqNqNnQz4a8eHh4eP+KV7/er6dg9oRhHIyHh4d3jbcJDvKlv22+ZwUMDw8P79N4m3LS/jSJQh6mHg8PD+8DeMn3k6e1xSaPmPHw8PD+Di9Z4jfNdBtntLHIgawFDw8PL+a1L/l549syZtHwgSADDw8PL+X9AoOpAycMWYPhAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

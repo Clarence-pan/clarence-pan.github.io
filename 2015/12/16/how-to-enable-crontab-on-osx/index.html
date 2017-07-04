@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>在MAC OS X上如何启用crontab？ | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="OS X,MAC,crontab,定时任务">
+    <meta name="description" content="背景本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在MAC OS X上如何启用crontab？">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="背景本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在MAC OS X上如何启用crontab？">
+<meta name="twitter:description" content="背景本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">在MAC OS X上如何启用crontab？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">在MAC OS X上如何启用crontab？</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-12-15T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-12-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OS-X/">OS X</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OS-X/crontab/">crontab</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何启用crontab"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何启用crontab</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-how-to-enable-crontab-on-osx"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">在MAC OS X上如何启用crontab？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年12月16日 0:00" datetime="2015-12-15T16:00:00.000Z"  itemprop="datePublished">2015-12-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OS-X/">OS X</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OS-X/crontab/">crontab</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。</p>
+<a id="more"></a>
+<p>脚本写好了，也加了一条crontab：</p>
+<pre><code class="sh"># m h  dom mon dow   command
+30 11,17 * * * /Users/clarence/bin/daily-backup
+</code></pre>
+<p>可是，为啥到点没有执行呢？<br>问了下度娘和谷哥，结果很多文章都是关于如何用OS X现在自带的 launchctl 来执行定时任务的。可是呢，鄙人这个脚本是像每天上午和下午都要执行的，用 launchctl 来搞的话有点嫌麻烦。故今天非要探究下如何启用crontab。结果不一会儿就找到了原因，现分享如下：</p>
+<h2 id="如何启用crontab"><a href="#如何启用crontab" class="headerlink" title="如何启用crontab"></a>如何启用crontab</h2><p>首先，既然OS X的定时任务统统都由 launchctl 来管理了，就看看 cron 任务有没有在里面：</p>
+<pre><code class="sh">$  LaunchAgents  sudo launchctl list | grep cron
+83968    0    com.vix.cron
+</code></pre>
+<p>果然在里面。那就检查下这个启动项的配置：</p>
+<pre><code class="sh">$  LaunchAgents  locate com.vix.cron
+/System/Library/LaunchDaemons/com.vix.cron.plist
+$  LaunchAgents  cat /System/Library/LaunchDaemons/com.vix.cron.plist
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple Computer//DTD PLIST 1.0//EN&quot;
+    &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.vix.cron&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/sbin/cron&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;KeepAlive&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;PathState&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;/etc/crontab&lt;/key&gt;
+            &lt;true/&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+    &lt;key&gt;QueueDirectories&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/lib/cron/tabs&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;EnableTransactions&lt;/key&gt;
+    &lt;true/&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
+<p>注意里面有个KeepAlive的条件是 <code>/etc/crontab</code> 是否存在：</p>
+<pre><code class="xml">    &lt;key&gt;KeepAlive&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;PathState&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;/etc/crontab&lt;/key&gt;
+            &lt;true/&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+</code></pre>
+<p>所以呢，那就看看是否是因为这个 <code>/etc/crontab</code> 不存在导致 cron 里面的任务无法正常运行：</p>
+<pre><code class="sh">$  LaunchAgents  ll /etc/crontab
+ls: /etc/crontab: No such file or directory
+</code></pre>
+<p>果然，这个文件不存在。<br>那就创建吧！</p>
+<pre><code class="sh">$  sudo touch /etc/crontab
+</code></pre>
+<p>再试试 cron 任务是否成功启动... 果然能成功启动了！</p>
+<p>收工~</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2015/12/16/how-to-enable-crontab-on-osx/" target="_blank" rel="external">http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAC/">MAC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/">crontab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/定时任务/">定时任务</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&title=《在MAC OS X上如何启用crontab？》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&title=《在MAC OS X上如何启用crontab？》 — Clarence的博客&source=背景本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在MAC OS X上如何启用crontab？》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【转】使用Sublime + PlantUML高效地画图</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/12/12/installing-php-extensions/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">安装PHP扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="how-to-enable-crontab-on-osx" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&title=《在MAC OS X上如何启用crontab？》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&title=《在MAC OS X上如何启用crontab？》 — Clarence的博客&source=背景本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《在MAC OS X上如何启用crontab？》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3d0WrDMAwF0P7/T2+wp0I350qy0w5OnsqaJj4uOOq1YI9HfHz9HM+vX4/1u8/nvF7z9bPrMWw+8PDw8FpDzwf9FziZjvlfqpOIh4eHd45XfRisJyhZpXuMfMx4eHh4n8DL69Xeu/kY8PDw8P4XL1/6J6V2/vDAw8PDexcvWcR7D4zkCtUy+kjWgoeHhxfzehtg7319fH8PDw8Pr7WrPolu86tVS+rCaPHw8PAO8HqbTPOiubee55+K0hE8PDy8Ma/aCjCJBvKQd9KggIeHh3eC19vm75XC0SIe46MWLjw8PLxjvEnQkA96kr5WC248PDy8e3iT7fzkzLx9qlqal+cJDw8Pb8yLytP4/N5CXw2Oo4cZHh4e3o28XjnbCyzm8e6GGBcPDw8v5k0apHrBRL59lU/EBR4PDw9vK68XMUxCjWpKUOiA2JW14OHh4cU5ZzLo+XDLQ5yEGnh4eHgHePlP/XXEkFxnvs3WbNjCw8PD28rL44be7ashRfJ6/dmLnjI8PDy8rbx5BFBtJpgU8dHDBg8PD+8Ar/ojvxo39M7JI4loWvHw8PAO8Hoh6Rw5KbtzPB4eHt5e3iRU7R3VuCEv06OtLzw8PLwxL4luk7BgUnDnV6iGGnh4eHj38JIFfT2gfAombQGjzgg8PDy8AS8vdnuNpElJnV8//zLw8PDw7uT1lvsTDQeTkvrRe87g4eHhdVbg0T8O6WHmgy6cj4eHhzfm9bavqg0H62mqvpv8DPilpMbDw8PbxJssvnkrQHVjLJmaJErGw8PDO8ebxw29OcvD2er3g4eHh3cPL799ddHvlcV5MHHxNeDh4eG9lZdvRFWD3fVdJvfFw8PD+zReL5LY23Bw8MGAh4eHt+T1wohqPJFvieUxxMVf8PDw8A7wepFr+RLFrbW8KWHDSPDw8PBS3jcvCvk+2Vdc+AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

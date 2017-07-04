@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>`express` 框架中的参数小记 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="node.js,express">
+    <meta name="description" content="注意：req.params 只有在参数化的路径中的参数。查询字符串中的参数要用 req.query.
+比如:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="`express` 框架中的参数小记">
+<meta property="og:url" content="http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="注意：req.params 只有在参数化的路径中的参数。查询字符串中的参数要用 req.query.
+比如:">
+<meta property="og:updated_time" content="2017-04-01T05:09:46.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="`express` 框架中的参数小记">
+<meta name="twitter:description" content="注意：req.params 只有在参数化的路径中的参数。查询字符串中的参数要用 req.query.
+比如:">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">`express` 框架中的参数小记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">`express` 框架中的参数小记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-31T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/express/">express</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于-req-body"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于 req.body</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-a-note-to-express-params"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">`express` 框架中的参数小记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年04月01日 0:00" datetime="2017-03-31T16:00:00.000Z"  itemprop="datePublished">2017-04-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/express/">express</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
+<p>比如:</p>
+<a id="more"></a>
+<pre><code class="js">// server.js:
+app.post(&#39;/user/:id&#39;, function(req, res){
+    console.log(&#39;req.params: &#39;, req.params)
+    console.log(&#39;req.query: &#39;, req.query)
+    console.log(&#39;req.body: &#39;, req.body)
+})
+</code></pre>
+<pre><code>// HTTP request:
+POST /user/123?foo=1&amp;bar=2
+Content-Type: application/x-www-form-urlencoded
+
+aaa=1&amp;bbb=2
+</code></pre><p>这样的请求，应该是要用 <code>req.query.foo</code> 和 <code>req.query.bar</code> 来获取 foo 和 bar 的值，最终打印出如下:</p>
+<pre><code class="text">req.params:  { id: &#39;123&#39; }
+req.query:  { foo: &#39;1&#39;, bar: &#39;2&#39; }
+req.body:  { aaa: &#39;1&#39;, bbb: &#39;2&#39; }
+</code></pre>
+<h2 id="关于-req-body"><a href="#关于-req-body" class="headerlink" title="关于 req.body"></a>关于 <code>req.body</code></h2><p>此外，<code>express</code> 框架本身是没有解析 <code>req.body</code> 的 -- 如果打印出来 <code>req.body: undefined</code>则说明没有安装解析 <code>req.body</code> 的插件：</p>
+<p>为了解析 <code>req.body</code> 一般可以安装 <code>body-parser</code> 这个插件：</p>
+<pre><code>
+// 假设 `app` 是 `express` 的实例：
+
+const bodyParser = require(&#39;body-parser&#39;)
+
+// 在所有路由前插入这个中间件：
+
+app.use(bodyParser.urlencoded())
+</code></pre><p>这样就可以了。</p>
+<p><code>bodyParser.urlencoded()</code>是HTML中默认的查询字符串形式的编码,即<code>application/x-www-form-urlencoded</code>. 如果需要解析其他格式的，则需要分别加入其他格式的中间件，比如：</p>
+<ul>
+<li><code>bodyParser.json()</code> 支持JSON格式（<code>application/json</code>）</li>
+<li><code>bodyParser.raw()</code> 将会把 <code>req.body</code> 置为一个 <code>Buffer</code> (Content-Type：<code>application/octet-stream</code>)</li>
+<li><code>bodyParser.text()</code> 将会把 <code>req.body</code> 置为一个 <code>string</code> (Content-Type: <code>text/plain</code>)</li>
+</ul>
+<p>然而上传文件用的 <code>multipart/form-data</code> 格式却没有被 <code>bodyParser</code> 所支持，需要使用 <code>busboy</code> 之类的其他中间件。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-01T05:09:46.256Z" itemprop="dateUpdated">2017年4月1日 13:09</time>
+</span><br>
+
+
+        <a href="/2017/04/01/a-note-to-express-params/" target="_blank" rel="external">http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&title=《`express` 框架中的参数小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&title=《`express` 框架中的参数小记》 — Clarence的博客&source=注意：req.params 只有在参数化的路径中的参数。查询字符串中的参数要用 req.query.
+比如:" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《`express` 框架中的参数小记》 — Clarence的博客&url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/15/ftp-server-for-docker/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/18/edit-vue-file-via-vscode/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何优雅地使用 VSCode 来编辑 vue 文件？</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="a-note-to-express-params" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&title=《`express` 框架中的参数小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&title=《`express` 框架中的参数小记》 — Clarence的博客&source=注意：req.params 只有在参数化的路径中的参数。查询字符串中的参数要用 req.query.
+比如:" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《`express` 框架中的参数小记》 — Clarence的博客&url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awYrjMBAE0Pz/T+/CnHYJcapaUpyB59NgMraeDm5R3Y9HfP35uZ7v/Hv/+U5+//lKnrDtwsPDwxst/fo1+euvf5Mv99Ua2q3Bw8PDO8e7Lgb5otsikTCu/35jwcPDw7uVlzCSspEUm3w9eHh4eL+F1x6j861piwceHh7eXbwkjJiFs/kG3Zy14OHh4cW8tgH2DX8f7O/h4eHhLXTV8yIxe8ss/C1Wi4eHh3eAlx+CZ6Vi1zBWu4mP9oyPh4eHF/PaoYG20XX9/ORpM/Z/dQ8PDw/vAC9v5+eh6qwk5INZUZiLh4eH9xFeWySW2k5lKWpLCB4eHt5p3sqhuV3c3qP5hvwYDw8PL+bloWreyG9DhDY4Hoa/eHh4eMd4SVjQtvzXi0ob4OLh4eGd5l0vNA8FNny+S2QUheDh4eEd4yUxQVtCZpFEPSJwfR8PDw9vK68dflr/oC9FseWm4+Hh4Z3gtQ2nNrRNisGsbNRhBB4eHt4mXhuhzgLZ9ZBiOIaFh4eHdxMvP/62UW8+zpWHHXVhwMPDwxvx2s9xfuxuW2v5M5NChYeHh3eOl4cO68NYS3Nh5Trx8PDwPsOLPrhleyyPZdeLBx4eHt5p3q4hp3bRbdTbhiN4eHh4n+G1oWreAGvj3Ta6ffO/eHh4eFt5s0/wuQ/6LBaJGmB4eHh4B3jJElvGrjGC2REfDw8P7wQv/+CulI22ubWycS9/j4eHh7eJNwsaVgYFkhZa3pB7swY8PDy8A7w2ApgVgxw/GziYlRM8PDy8Fd6soZUfuFdGDfKm2sstw8PDwzvGW3n9+khByygqHh4eHt6tvORQeyICbptneHh4eN/Ma6PbWYSRtOs2HKnx8PDwSl5+FG4Hp9pwNh8Ci+7g4eHhHeDNItdhk37UGGu3e7gIPDw8vPdv/wt/QJKXdigy2AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

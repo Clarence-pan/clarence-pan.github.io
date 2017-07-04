@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Opera的一个小BUG | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Opera,Browser">
+    <meta name="description" content="cnblogs Post date: 2010-08-03 09:32
+简介这个BUG是关于\&amp;lt;!DOCTYPE&amp;gt;标签的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Opera的一个小BUG">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-08-03 09:32
+简介这个BUG是关于\&amp;lt;!DOCTYPE&amp;gt;标签的。">
+<meta property="og:image" content="http://pic002.cnblogs.com/img/pcy/201008/2010080309175851.png">
+<meta property="og:image" content="http://pic002.cnblogs.com/img/pcy/201008/2010080309184090.png">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Opera的一个小BUG">
+<meta name="twitter:description" content="cnblogs Post date: 2010-08-03 09:32
+简介这个BUG是关于\&amp;lt;!DOCTYPE&amp;gt;标签的。">
+<meta name="twitter:image" content="http://pic002.cnblogs.com/img/pcy/201008/2010080309175851.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Opera的一个小BUG</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Opera的一个小BUG</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-08-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-08-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Browser/">Browser</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#发现"><span class="post-toc-number">2.</span> <span class="post-toc-text">发现</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决"><span class="post-toc-number">3.</span> <span class="post-toc-text">解决</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-p_2010_08_03_opera_bug_zzz"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Opera的一个小BUG</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年08月03日 0:00" datetime="2010-08-02T16:00:00.000Z"  itemprop="datePublished">2010-08-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Browser/">Browser</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/08/03/opera_bug_zzz.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-08-03 09:32</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这个BUG是关于\&lt;!DOCTYPE>标签的。</p>
+<a id="more"></a>
+<p>这个标签一般可以简单的写作：</p>
+<pre><code class="{.brush:csharp}">&lt;!DOCTYPE HTML&gt;
+</code></pre>
+<p>表示这是一个HTML文档</p>
+<p>对于HTML 4.01的三个标准分别还有三种写法 详见<a href="http://www.w3school.com.cn/tags/tag_doctype.asp" target="_blank" rel="external">http://www.w3school.com.cn/tags/tag_doctype.asp</a></p>
+<h1 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h1><p>最近使用eclipse做jsp网页，其中自动生成的\&lt;!DOCTYPE>标签为：</p>
+<pre><code class="{.brush:csharp}">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &gt;
+</code></pre>
+<p>乍一看也没什么问题，平时也没注意到有什么问题</p>
+<p>当用jQuery时就出现问题了：</p>
+<p>正常显示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://pic002.cnblogs.com/img/pcy/201008/2010080309175851.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不正常显示：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://pic002.cnblogs.com/img/pcy/201008/2010080309184090.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>不正常的地方： 对话框的标题变高了，Cancel和ok按键也是位置变高了</p>
+<p>一开始我还以为是Opera内置的默认样式的问题（IE,chrome，firefox下正常显示），把默认样式覆盖掉，依旧还有这样的问题</p>
+<p>然后，采用原始的办法，把页面中其他元素去掉，只留这个对话框所必须的，再把jsp生成的源代码和正常显示的代码一行行相比较……</p>
+<p>最终发现是\&lt;!DOCTYPE>这个元素的问题：估计是Opera找不到那个DTD。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>把jsp中\&lt;!DOCTYPE>改成一下两种即可正常显示：</p>
+<pre><code class="{.brush:html}">&lt;!DOCTYPE html&gt; &lt;!-- 使用默认DTD也行 --&gt;
+</code></pre>
+<p> 或</p>
+<pre><code class="{.brush:html}">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+</code></pre>
+<p>无论用HTML或XHTML最后这个URL都要指定，防止找不到DTD。如果找不到，浏览器将使用公共标识符后面的 URL 作为寻找 DTD 的位置。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/08/03/p_2010_08_03_opera_bug_zzz/" target="_blank" rel="external">http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Browser/">Browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Opera/">Opera</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&title=《Opera的一个小BUG》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&title=《Opera的一个小BUG》 — Clarence的博客&source=cnblogs Post date: 2010-08-03 09:32
+简介这个BUG是关于\&lt;!DOCTYPE>标签的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Opera的一个小BUG》 — Clarence的博客&url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/08/03/p_2010_08_03_1791048/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">解决get方法提交的表单乱码问题</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/07/30/p_2010_07_30_cnblogs_sercurity_problem/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">博客园这登录的安全性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_08_03_opera_bug_zzz" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&title=《Opera的一个小BUG》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&title=《Opera的一个小BUG》 — Clarence的博客&source=cnblogs Post date: 2010-08-03 09:32
+简介这个BUG是关于\&lt;!DOCTYPE>标签的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Opera的一个小BUG》 — Clarence的博客&url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/08/03/p_2010_08_03_opera_bug_zzz/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3aQU4DMQwFUO5/adgioabfdlxm8bpC0E7yptLEfPvrK359/3r9/s35PX9/n1wnX/HaCw8PD2+w9fMmXv0139b5U/mNS/aMh4eHt83Llzwv9mr58+FxXrd6nODh4eE9jZc8vs/ldX7NanmNh4eH92ReEkDk+UDvgMHDw8P7X14etlbL62pIkR8ql7MWPDw8vJiXd5Ge8/NKfw8PDw9v3FWvRrHz8YK8fI92i4eHh7fAyx+41YK4N3SVDCVU94mHh4d3l1dt9ufBa7Vt1jta3qyLh4eHt8DbCAXydlpvMKt8bODh4eFd5c3DiGTEqrrd+TgCHh4e3h6v1/S61abKN9SLffHw8PA2eMkje9LoOr+/GumWr4OHh4e3xusVrMkWkxii2txqdvbw8PDwLvHyYvruMTAJPvJr4uHh4W3wem2npASvHgArxT0eHh7eB3kJu9fQ6rXWmoMOeHh4eAu83pRWfngkQe2tAPdNGwwPDw9vgXcrROi1tfJBgeqoFh4eHt4Gr9xAajXGqoNcvaGr6DvEw8PDG/B6raz5SEGyuctZCx4eHt5VXi8gqB4qveGA3vWj/hgeHh7egHf3EZ9Eq/mB1Cu7o6ErPDw8vDHv/OHz47g3OjCJJ6I94OHh4S3wkrGqSbE7j3HzIv7lcYKHh4e3xsuXT0KBWwX0JGLGw8PD2+bdbWL1xhGS4jsf9sLDw8Pb5k1GpiYDW4WGVu+deHh4eFd538VXfunkNhUChWLxjYeHh7fHqz7Eq7dgMnZQDUrw8PDwPslLtpuPZ/WOh/x25FfDw8PD2+bljbH8MX0tL5kEHHh4eHiP4SUtq0lRPgmU8fDw8J7GS0rnSbk8D0Hw8PDwPsOrbq56a3qHR/XLGGUteHh4eFf/388f8b0SPN90vhYeHh7eAu8HBmqSl0yj35EAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

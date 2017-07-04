@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>用于XML格式存储的工具类 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C#,XML">
+    <meta name="description" content="cnblogs Post date: 2009-12-12 23:37
+最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文件保存起来，一般我都是写个ToXElement函数然后在里面……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用于XML格式存储的工具类">
+<meta property="og:url" content="http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2009-12-12 23:37
+最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文件保存起来，一般我都是写个ToXElement函数然后在里面……">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用于XML格式存储的工具类">
+<meta name="twitter:description" content="cnblogs Post date: 2009-12-12 23:37
+最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文件保存起来，一般我都是写个ToXElement函数然后在里面……">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">用于XML格式存储的工具类</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">用于XML格式存储的工具类</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2009-12-11T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2009-12-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-p_2009_12_12_DotNetEx_XmlFormater"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">用于XML格式存储的工具类</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2009年12月12日 0:00" datetime="2009-12-11T16:00:00.000Z"  itemprop="datePublished">2009-12-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2009/12/12/DotNetEx_XmlFormater.html" target="_blank" rel="external">cnblogs</a> Post date: 2009-12-12 23:37</p>
+<p>最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文件保存起来，一般我都是写个ToXElement函数然后在里面……</p>
+<a id="more"></a>
+<p>今天写烦了，想写一个通用的工具类，以便很方便地把一个类保存化为XML。</p>
+<p>看看写出来的结果：</p>
+<pre><code>/************************************************************************\
+ * 把一个对象格式化为XML（元素），即：
+ *     1、该XML元素的名字为该对象的类型
+ *     2、对该对象中每一个公共属性（Property）转换为字符串（String）
+ *         保存到XML元素的属性中
+ * 把一个XML粘贴到一个对象中，即为上一过程的逆过程。
+ *     
+ * 对象信息保存到XML中（然后再保存到文件）很显然将具有很高的可读性
+\************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml.Linq;
+namespace DotNetEx.FormatAsXml
+{
+    /// &lt;summary&gt;
+    /// 标识能格式化为XML，可以被用在类和结构上，不可以继承，不支持多重标记
+    /// &lt;/summary&gt;
+    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Struct, Inherited = false, 
+        AllowMultiple = false)]
+    public sealed class CanFormatToXmlAttribute : Attribute
+    {
+       public CanFormatToXmlAttribute () {   }
+    }
+    /// &lt;summary&gt;
+    /// 标识该属性不用被格式化
+    /// &lt;/summary&gt;
+    [AttributeUsage(AttributeTargets.Property,Inherited=false,
+        AllowMultiple=false)]
+    public sealed class DonotFormatToXmlAttribute:Attribute
+    {
+        public DonotFormatToXmlAttribute(){}
+    }
+    /// &lt;summary&gt;
+    /// 格式化为XML的格式器
+    /// &lt;/summary&gt;
+    public static class XmlFormater
+    {
+        /// &lt;summary&gt;
+        /// 把一个对象格式化为XML，这个对象必须有CanFormatToXml属性（Attribute）
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;o&quot;&gt;要格式的对象&lt;/param&gt;
+        /// &lt;returns&gt;格式化的XML元素&lt;/returns&gt;
+        /// &lt;exception type=&quot;UnsurportedTypeException&quot;&gt;输入的对象的类型必须是支持格式化为XML的类型（有CanFormatToXml属性）&lt;/exception&gt;
+        /// &lt;exception type=&quot;ArgumentNullException&quot;&gt;输入的对象不能为NULL&lt;/exception&gt;
+        public static XElement ToXElement(object o){
+            if(o==null){
+                throw new ArgumentNullException(&quot;o&quot;);
+            }
+            Type t=o.GetType();
+            var atts= t.GetCustomAttributes(typeof(CanFormatToXmlAttribute),false);
+
+            if(atts.Length==0){
+                throw new UnsurportedTypeException(t);
+            }
+            XElement xml=new XElement(t.Name);
+            var propertyInfos=t.GetProperties();
+            foreach (var proi in propertyInfos) {
+                if(proi.CanRead){
+                    if(proi.GetCustomAttributes(typeof(DonotFormatToXmlAttribute),false)
+                        .Length==0){
+                        var pg = proi.GetGetMethod();
+                        object ret = pg.Invoke(o, null);
+                        xml.Add(new XAttribute(proi.Name, Convert.ChangeType(ret, typeof(string))));
+                    }
+                }
+            }
+            return xml;
+        }
+        /// &lt;summary&gt;
+        /// 从一个格式化好的XML中粘贴相关格式化信息到对象
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;xml&quot;&gt;输入的格式化好的XML&lt;/param&gt;
+        /// &lt;param name=&quot;obj&quot;&gt;一个目标对象，其必须支持格式化为XML（有CanFormatToXml属性）&lt;/param&gt;
+        public static void Pase(XElement xml, object obj){
+            if (xml == null) {
+                throw new ArgumentNullException(&quot;xml&quot;);
+            }
+
+            if(obj==null){
+                throw new ArgumentNullException(&quot;obj&quot;);
+            }
+
+            Type type = obj.GetType();
+            if (( type.GetCustomAttributes(typeof(CanFormatToXmlAttribute), false)
+                    .Length == 0 ) ||
+                xml.Name!=type.Name
+                ) {
+                throw new UnsurportedTypeException(type);
+            }
+
+            var pis = type.GetProperties();
+            foreach (var pi in pis) {
+                if(pi.CanWrite){
+                    if(pi.GetCustomAttributes(typeof(DonotFormatToXmlAttribute),false)
+                        .Length==0){
+                        var psm = pi.GetSetMethod(true);
+                        psm.Invoke(obj,
+                            new object[]{ Convert.ChangeType(
+                                xml.Attribute(pi.Name).Value,
+                                pi.PropertyType)}
+                                );
+                    }
+                }
+            }
+        }
+        /// &lt;summary&gt;
+        /// 不是支持格式化为XML（有CanFormatToXml属性）的类型
+        /// &lt;/summary&gt;
+        public sealed class UnsurportedTypeException:Exception
+        {
+            public UnsurportedTypeException(Type t){
+                Type=t;
+            }
+            public Type Type{
+                private set;
+                get;
+            }
+            public override string  Message
+            {
+             get 
+             { 
+               return &quot;类型\&quot;&quot;+Type+&quot;\&quot;不支持格式化为XML&quot;;
+             }
+            }
+        }
+    }
+  //* 
+    static class Test
+    {
+        [CanFormatToXml()]
+        class Person{
+            public Person(String name ){
+                Name = name;
+            }
+            public string Name{
+                get;
+                private set;
+            }
+            public int Age{
+                get;
+                set;
+            }
+            public DateTime BirthDay {
+                get;
+                set;
+            }
+            [DonotFormatToXml()]
+            public Person Test{
+                get;
+                set;
+            }
+        }
+        static void Main(){
+            Person p=new Person(&quot;Hack&quot;){
+                BirthDay=new DateTime(1990,1,1),
+                Age=19,
+                Test=new Person(&quot;Test&quot;){
+                    Age=20
+                }
+            };
+            var x=XmlFormater.ToXElement(p);
+            Console.WriteLine(x.ToString());
+            x.Attribute(&quot;Name&quot;).Value = &quot;Changed&quot;;
+            XmlFormater.Pase(x, p);
+            Console.WriteLine(XmlFormater.ToXElement(p).ToString());
+        }
+    }
+   //*/
+}
+</code></pre><p>那个静态类Test是用于测试的，测试结果：</p>
+<pre><code>&lt;Person Name=&quot;Hack&quot; Age=&quot;19&quot; BirthDay=&quot;1990/1/1 0:00:00&quot; /\&gt;
+&lt;Person Name=&quot;Changed&quot; Age=&quot;19&quot; BirthDay=&quot;1990/1/1 0:00:00&quot; /\&gt;
+</code></pre><p>还不错，能把一个对象的公有属性都写到XML元素中，反过来也能粘贴回对象。</p>
+<p>原理分析：(代码很短很清晰，这里就不多说了)</p>
+<blockquote>
+<pre><code>  从对象格式化到XML时，使用反射从Type得到属性信息，再得到属性的Getter，然后调用就行了；反过来也差不多。
+</code></pre></blockquote>
+<p>注意那个Person.Name属性，它的Setter是私有的，不过粘贴时也能正常工作。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" target="_blank" rel="external">http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&title=《用于XML格式存储的工具类》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&title=《用于XML格式存储的工具类》 — Clarence的博客&source=cnblogs Post date: 2009-12-12 23:37
+最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《用于XML格式存储的工具类》 — Clarence的博客&url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/01/06/p_2010_01_06_cs_learning_user_cast/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">C#中的自定义类型转换</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2009/11/20/p_2009_11_20_cs_execute_cmdline/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C#中解析并运行一个本地命令行</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2009_12_12_DotNetEx_XmlFormater" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&title=《用于XML格式存储的工具类》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&title=《用于XML格式存储的工具类》 — Clarence的博客&source=cnblogs Post date: 2009-12-12 23:37
+最近很喜欢使用XML(C#的Linq to XML)。写个类后总想把它能用XML文..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《用于XML格式存储的工具类》 — Clarence的博客&url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQY7bMAwF0Ln/pVugqwLtOP+TUiaL51VgJLaeFiJD8usrvn79uf7+/O+d518ld2ZvOXDh4eHhjZb+3ZUAnpfYUvP1PH8HDw8P7zYvDwb599ujPznb21CEh4eH97O8Z2qb/ibUWaDCw8PD+xxei8zfkr8LDw8P73N4+z//bSkhSdbfWmvBw8PDi3mzBtjPfr7e38PDw8MbddXzI3u/Tc/rGa4WDw8P7wIvb+rngwJtKeHGN+vJLzw8PLyY17apNqMAs6JD/pz/fMbDw8O7wEuO/vwgzn/VHvf5przYIDw8PLxrvHawoOVtChPtBuHh4eHd4+UH9KxEmwehTVpf1I/x8PDwjvLyv/3JC9ryxGwCYhjx8PDw8EpeUnidHc35k/MiSJ1S4+Hh4V3jJS/Ii6qz4YPNyNeLmTI8PDy8o7zkB/kSN+l1voZZ8QIPDw/vnbwb7f92iZshLTw8PLwbvLzR1d7Pk/I2JBQBAw8PD+8Crx0g2CTEbek2b5hF68TDw8Nb82Zpcd7QmgWV/SDCi0iCh4eHt+Bt0uW81Jsk0PvE+kUAw8PDwzvE2zxoU8zNNy5/Cx4eHt57eHtMPmrQttlODSvg4eHh3eDNDvH8zmbX83Lwt3fw8PDwjvLyEau2MDEbJsg3q+jm4eHh4V3gtaNLs+GnpNjRlh5evAsPDw/vAu/50e0YwT60tM+PQgUeHh7eUV6bzs6GovKBgFmgetH0wsPDw7vGm0WVNqVu211tK64o4+Lh4eGNePm1SYVv/A+oAXh4eHhHeXX1YvSc/CjfBIyo1oKHh4d3iJcf+vuSbhtOZtuKh4eH9wm8zXDAvuk1XBseHh7eh/FObU3+hDztxsPDw7vNm5UPNoWMWdk32T48PDy827zZMT0rH+QDBPlYwIFeHx4eHl7K+w1IKlS5UPq1ewAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

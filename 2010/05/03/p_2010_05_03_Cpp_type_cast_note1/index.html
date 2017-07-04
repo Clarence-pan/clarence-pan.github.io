@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>C++类型转换小记（一）——C++转换操作符 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Type Convertion,C++">
+    <meta name="description" content="cnblogs Post date: 2010-05-03 14:31
+C++转换操作符ISO-C++中有四种转换操作符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++类型转换小记（一）——C++转换操作符">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-05-03 14:31
+C++转换操作符ISO-C++中有四种转换操作符">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++类型转换小记（一）——C++转换操作符">
+<meta name="twitter:description" content="cnblogs Post date: 2010-05-03 14:31
+C++转换操作符ISO-C++中有四种转换操作符">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C++类型转换小记（一）——C++转换操作符</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C++类型转换小记（一）——C++转换操作符</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-05-02T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-05-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C-转换操作符"><span class="post-toc-number">1.</span> <span class="post-toc-text">C++转换操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ISO-C-中有四种转换操作符"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">ISO-C++中有四种转换操作符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#在Visual-C-2005及以后版本中C-clr又添加了一个新的转换"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">在Visual C++ 2005及以后版本中C++/clr又添加了一个新的转换</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于C风格的类型转换"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于C风格的类型转换</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-p_2010_05_03_Cpp_type_cast_note1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C++类型转换小记（一）——C++转换操作符</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年05月03日 0:00" datetime="2010-05-02T16:00:00.000Z"  itemprop="datePublished">2010-05-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C++</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/05/03/Cpp_type_cast_note1.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-05-03 14:31</p>
+<h3 id="C-转换操作符"><a href="#C-转换操作符" class="headerlink" title="C++转换操作符"></a>C++转换操作符</h3><h4 id="ISO-C-中有四种转换操作符"><a href="#ISO-C-中有四种转换操作符" class="headerlink" title="ISO-C++中有四种转换操作符"></a>ISO-C++中有四种转换操作符</h4><a id="more"></a>
+<p>dynamic_cast: 在多态类型转换时使用，实现在运行时，并进行运行时检测，如果转换失败，返回值是NULL<br>static_cast：与dynamic_cast相反，static_cast是在编译时转换类型的，故称为static_cast，它可以用在值类型转换中<br>const_cast：一般用于去除const, volatile等修饰属性上.<br>reinterpret_cast：这个很厉害，几乎可以在任意类型间转换，reinterpret的中文意思是重新解释</p>
+<h4 id="在Visual-C-2005及以后版本中C-clr又添加了一个新的转换"><a href="#在Visual-C-2005及以后版本中C-clr又添加了一个新的转换" class="headerlink" title="在Visual C++ 2005及以后版本中C++/clr又添加了一个新的转换"></a>在Visual C++ 2005及以后版本中C++/clr又添加了一个新的转换</h4><p>safe_cast：用于在托管类型间进行转换，如果不成功会抛出InvalidCastException.</p>
+<h3 id="关于C风格的类型转换"><a href="#关于C风格的类型转换" class="headerlink" title="关于C风格的类型转换"></a>关于C风格的类型转换</h3><p>型如(type-name)value的转换是C风格的类型转换，这种转换对任意类型的都能使用。<br>一般而言C风格的类型转换可以替代static_cast,const_cast,reinterpret_cast,safe_cast, 但是一般不能替代dynamic_cast。<br>原因在于，C风格的类型转换是编译时的，对于C语言中各个不同的类型，编译成汇编代码时，这些类型信息会丢失掉，所剩下的是其长度和符号信息，而C风格的转换就是把这些长度和符号信息统一起来。 如对于两个指针间转换而言A* pa=(A*)pb，所生成的中间代码则会是 mov eax, [pb]; mov [pa],eax。<br>而dynamic_cast则是会进行运行时检查，对于下行转换（从基类到子类）而言所生成的中间代码一定会调用一个函数名类似 ___RTDynamicCast的转换函数。<br>static_cast,const_cast,reinterpret_cast所起的作用同C风格的类型转换，只是编译时对其类型约束不同而已。<br>safe_cast是C++/Clr中新增的关键词（Microsoft Specific），对托管类型进行C风格类型转换时， 编译器会自动使用safe_cast进行转换，这一点估计是为了和C#风格一致。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" target="_blank" rel="external">http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Type-Convertion/">Type Convertion</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&title=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&title=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&source=cnblogs Post date: 2010-05-03 14:31
+C++转换操作符ISO-C++中有四种转换操作符" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/05/03/p_2010_05_03_SharpSniffer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SharpSniffer--C#版Sniffer</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/04/30/p_2010_04_30_WPF_IMG_P1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">WPF中图形呈现问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_05_03_Cpp_type_cast_note1" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&title=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&title=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&source=cnblogs Post date: 2010-05-03 14:31
+C++转换操作符ISO-C++中有四种转换操作符" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C++类型转换小记（一）——C++转换操作符》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3ay2pkMQwFwPz/T2dgmEUg9OUc2Up6oHrVdHwf5YWlSPr4iD+ffz9fv3/95fua7yuf13+++Dzf/9oHDw8Pb/Tqzw9I/tq+6Ks7JGuSd8bDw8Pb5uXB4GQLclh71cvf8fDw8H6Vl6TL7crnRPk5MODh4eH9X7z8WJ+tf94IPDw8vHfg5eWG2VUz9o/WWvDw8PBi3qwB9rvf1/t7eHh4eKOuen7g5u2u9rifvee/a/Hw8PAWeLMm0yxdTo71kxS5+I8BDw8P7xKvuKAsT+SBJGmP1SNceHh4eFd5s9LtrVdst7UNLXh4eHh7vPyme/XjNqhERWc8PDy8BV4+LJUUI/KhqOTaW1Q8PDy8u7xZq6k9lJP2WJtqRwEMDw8Pb4E3S3lvjQUkm3setPDw8PA2eG0ptk2I2zGCfBAhCld4eHh4a7yTRDlf05Zx2/BQDF3h4eHhjXh5gtuWKtoSQwuIQhceHh7eAq8tOswedr6ybbzh4eHh7fHy9nzbwi8O6xJWJNZ4eHh4C7y8JNFuRFuemI0sFEEFDw8P7xIvb+HPgkeeQJ8Ej6LWgoeHh3eJ14aH8wefjBcU7To8PDy8NV6SBJ+8XD4EMEuso9EBPDw8vEu8vJE/Ky60o1f5+mHwwMPDw7vKyw/uNpnOyw3tRuThCg8PD+8WLx+xatPiPLTkgKQVh4eHh/eTvJOmflssOC9ARM/Fw8PDW+AlwSC/Xf7IfIBgVsKIZsrw8PDwRrzzQ382THCr/RbVpPHw8PCu8jbKAW2JdhYkktQfDw8Pb4+XBIPzMkS7fSfbioeHh/czvPyRSZs/2aa25dZuDR4eHt478NomWZtSt+WGaDQBDw8P7814eTqelHHzMnGR4uPh4eGt8fJiRBIMTlLn/NqVWgseHh5ed95eK7PO7twOHFwYGsDDw8PreH8AdewNASJfrfUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

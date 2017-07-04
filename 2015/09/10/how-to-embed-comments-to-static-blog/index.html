@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>如何在静态博客中嵌入评论 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="多说,blog,hexo,comments">
+    <meta name="description" content="背景静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有http://github.io这样的免费的托管可以使用。但是，毕竟只是html，于是一般只能浏览，没法与访问者进行互动，访问者没法评论。这那能行呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何在静态博客中嵌入评论">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="背景静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有http://github.io这样的免费的托管可以使用。但是，毕竟只是html，于是一般只能浏览，没法与访问者进行互动，访问者没法评论。这那能行呢？">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何在静态博客中嵌入评论">
+<meta name="twitter:description" content="背景静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有http://github.io这样的免费的托管可以使用。但是，毕竟只是html，于是一般只能浏览，没法与访问者进行互动，访问者没法评论。这那能行呢？">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何在静态博客中嵌入评论</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">如何在静态博客中嵌入评论</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-09-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-09-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/blog/">blog</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/blog/comments/">comments</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#偶的多说试用小记"><span class="post-toc-number">2.</span> <span class="post-toc-text">偶的多说试用小记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#首先，登录多说"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">首先，登录多说</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#接着，获取评论框代码"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">接着，获取评论框代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#然后，嵌入到博客中"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">然后，嵌入到博客中</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#其次，多说公共JS的添加"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">其次，多说公共JS的添加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最后，构建hexo并发布"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">最后，构建hexo并发布</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最后的问题-样式"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">最后的问题 -- 样式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用disqus"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用disqus</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#附：评论插件比较"><span class="post-toc-number">4.</span> <span class="post-toc-text">附：评论插件比较</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#附：参考文档"><span class="post-toc-number">5.</span> <span class="post-toc-text">附：参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-how-to-embed-comments-to-static-blog"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">如何在静态博客中嵌入评论</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年09月10日 0:00" datetime="2015-09-09T16:00:00.000Z"  itemprop="datePublished">2015-09-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/blog/">blog</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/blog/comments/">comments</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有<a href="http://github.io" target="_blank" rel="external">http://github.io</a>这样的免费的托管可以使用。但是，毕竟只是html，于是一般只能浏览，没法与访问者进行互动，访问者没法评论。这那能行呢？</p>
+<a id="more"></a>
+<p>这两天在访问<a href="http://mindhacks.cn/2012/08/27/modern-cpp-practices/" target="_blank" rel="external">mindhacks上的一篇文章</a>的时候，发现这位博主使用的多说挺有意思的，能提供对这种静态博客的评论。于是乎，闲暇之际在偶自己的静态博客试用下，看看如何...</p>
+<h1 id="偶的多说试用小记"><a href="#偶的多说试用小记" class="headerlink" title="偶的多说试用小记"></a>偶的<a href="http://duoshuo.com" target="_blank" rel="external">多说</a>试用小记</h1><h2 id="首先，登录多说"><a href="#首先，登录多说" class="headerlink" title="首先，登录多说"></a>首先，登录多说</h2><p>进入<a href="http://duoshuo.com" target="_blank" rel="external">多说</a>的官网，然后有一个【我要安装】，点击后会提示登录。这时可以有好多种open API登录方式可以选择，偶就随便选个QQ登录，然后登录上去了。</p>
+<h2 id="接着，获取评论框代码"><a href="#接着，获取评论框代码" class="headerlink" title="接着，获取评论框代码"></a>接着，获取评论框代码</h2><p><a href="http://duoshuo.com" target="_blank" rel="external">多说</a>的API还是很简洁的，除了公共js代码外，评论框就一行：</p>
+<pre><code>    &lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;请将此处替换成文章在你的站点中的ID&quot; data-title=&quot;请替换成文章的标题&quot; data-url=&quot;请替换成文章的网址&quot;&gt;&lt;/div&gt;
+</code></pre><h2 id="然后，嵌入到博客中"><a href="#然后，嵌入到博客中" class="headerlink" title="然后，嵌入到博客中"></a>然后，嵌入到博客中</h2><p>本博客是hexo生成的，当然不能直接每篇文章都直接插入这段代码，肯定得用模版来插入。翻了下源代码，根据渲染出来的html结构去搜索（感谢grep，感谢xargs，感谢find...），再连猜带蒙，终于找到了渲染博客页面的模版文件：<code>themes/landscape/layout/_partial/article.ejs</code>。<br>定眼一看，原来hexo的这个模版已经包含了 <em>disqus</em> 的评论功能！晕，早知道就直接注册个 <em>disqus</em> 的帐号就好了。</p>
+<pre><code>    &lt;footer class=&quot;article-footer&quot;&gt;
+      &lt;%- partial(&#39;post/tag&#39;) %&gt;
+      &lt;a data-url=&quot;&lt;%- post.permalink %&gt;&quot; data-id=&quot;&lt;%= post.path %&gt;&quot; class=&quot;article-share-link&quot;&gt;Share&lt;/a&gt;
+      &lt;% if (post.comments){ %&gt;
+          &lt;% if (config.disqus_shortname){ %&gt;
+            &lt;a href=&quot;&lt;%- post.permalink %&gt;#disqus_thread&quot; class=&quot;article-comment-link&quot;&gt;Comments&lt;/a&gt;
+          &lt;% } %&gt;
+      &lt;% } %&gt;
+    &lt;/footer&gt;
+</code></pre><p>不过事已至此，先把多说的评论功能加上去再说。</p>
+<p> 多说的评论需要三个参数，经过研究hexo的模版和文档，总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+<th>hexo模版的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>thread-key</td>
+<td>文章ID</td>
+<td>post.path</td>
+</tr>
+<tr>
+<td>title</td>
+<td>文章标题</td>
+<td>post.title</td>
+</tr>
+<tr>
+<td>url</td>
+<td>文章链接</td>
+<td>域名+make_url(post.path)</td>
+</tr>
+</tbody>
+</table>
+<p>填充到模版中，就是：</p>
+<pre><code>    &lt;footer class=&quot;article-footer&quot;&gt;
+      &lt;%- partial(&#39;post/tag&#39;) %&gt;
+      &lt;a data-url=&quot;&lt;%- post.permalink %&gt;&quot; data-id=&quot;&lt;%= post._id %&gt;&quot; class=&quot;article-share-link&quot;&gt;Share&lt;/a&gt;
+      &lt;% if (post.comments){ %&gt;
+        &lt;div id=&quot;post-comments&quot;&gt;
+            &lt;div class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;%= post._id %&gt;&quot; data-title=&quot;&lt;%= post.title %&gt;&quot; data-url=&quot;http://clarence-pan.github.io&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;% } %&gt;
+    &lt;/footer&gt;
+</code></pre><h2 id="其次，多说公共JS的添加"><a href="#其次，多说公共JS的添加" class="headerlink" title="其次，多说公共JS的添加"></a>其次，多说公共JS的添加</h2><p>经过上述步骤，还是不能跑起来的 —— 因为所有的前台交互都是在js里面，即多说公共JS。既然是公共的JS，那么其他页面也可能都会用到的，比如以后要在首页添加最新点评、添加热门文章之类的功能，也都需要这JS。<br>而且既然是JS，那最好应放到页面尾部，以防止阻塞页面（以防万一）。<br>找了下hexo的模版，发现有<code>footer.ejs</code>还有<code>after-footer.ejs</code>，显然<code>after-footer.ejs</code>位置更靠后，加进去试试：</p>
+<pre><code>// ...
+&lt;script src=&quot;/lib/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;% if (theme.fancybox){ %&gt;
+  &lt;%- css(&#39;fancybox/jquery.fancybox&#39;) %&gt;
+  &lt;%- js(&#39;fancybox/jquery.fancybox.pack&#39;) %&gt;
+&lt;% } %&gt;
+
+&lt;%- js(&#39;js/script&#39;) %&gt;
+
+&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var duoshuoQuery = {short_name:&quot;clarence-pan&quot;};
+    (function() {
+        var ds = document.createElement(&#39;script&#39;);
+        ds.type = &#39;text/javascript&#39;;ds.async = true;
+        ds.src = (document.location.protocol == &#39;https:&#39; ? &#39;https:&#39; : &#39;http:&#39;) + &#39;//static.duoshuo.com/embed.js&#39;;
+        ds.charset = &#39;UTF-8&#39;;
+        (document.getElementsByTagName(&#39;head&#39;)[0]
+                || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(ds);
+    })();
+&lt;/script&gt;
+&lt;!-- 多说公共JS代码 end --&gt;
+</code></pre><h2 id="最后，构建hexo并发布"><a href="#最后，构建hexo并发布" class="headerlink" title="最后，构建hexo并发布"></a>最后，构建hexo并发布</h2><p><code>hexo generate --deploy</code> 搞定~</p>
+<h2 id="最后的问题-样式"><a href="#最后的问题-样式" class="headerlink" title="最后的问题 -- 样式"></a>最后的问题 -- 样式</h2><p>额，这个评论框左上角【喜欢】和右上角【分享】时候不太搭啊~~　调一调吧：</p>
+<pre><code class="css">
+#post-comments #ds-thread #ds-reset a.ds-like-thread-button
+  float: left
+  margin-top: -3em
+
+.article-tag-list
+  margin-left: 7em
+</code></pre>
+<p>在<code>article.styl</code>中加入以上代码，重新构建并发布，果然好看了点...</p>
+<h1 id="使用disqus"><a href="#使用disqus" class="headerlink" title="使用disqus"></a>使用disqus</h1><p>相对于多说，disqus的嵌入就颇为简单了 —— hexo的模版已经嵌入好了，只要：</p>
+<ol>
+<li>打开<a href="https://disqus.com" target="_blank" rel="external">disqus</a></li>
+<li>登录/注册，可以直接用google/facebook/twitter帐号快速登录~</li>
+<li>点击右上角人物头像右边的齿轮，然后选择<a href="https://publishers.disqus.com/engage?utm_source=Home-Nav" target="_blank" rel="external">Add Disqus To Site</a></li>
+<li>填写网站，并选个合适的短名称</li>
+<li>把短名称填入<code>_config.yml</code>中，如偶的是：</li>
+</ol>
+<pre><code class="yaml">disqus_shortname: clarence-pan
+</code></pre>
+<ol>
+<li>构建，发布即可</li>
+</ol>
+<p>over~</p>
+<h1 id="附：评论插件比较"><a href="#附：评论插件比较" class="headerlink" title="附：评论插件比较"></a>附：评论插件比较</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>登录方式</th>
+<th>评论格式</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多说</td>
+<td>QQ、新浪、网易、搜狐、豆瓣、人人等</td>
+<td>纯文本</td>
+<td></td>
+</tr>
+<tr>
+<td>disqus</td>
+<td>Disqus, Facebook, Twitter, Google</td>
+<td>文本 + 图片</td>
+<td>需要翻墙！！！</td>
+</tr>
+<tr>
+<td>待续..</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>可见多说是以国内用户为主的，disqus是以国外和可翻墙用户为主的。不过对于偶们开发人员，翻个墙还不是小意思吗。</p>
+<h1 id="附：参考文档"><a href="#附：参考文档" class="headerlink" title="附：参考文档"></a>附：参考文档</h1><ol>
+<li><a href="http://mindhacks.cn/2012/08/27/modern-cpp-practices/" target="_blank" rel="external">mindhacks上的一篇文章</a></li>
+<li><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">hexo中文文档</a></li>
+<li><a href="http://dev.duoshuo.com/docs/5003ecd94cab3e7250000008/" target="_blank" rel="external">多说评论框调用代码参数说明</a></li>
+<li><a href="http://blog.jamespan.me/2015/04/18/goodbye-duoshuo/" target="_blank" rel="external">告别多说，拥抱 Disqus</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2015/09/10/how-to-embed-comments-to-static-blog/" target="_blank" rel="external">http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/comments/">comments</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多说/">多说</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&title=《如何在静态博客中嵌入评论》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&title=《如何在静态博客中嵌入评论》 — Clarence的博客&source=背景静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有http://github.io这样的免费的托管可以使用。但是，毕..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何在静态博客中嵌入评论》 — Clarence的博客&url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/09/23/max-chars-in-a-sms/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一个短信中最多可以容纳多少中英文混合的字符？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/07/30/how-to-config-dns-server-in-ubuntu/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Ubuntu下配置DNS服务器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="how-to-embed-comments-to-static-blog" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&title=《如何在静态博客中嵌入评论》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&title=《如何在静态博客中嵌入评论》 — Clarence的博客&source=背景静态博客（如本博客使用的是hexo来生成的），有很多优点，比如能抗很大的流量，而且有http://github.io这样的免费的托管可以使用。但是，毕..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何在静态博客中嵌入评论》 — Clarence的博客&url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/09/10/how-to-embed-comments-to-static-blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3aO27kMBAFQN//0rOAU684rz/0OChFhixILAZkz2N/fcXX6/t6uvN6uJInf77z5/2nMaxdeHh4eK2hJ0NM7pzfP7+TjxkPDw/vNu+8EJ+X8vz5fN1OJijaPPDw8PA+yjuX19VCOZmCfAx4eHh4f59XLXZ77/nYxoCHh4cX8CbDqoawyXA/kLXg4eHhxbzqAdhf+Pvi+R4eHh7e4FQ9X3DzDyebRxJ2RKPFw8PDu8A7h7CTVoDJ9tMrlAu/GPDw8PCWeNUf/PNDr3xCk2O2x40KDw8Pb5VXXeLnrVfJEJNRRV/Ew8PDu8DLB5HAqnFwXhznrQmP+x4eHh7eNV6+cJcX6KWmgfLk4uHh4V3gVSOJeUTbi4Pz+GMU5uLh4eEd/9uLFSZhbr7l9ALc/8S4eHh4eKu8+VLeCy/ykroakZSLbDw8PLwib3KEXx1QNSuoxiKFXgM8PDy8Aa96wJ/vKtV4dzKJ5y/i4eHh7fLyZqZeVHGj7C4cnuHh4eFd4FVbCnphwe9M3ELHBB4eHl6Ll8cQeSA7P+hKno82Bjw8PLwlXq9Xqxqz5k1XW81beHh4eDd4ediaL+VJuTzZTpKtCw8PD+83eUmIsFX45pPVbGvAw8PDu8zLD+97oW217SB5w5tSHg8PD+8Cr9fMlMcBvbaAaizypuzGw8PDW+VVF9xJU1QeJSRxcFSC4+Hh4V3mVbsMFsKC453JdEQZMx4eHl6L17sm0UNeuFebCdbYeHh4eEfeq3glH5g0CkyikDdhBB4eHt4Sr7oZ5LB7x2DzQhwPDw9vzstbnfIP7Bboo5ACDw8P7xpvsujPQ95eKBxtP3h4eHgf5TUbRosB7vwrzV8DeHh4eNd4vWi1F0/0NpLRxoCHh4cX8/IwondMVS3Wq+0Ia1kLHh4eXidJaB6A9V6d89ZO8/Dw8PD6vH+Kh32CJMmLEQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

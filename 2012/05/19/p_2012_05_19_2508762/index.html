@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~ | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Ubuntu,Linux">
+    <meta name="description" content="cnblogs Post date: 2012-05-19 11:45
+http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5 这个wiki很全，遇到问题多看看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~">
+<meta property="og:url" content="http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2012-05-19 11:45
+http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5 这个wiki很全，遇到问题多看看">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~">
+<meta name="twitter:description" content="cnblogs Post date: 2012-05-19 11:45
+http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5 这个wiki很全，遇到问题多看看">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-05-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2012-05-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-p_2012_05_19_2508762"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012年05月19日 0:00" datetime="2012-05-18T16:00:00.000Z"  itemprop="datePublished">2012-05-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2012/05/19/2508762.html" target="_blank" rel="external">cnblogs</a> Post date: 2012-05-19 11:45</p>
+<p><a href="http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5" target="_blank" rel="external">http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1%B5</a> 这个wiki很全，遇到问题多看看</p>
+<a id="more"></a>
+<hr>
+<p>Q：如何察看系统版本</p>
+<p>A：cat /proc/version</p>
+<pre><code>peter@peter:~/download$ cat /proc/version
+Linux version 3.2.0-24-generic (buildd@yellow) (gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) ) #37-Ubuntu SMP Wed Apr 25 08:43:22 UTC 2012
+</code></pre><hr>
+<p>Q:如何察看系统是32还是64位的</p>
+<p>A： <code>uname -m</code></p>
+<pre><code>peter@peter:~/download$ uname -m
+x86_64
+</code></pre><hr>
+<p>Q:如何屏幕截屏</p>
+<p>A：printscreen按键可以直接截屏 -- 这一点ubuntu兼容的很不错</p>
+<hr>
+<p>Q：如何关闭触摸板</p>
+<p>A：系统自带的FN+关触摸板键兼容的很好</p>
+<hr>
+<p>Q：如何用QQ</p>
+<p>A：</p>
+<ol>
+<li>尝试装linux版的QQ失败：<a href="http://im.qq.com" target="_blank" rel="external">http://im.qq.com</a></li>
+<li>直接使用web版：<a href="http://web.qq.com" target="_blank" rel="external">http://web.qq.com</a></li>
+</ol>
+<hr>
+<p>Q:淘宝购物会不会有问题</p>
+<p>A：完全没问题，安全支付插件在ubuntu下也是兼容firefox的</p>
+<hr>
+<p>Q：做为一个开发者，ubuntu上能开发什么？</p>
+<p>A：探索中。。。。</p>
+<hr>
+<p>Q：ubuntu上什么游戏好玩</p>
+<p>A：探索中。。。 系统带的几个小游戏没啥好玩的</p>
+<hr>
+<p>Q：ubuntu上中文输入法？</p>
+<p>A：系统自带的挺好用; 浏览网页时用这个搜狗云输入法也到不错：<a href="http://pinyin.sogou.com/cloud/" target="_blank" rel="external">http://pinyin.sogou.com/cloud/</a></p>
+<hr>
+<p>Q:想要网上购物使用网银怎么办？</p>
+<p>A: 尝试过firefox和chromium浏览器都无法正常支付 – 还是安装下虚拟机virtualbox</p>
+<hr>
+<p>Q：如何创建快捷方式（链接）到桌面上？有一些GUI的程序想到桌面上快捷启动</p>
+<p>A：首先不必纠结与桌面启动 – 可以锁定在启动栏上，而且ubuntu的dash首页搜索很快</p>
+<p>其次可以创建个符号链接到桌面上就OK了</p>
+<hr>
+<p>Q: ctrl+alt+f3等可以进入控制台，可是分辨率太低了，看起来不舒服，怎么样调高分辨率？</p>
+<p>A：装好显卡驱动，使用(Recommended)(推荐)的显卡。</p>
+<ul>
+<li><p>修改grub文件 :<br>  sudo gedit /etc/default/grub</p>
+</li>
+<li><p>修改GRUB_CMDLINE_LINUX_DEFAULT<br>  GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash nomodeset<br>  video=uvesafb:mode_option=1024x768-24,mtrr=3,scroll=ywrap&quot;</p>
+</li>
+<li><p>修改#GRUB_GFXMODE栏<br>  GRUB_GFXMODE=1024x768-24</p>
+</li>
+<li><p>修改initramfs:<br>  sudo gedit /etc/initramfs-tools/modules<br>  最后一行写入<br>  uvesafb mode_option=1024x768-24 mtrr=3 scroll=ywrap</p>
+<ul>
+<li>更新grub和initramfs:<br>sudo update-grub2<br>sudo update-initramfs -u</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Q: 如何在控制台下显示中文</p>
+<p>A：TODO。。。</p>
+<hr>
+<p>Q：GNOME不好看，如何安装KDE？</p>
+<p>A: sudo apt-get install kUbuntu-destop</p>
+<p>sudo apt-get install language-pack-kde-zh language-pack-kde-zh-base language-pack-zh language-pack-zh-base language-support-zh</p>
+<p>如果安装后不能再进入GNOME，则可以进入KDE设置面板，找到gtk style，改回human，重新登录x windows就行了</p>
+<hr>
+<p>Q：怎么安装deb软件包？</p>
+<p>A：sudo dpkg -i xxxx.deb</p>
+<hr>
+<p>Q：怎么样安装RPM软件包？</p>
+<p>A：Ubuntu的软件包格式是deb，如果要安装rpm的包，则要先用alien把rpm转换成deb。</p>
+<p>sudo apt-get install alien #alien默认没有安装，所以首先要安装它 （或者sudo apt-get install rpm alien）</p>
+<p>sudo alien xxxx.rpm #将rpm转换位deb，完成后会生成一个同名的xxxx.deb</p>
+<p>sudo dpkg -i xxxx.deb #安装</p>
+<hr>
+<p>Q: 常见的归档文件.tar.gz、.tar.bz2怎么解压缩？</p>
+<p>A：.tar.gz: tar xzvf</p>
+<p>.tar.bz2: tar xjvf example.tar.bz2</p>
+<p><strong>tar [-cxtzjvfpPN]**</strong>文件与目录<strong><strong>....</strong></strong><br><strong><strong>参数： </strong></strong><br><strong><strong>-c</strong></strong>：建立一个压缩文件的参数指令<strong><strong>(create</strong></strong>的意思<strong><strong>)</strong></strong>； <strong><strong><br>-x</strong></strong>：解开一个压缩文件的参数指令！ <strong><strong><br>-t</strong></strong>：查看<strong><strong>tarfile</strong></strong>里面的文件！ <strong><strong>
+</strong></strong>特别注意，在参数的下达中，<strong><strong>c/x/t</strong></strong>仅能存在一个！不可同时存在！ <strong><strong>
+</strong></strong>因为不可能同时压缩与解压缩。 <strong><strong>
+</strong></strong>-z<strong><strong>：是否同时具有</strong></strong>gzip<strong><strong>的属性？亦即是否需要用</strong></strong>gzip<strong><strong>压缩？ </strong></strong><br>-j<strong><strong>：是否同时具有</strong></strong>bzip2<strong><strong>的属性？亦即是否需要用</strong></strong>bzip2<strong>**压缩？ </strong></p>
+<p><strong>特别注意，在参数的下达中， z/j**</strong>要和文件属性匹配，另外归档文件名的扩展名是手工制定的，一般约定gzip<strong><strong>的为.gz,</strong></strong>而bzip2<strong><strong>的是bz2</strong></strong>。<strong><strong><br>-v</strong></strong>：压缩的过程中显示文件！这个方便压缩/<strong><strong>解压过程中直接查看有哪些文件！ </strong></strong><br>-f<strong><strong>：使用档名，如果未指定该参数则会输入文件默认是stdin</strong></strong><br>-p<strong><strong>：使用原文件的原来属性（属性不会依据使用者而变）</strong></strong><br>-P<strong><strong>：可以使用绝对路径来压缩！</strong></strong><br>-N<strong><strong>：比后面接的日期</strong></strong>(yyyy/mm/dd)<strong><strong>还要新的才会被打包进新建的文件中！</strong></strong><br>--exclude FILE<strong><strong>：在压缩的过程中，不要将</strong></strong>FILE<strong><strong>打包！</strong></strong><br>**</p>
+<hr>
+<hr>
+<p><strong>Q: 使用APT或ubuntu软件中心安装软件卡住了，怎么办？</strong></p>
+<p>sudo fuser -vki /var/lib/dpkg/lock;sudo dpkg --configure -a</p>
+<p>将会有所帮助</p>
+<hr>
+<p>Q：有没有像u-iso一样制作ISO和虚拟光驱的软件？</p>
+<p> A：不需要额外软件即可搞定：</p>
+<p>制作ISO： dd if=/dev/cdrom of=some-thing.iso</p>
+<p>mkisofs -o somet-thing.iso /dev/cdrom             # 这个程序还可有将一个目录树制作为一个ISO文件</p>
+<p>虚拟光驱： mount -o loop some-thing.iso path/to/mount</p>
+<hr>
+<p>Q: 如何查看CPU型号？i386/i586/i686分别什么型号？</p>
+<p>A: cat /proc/cpuinfo即可看到。</p>
+<ul>
+<li><p>i386 几乎适用于所有的 x86 平台，不论是旧的 pentum 或者是新的 pentum-IV 与 K7 系列的 CPU等等，都可以正常的工作！那个 i 指的是 Intel 兼容的 CPU 的意思，至于 386 不用说，就是 CPU 的等级。</p>
+</li>
+<li><p>i586 就是 586 等级的计算机，包括 pentum 第一代 MMX CPU， AMD 的 K5, K6 系列 CPU ( socket 7 插脚 ) 等</p>
+</li>
+<li><p>i686 在 pentun II 以后的 Intel 系列 CPU ，及 K7 以后等级的 CPU 都属于这个 686 等级</p>
+</li>
+</ul>
+<hr>
+<p><strong>注：proc目录下的常见信息综述 :<a href="http://www.cnblogs.com/pcy0/archive/2012/11/01/proc_has_what.html" target="_blank" rel="external">http://www.cnblogs.com/pcy0/archive/2012/11/01/proc_has_what.html</a></strong></p>
+<hr>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2012/05/19/p_2012_05_19_2508762/" target="_blank" rel="external">http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&title=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&title=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&source=cnblogs Post date: 2012-05-19 11:45
+http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2012/06/02/p_2012_06_02_2532374/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何持续改进？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/11/06/p_2010_11_06_1870647/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">卸了360和QQ，用WEBQQ吧！</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2012_05_19_2508762" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&title=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&title=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&source=cnblogs Post date: 2012-05-19 11:45
+http://wiki.ubuntu.org.cn/%E9%A6%96%E9%A1..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu使用FQA -- 随便记录一些使用ubuntu12.04中的问题，贻笑大方了\~》 — Clarence的博客&url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2012/05/19/p_2012_05_19_2508762/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACGklEQVR42u3awW7rMAwEwP7/T6fAO7+ku5RawNLoFDiJ5fGBIEV+fcXr9W+9u/L6uPI75/8aLgwMjMcykodoN3vHTnYZviAMDIwLGG0ozD8nv/y8b/KaMDAwMD7/pg2a7X8xMDAwZgE3SROTbxMqBgYGxqy8XEkQk7OyX6zFMTAwHshoGwN/+fkX+xsYGBgPYbzKld9t9jpmCwMD42xGMkiRX8/ZCaA9gMPAwDibsfJY+fWVRunmQTEMDIxHMT4HsjwdTJqabbOhSEAxMDAuYKwXkOsNg3aYbKkWx8DAeBQjz6/aNK49nsuP+TAwMG5jzILd3iSvfSn/+YyBgXE0Y9cAxKz9mQTW4hgOAwPjGsauaatZ07EthjEwMO5h5I2BbRXzKOxGI2gYGBjHMfJHT0YfWvauFikGBsbZjF3txr0he3jAh4GBcSgjCWd5CpiHzlkIfvtLDAyMaxjr7ca9wxl5awEDA+Nsxux8rh35ysc4Zu1MDAyMsxnrxWRSoCbfDhuWGBgY1zCSlC4PwdEIV/kS6+4rBgbGQYx247a8zAPuyugYBgbG2YxXudoxiHYsY1bQYmBgnM3IV7vxrOXQlrIYGBj3MNpRrTb52zVU8cOrwcDAuICxa8BibzgukkIMDAyMTSXrrM0ZhWwMDAyMMjVsk871vTAwMG5gtJvlI2IrDYB6cgQDA+NQxkoB2Q5q7LrbEIOBgfE8xjcDY3+tl4HHDAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

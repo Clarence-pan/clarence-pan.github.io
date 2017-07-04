@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>让你的WinForm不会在ALT+TAB中出现 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C#,Windows,Win32,WinForm">
+    <meta name="description" content="cnblogs Post date: 2010-07-11 09:41
+问题是这样的：
+　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换窗口时老是会不小心切换到这个提示窗口（和我的本意不符合的），很烦人。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让你的WinForm不会在ALT+TAB中出现">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-07-11 09:41
+问题是这样的：
+　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换窗口时老是会不小心切换到这个提示窗口（和我的本意不符合的），很烦人。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让你的WinForm不会在ALT+TAB中出现">
+<meta name="twitter:description" content="cnblogs Post date: 2010-07-11 09:41
+问题是这样的：
+　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换窗口时老是会不小心切换到这个提示窗口（和我的本意不符合的），很烦人。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">让你的WinForm不会在ALT+TAB中出现</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">让你的WinForm不会在ALT+TAB中出现</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-07-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-07-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Windows/">Windows</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-p_2010_07_11_1775108"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">让你的WinForm不会在ALT+TAB中出现</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年07月11日 0:00" datetime="2010-07-10T16:00:00.000Z"  itemprop="datePublished">2010-07-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Windows/">Windows</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/07/11/1775108.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-07-11 09:41</p>
+<p>问题是这样的：</p>
+<p>　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换窗口时老是会不小心切换到这个提示窗口（和我的本意不符合的），很烦人。</p>
+<a id="more"></a>
+<p>如何解决：</p>
+<p>　　也就是说：如何让WinForm不会在ALT+TAB中出现？</p>
+<p>　　学过Win32窗口编程的都知道：Windows窗口的显示样式主要由创建窗口（CreateWindowEx）时dwExStyle和dwStyle两种样式决定。（WinForm最终还是用API创建窗口的）</p>
+<p>　　其中，dwExStyle中WS_EX_TOOLWINDOW正是我们需要的样式，它表示工具窗口，是不会在ALT+TAB中显示的。</p>
+<p>如何更改dwExStyle样式呢？</p>
+<p>　　首先想到的是改变CreateWindowEx中的dwExStyle参数。具体而言，WinForm中有个属性CreateParams可以更改：</p>
+<pre><code class="{.brush:csharp}">CreateParams.ExStyle = CreateParams.ExStyle | Win32Native.WS_EX_TOOLWINDOW;
+</code></pre>
+<p>　　似乎，这条语句应该在WinForm创建前执行，但是有个问题是WinForm相关联的句柄创建的很早，即使你把这一句放到构造函数的最开始部分，结果也不能更改窗体样式。　　还有没有其他办法呢？那只能在WinForm窗体创建后更改dwExStyle样式了。还好，API中有Get/SetWindowLong函数可以用来对已创建的窗口的相关信息进行更改。具体做法如下：</p>
+<pre><code class="{.brush:csharp}">        [DllImport(&quot;user32.dll&quot;)]
+        public static extern
+            Int32 GetWindowLong(IntPtr hwnd, Int32 index);
+        [DllImport(&quot;user32.dll&quot;)]
+        public static extern
+            Int32 SetWindowLong(IntPtr hwnd, Int32 index, Int32 newValue);
+        public const int GWL_EXSTYLE = (-20);
+        public static void AddWindowExStyle(IntPtr hwnd,Int32 val)
+        {
+            int oldValue = GetWindowLong(hwnd,GWL_EXSTYLE);
+            if (oldValue == 0)
+            {
+                throw new System.ComponentModel.Win32Exception();
+            }
+            if (0 == SetWindowLong(hwnd, GWL_EXSTYLE, oldValue | val))
+            {
+                throw new System.ComponentModel.Win32Exception();
+            }
+        }
+        public static int WS_EX_TOOLWINDOW = 0x00000080;
+        //我把这个过程封装下：
+        public static void SetFormToolWindowStyle(System.Windows.Forms.Form form)
+        {
+            AddWindowExStyle(form.Handle, WS_EX_TOOLWINDOW);
+        }
+</code></pre>
+<p>　　如此这般，对一个WinForm调用SetFormToolWindowStyle就行了。</p>
+<p>需要注意的是：</p>
+<p>　　WS_EX_TOOLWINDOW和WS_EX_APPWINDOW（对应WinForm中ShowInTaskBar）是会冲突的。</p>
+<p>　　如果，这个窗口是APPWINDOW，那么还需要将ShowInTaskBar属性设为false.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/07/11/p_2010_07_11_1775108/" target="_blank" rel="external">http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win32/">Win32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WinForm/">WinForm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&title=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&title=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&source=cnblogs Post date: 2010-07-11 09:41
+问题是这样的：
+　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/07/18/p_2010_07_18_1780101/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">很好的Opera</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2010/06/20/p_2010_06_20_1761226/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【杂想】IT已死论</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_07_11_1775108" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&title=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&title=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&source=cnblogs Post date: 2010-07-11 09:41
+问题是这样的：
+　　我有个程序有个置顶的小提示窗口。然后，在使用ALT+TAB切换..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《让你的WinForm不会在ALT+TAB中出现》 — Clarence的博客&url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/07/11/p_2010_07_11_1775108/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3aMW7DMAwF0Nz/0i7QqUPjfpJKAUtPUxBYsp4HQiT1esXj+h7v/v858ueTdRYPDAyMxzKu2/FuW/cvrs5993yyNwwMjHMY90E2CabJi/O5+d4wMDAwJpubPI+BgYExD7g9QJIkY2BgYEyS2Pt0tPppctLiXBwDA+OBjGpj4D9/f7C/gYGB8RDG1RqrQmQv9f1lTQwMjK0Z98e7XvCdUHulNwwMjBMY99N6aW0PXE1T/8jIMTAwtmDMi1mfuEBWbgxgYGBszaiW+PNXJilrvkIhDcbAwNiUMVkor9VXg2/50gYGBsbWjAVFrmJvcdIYiD4rBgbGRoze8S55fV4+y0MzBgbGmYxqgWyemubrl8twGBgYmzKq5bNqWptfpxilxxgYGFsz8jDX28r8EFlIpzEwMDZl9C5bJEnpa9GIwjEGBsYBjMkFiGp4zYN42YqBgbEpY1L86gXKVaW3t0U3DAyMrRm99PITF8WaaTMGBsYBjN4RbW0CnJfkRjEeAwPjsYxkW9VQ2CPlczEwMM5hJOE1TzXzbc0Pl9EdNwwMjIczruKotj/nLdLok2FgYGzNmDc787NZNRBPmqYYGBj7MfLQmQfEaktgQcDFwMA4gJFU2quhs1rO6zVBMTAwMCYHuwmmTMXAwMBoXchIDo7lJiUGBsbBjLzEn1+bqLYw80QaAwPjNMaqoDw5GuZr9hJgDAyMxzK+AOffk2HwpGH0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

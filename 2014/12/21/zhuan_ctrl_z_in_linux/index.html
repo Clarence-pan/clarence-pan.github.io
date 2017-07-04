@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【转】linux中巧用ctrl-z后台运行程序 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,Background Jobs">
+    <meta name="description" content="cnblogs Post date: 2014-12-21 23:10
+背景：
+最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;amp;’ ， 结果终端就卡在那里了，很是郁闷
+以前总是再新开一个终端。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】linux中巧用ctrl-z后台运行程序">
+<meta property="og:url" content="http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2014-12-21 23:10
+背景：
+最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;amp;’ ， 结果终端就卡在那里了，很是郁闷
+以前总是再新开一个终端。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】linux中巧用ctrl-z后台运行程序">
+<meta name="twitter:description" content="cnblogs Post date: 2014-12-21 23:10
+背景：
+最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;amp;’ ， 结果终端就卡在那里了，很是郁闷
+以前总是再新开一个终端。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【转】linux中巧用ctrl-z后台运行程序</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【转】linux中巧用ctrl-z后台运行程序</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2014-12-21T15:10:00.000Z" itemprop="datePublished" class="page-time">
+  2014-12-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-zhuan_ctrl_z_in_linux"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【转】linux中巧用ctrl-z后台运行程序</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2014年12月21日 23:10" datetime="2014-12-21T15:10:00.000Z"  itemprop="datePublished">2014-12-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/p/4177274.html" target="_blank" rel="external">cnblogs</a> Post date: 2014-12-21 23:10</p>
+<p>背景：</p>
+<p>最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;’ ， 结果终端就卡在那里了，很是郁闷</p>
+<p>以前总是再新开一个终端。</p>
+<a id="more"></a>
+<p>今天翻看《鸟哥的linux私房菜》的时候，发现介绍vim的时候介绍了一个ctrl-z命令可以将当前的程序切到后台，很好用！可是怎么再切回去呢？搜了下，见下文：</p>
+<p>-----------转载自：<a href="http://blog.chinaunix.net/uid-10219166-id-2968756.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-10219166-id-2968756.html</a></p>
+<p>----------- 以下是原文</p>
+<blockquote>
+<p>假设你发现前台运行的一个程序需要很长的时间,但是需要干其他的事情,你就可以用 Ctrl-Z ,终止这个程序,然后可以看到系统提示:</p>
+<p>[1]+ Stopped /root/bin/rsync.sh</p>
+<p>然后我们可以把程序调度到后台执行:(bg 后面的数字为作业号)</p>
+<p>#bg 1</p>
+<p>[1]+ /root/bin/rsync.sh &amp;</p>
+<p>用 jobs 命令查看正在运行的任务:</p>
+<p>#jobs</p>
+<p>[1]+ Running /root/bin/rsync.sh &amp;</p>
+<p>如果想把它调回到前台运行,可以用</p>
+<p>#fg 1</p>
+<p>/root/bin/rsync.sh</p>
+<p>这样,你在控制台上就只能等待这个任务完成了.</p>
+<p>&amp; 将指令丢到后台中去执行</p>
+<p>[ctrl]+z 将前台任务丢到后台中暂停</p>
+<p>jobs 查看后台的工作状态</p>
+<p>fg %jobnumber 将后台的任务拿到前台来处理</p>
+<p>bg %jobnumber 将任务放到后台中去处理</p>
+<p>kill 管理后台的任务</p>
+<p>命令运行时使用CTRL+Z，强制当前进程转为后台，并使之停止。</p>
+<p><strong>1. 使进程恢复运行（后台）</strong></p>
+<p>（1）使用命令bg</p>
+<p>Example：</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ ./tcpserv01</p>
+<p>*这里使用CTRL+Z，此时serv01是停止状态*</p>
+<p>[1]+ Stopped ./tcpserv01</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ bg</p>
+<p>[1]+ ./tcpserv01 &amp; *此时serv01运行在后台*</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$</p>
+<p>（2）如果用CTRL+Z停止了几个程序呢？</p>
+<p>Example：</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ jobs</p>
+<p>[1]- Running ./tcpserv01 &amp;</p>
+<p>[2]+ Stopped ./tcpcli01 127.0.0.1</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ bg %1</p>
+<p>bash： bg：任务 1 已转入后台 *后台运行*</p>
+<ul>
+<li><ol>
+<li>使进程恢复至前台运行**</li>
+</ol>
+</li>
+</ul>
+<p>Example：</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ ./tcpserv04</p>
+<p>[1]+ Stopped ./tcpserv04</p>
+<p><a href="mailto:zuii@zuii-desktop" target="_blank" rel="external">zuii@zuii-desktop</a>：~/unp/tcpcliserv\$ fg</p>
+<p>。/tcpserv04</p>
+<ul>
+<li>总结：**</li>
+</ul>
+<p>（1） CTRL+Z停止进程并放入后台</p>
+<p>（2） jobs 显示当前暂停的进程</p>
+<p>（3） bg %N 使第N个任务在后台运行（%前有空格）</p>
+<p>（4） fg %N 使第N个任务在前台运行</p>
+<p>默认bg，fg不带%N时表示对最后一个进程操作！</p>
+</blockquote>
+<p>--------- 以上是原文</p>
+<p>后记： 《鸟哥的linux私房菜》后面也有章节介绍fg和bg，只是当时还没看到</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2014/12/21/zhuan_ctrl_z_in_linux/" target="_blank" rel="external">http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Background-Jobs/">Background Jobs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&title=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&title=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&source=cnblogs Post date: 2014-12-21 23:10
+背景：
+最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;’ ， 结..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/05/07/generate_gradient_color/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">又是一个渐变色生成算法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/01/11/p_2013_01_11_2855675/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">C函数调用中对入参取地址引发的问题</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="zhuan_ctrl_z_in_linux" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&title=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&title=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&source=cnblogs Post date: 2014-12-21 23:10
+背景：
+最近在执行一些长时间程序的时候，老是一不小心忘了输入‘&amp;’ ， 结..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【转】linux中巧用ctrl-z后台运行程序》 — Clarence的博客&url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2014/12/21/zhuan_ctrl_z_in_linux/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqklEQVR42u3aUW7jMAwE0N7/0t0DFHFmSKmbAs9fgevKegkgCUN+fcXX94/r5/2fzz9/fvX8q5Ff/e+BCw8PD2899WfG85PP4yeYnBrNBA8PD+8a73mxbieUjJ+/a7PB4OHh4X0CL1m+W3Y+Jh4eHt7f5c3Ci3bSeHh4eJ/MS8KI2RI/+5xEw4ezFjw8PLxJ4lqHBf/r85X6Hh4eHt66qt4Ww2bFqva4XIyGh4eHd4F3Nlxoj9ezFb5+Eg8PD+8yL294mhX1b7RzvZkDHh4e3lFevty3Ran2qJ1vA6t8Gg8PD2/Na5fmWWk/H/NUSIGHh4d3j9e+OF/Qn6eSRwztphX9bnh4eHhrXntndiCeNQpsSmt4eHh4t3ltYBolxGWM27Z/vbmPh4eHd5m3weShan4cnxXM8PDw8G7z9m1Pp8LZzfawguHh4eGNeN/xdSo+KDrCRkFwVAbDw8PDG/Ha0Ha2lCdRb755HC6A4eHh4Y14ebG/PXbP4olZKBw1XeHh4eGtebNFf3b43hyOk0aEN78hHh4e3iFeHr/mW8WsiBX9Dm2cgYeHh3eBNzs6t5HEDHY4VcDDw8M7xMubmdrlfrMBtBvVy7/i4eHhXeAl/5Yv0Hmha9/sVYQaeHh4eBd4ySK+f327zczejoeHh/c7vHxjaEv++eaRv7Fu/MLDw8P7Fd6sgSAvU7Vjzu7j4eHh/SYvX8Tbg/jZw3pUzMPDw8M7ytvEBMlX0yKf8fV88PDw8C7w9tFD2wSQTLptKThw4eHh4ZW8dujZ5DYzyeOPNwUwPDw8vKO8TXCQfwWbUtlsA8PDw8P7NF5e+jobPRTvxcPDw/sA3iwgeN4MNlHFmzng4eHhXeO1QcC+MWv2fF0Yw8PDw7vAK9qYRsfoDTtZ+g/U+vDw8PBS3j8qr7tgP4fqIAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

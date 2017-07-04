@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>PHP下使用强大的imagick轻松生成组合缩略图 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,imagick,thumbnail">
+    <meta name="description" content="最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的imagick扩展。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP下使用强大的imagick轻松生成组合缩略图">
+<meta property="og:url" content="http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的imagick扩展。">
+<meta property="og:image" content="http://clarence-pan.github.io/media/14558111792512/14558119572671.jpg">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP下使用强大的imagick轻松生成组合缩略图">
+<meta name="twitter:description" content="最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的imagick扩展。">
+<meta name="twitter:image" content="http://clarence-pan.github.io/media/14558111792512/14558119572671.jpg">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PHP下使用强大的imagick轻松生成组合缩略图</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PHP下使用强大的imagick轻松生成组合缩略图</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-02-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-use-imagick-to-composite-images-thumbnail"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PHP下使用强大的imagick轻松生成组合缩略图</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年02月19日 0:00" datetime="2016-02-18T16:00:00.000Z"  itemprop="datePublished">2016-02-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的<code>imagick</code>扩展。</p>
+<a id="more"></a>
+<p>这里说的<code>imagick</code> 是 <code>ImageMagick</code> 在PHP下的扩展。使用<code>pecl</code>安装起来那叫一个轻松简单 —— 一条命令就搞定：</p>
+<pre><code class="sh">sudo pecl install imagick
+</code></pre>
+<p>（扩展装好后还是要在php.ini中加上<code>extension=imagick.so</code>，然后记得重启<code>apache</code>或<code>PHP-fpm</code>服务。）</p>
+<p>这个需求是要这样生成缩略图：</p>
+<ol>
+<li>如果有1张图片，就直接生成这张图片的缩略图；</li>
+<li>如果有2张图片，则一张在左边一张在右边，各一半；</li>
+<li>如果有3张图片，则两张左边平均分配，一张独占右边；</li>
+<li>如果有4张图片，则像田字格一样平均分配空间；</li>
+<li>更多张图片，则只取前4张，按田字格方式生成缩略图。</li>
+</ol>
+<p>这规则还真不少，不过还不算太过复杂，很快搞出来了：</p>
+<pre><code class="PHP">namespace \clarence\thumbnail;
+class Thumbnail extends \Imagick
+{
+    /**
+     * @param array $images
+     * @param int $width
+     * @param int $height
+     * @return static
+     * @throws ThumbnailException
+     */
+    public static function createFromImages($images, $width, $height){
+        if (empty($images)){
+            throw new ThumbnailException(&quot;No images!&quot;);
+        }
+
+        $thumbnail = new static();
+        $thumbnail-&gt;newImage($width, $height, &#39;white&#39;, &#39;jpg&#39;);
+        $thumbnail-&gt;compositeImages($images);
+
+        return $thumbnail;
+    }
+
+    public function compositeImages($images){
+        $imagesKeys = array_keys($images);
+        $compositeConfig = $this-&gt;calcCompositeImagesPosAndSize($images);
+
+        foreach ($compositeConfig as $index =&gt; $cfg){
+            $imgKey = $imagesKeys[$index];
+            $img = new \Imagick($images[$imgKey]);
+            $img = $this-&gt;makeCompositeThumbnail($img, $cfg);
+            $this-&gt;compositeImage($img, self::COMPOSITE_OVER, $cfg[&#39;to&#39;][&#39;x&#39;], $cfg[&#39;to&#39;][&#39;y&#39;]);
+        }
+    }
+
+    protected function makeCompositeThumbnail(\Imagick $img, $cfg){
+        $img-&gt;cropThumbnailImage($cfg[&#39;size&#39;][&#39;width&#39;], $cfg[&#39;size&#39;][&#39;height&#39;]);
+        return $img;
+    }
+
+    protected function calcCompositeImagesPosAndSize($images){
+        $width = $this-&gt;getImageWidth();
+        $height = $this-&gt;getImageHeight();
+
+        switch(count($images)){
+            case 0:
+                throw new ThumbnailException(&quot;No images!&quot;);
+            case 1:
+                // | 0 |
+                return [
+                    0 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; 0 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width,
+                            &#39;height&#39; =&gt; $height,
+                        ]
+                    ]
+                ];
+            case 2:
+                // | 0 | 1 |
+                return [
+                    0 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; 0 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height,
+                        ]
+                    ],
+                    1 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; $width / 2, &#39;y&#39; =&gt; 0],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height,
+                        ]
+                    ]
+                ];
+            case 3:
+                // | 0 | 1 |
+                // | 2 |   |
+                return [
+                    0 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; 0 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                    1 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; $width / 2, &#39;y&#39; =&gt; 0],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height,
+                        ]
+                    ],
+                    2 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; $height / 2 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                ];
+            default:
+                // &gt;= 4:
+                // | 0 | 1 |
+                // | 2 | 3 |
+                return [
+                    0 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; 0 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                    1 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; $width / 2, &#39;y&#39; =&gt; 0],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                    2 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; 0, &#39;y&#39; =&gt; $height / 2 ],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                    3 =&gt; [
+                        &#39;to&#39; =&gt; [ &#39;x&#39; =&gt; $width / 2, &#39;y&#39; =&gt; $height / 2],
+                        &#39;size&#39; =&gt; [
+                            &#39;width&#39; =&gt; $width / 2,
+                            &#39;height&#39; =&gt; $height / 2,
+                        ]
+                    ],
+                ];
+        }
+    }
+}
+</code></pre>
+<p>用个试试：</p>
+<pre><code class="PHP">$thumbnail = \clarence\thumbnail\Thumbnail::createFromImages($srcImages, 240, 320);
+$thumbnail-&gt;writeImage($outputDir.&quot;/example.jpg&quot;);
+</code></pre>
+<p>效果立马出来了：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/14558111792512/14558119572671.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>赞一个~ </p>
+<p>（详细代码见 <a href="http://github.com/clarence-pan/thumbnail" target="_blank" rel="external">http://github.com/clarence-pan/thumbnail</a>)</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2016/02/19/use-imagick-to-composite-images-thumbnail/" target="_blank" rel="external">http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imagick/">imagick</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thumbnail/">thumbnail</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&title=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&title=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&source=最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的imagick扩展。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何解决Selenium中&quot;Cannot find function addEventListener in object [object HTMLDocument]&quot;的错误</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/01/04/note-of-spacemacs-on-mac/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mac上spacemacs体验小记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="use-imagick-to-composite-images-thumbnail" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&title=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&title=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&source=最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的imagick扩展。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP下使用强大的imagick轻松生成组合缩略图》 — Clarence的博客&url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQZLCMAwEQP7/afZKFRUYSRabQ+dEheC4fbDNyI9HfD3frtf7V59f7+T3r9p5/9WxCw8PD2/c9c+MpJ3k24SRP3/5djw8PLw13lWHrp7JByIZppyUt4OHh4d3T161E9WpfzJMeHh4eHfg5Zvs5Nt8UcnfjoeHh/dLXhJGRH/+g5bn2+iVrAUPDw+v059HMtHf4fNKfQ8PDw9vXFX/POFWvz21SBRaxsPDw1vgTY4O5EesenHG54ghOaaAh4eHt8c7G+Ym0UB1scnbxMPDw9vm9TbKvaXi2bpGiwQeHh7eT3iTUlOyDPR4vTt4eHh4G7x8w1qdmqub42q0kf8KDw8Pb4NXLTvl4cIpfBKFfOknHh4e3lFeXprKX5ycg6pujptDjIeHh3eUl0/EZ0OEaszRG0o8PDy8DV7+V3+vAJYcwEqGCQ8PD+83vLzRalG/OtH3Nu5fAl88PDy8BV41bqhGGJPpvrdEfVkD8fDw8Ma8ecEpP3TVCyOqYDw8PLw78HqwXpu9di6fx8PDw1vjVafyeVRxamn5Mkx4eHh4a7z5wjCpNyUHAppvx8PDw1vgVV/cC3nnMUdy6KEQ5uLh4eENeL1G84FISv7VdvJBxMPDw9vgTQKI3pQ93y7nYDw8PLw9Xq/Tk8JYdQgKRa/eGOPh4eG1eNW/+knwmm+m8/CiPBB4eHh4a7xqd+fb7ubev7p44OHh4R3lPYtXNXSoTvRn4108PDy8Dd6p0weT41lJqWxvIcHDw8OblL56k/LnTk+OavUCjuikAx4eHt4hXt7dHiBv7XH2wsPDw7sZr7elzsPcZItfOKiKh4eH96+8vJ18gJLAtxw04+Hh4a3xqmFE7/kqtbdU4OHh4W3zqv/ok/i1F/tWf3sszsDDw8NLeX8TLt88hOKCrwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>C#中的自定义类型转换 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C#,Type Convertion">
+    <meta name="description" content="cnblogs Post date: 2010-01-06 20:56
+C#中一个继承自C++的优良特性是可以自定义类型转换。
+以前在C++中这样写：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#中的自定义类型转换">
+<meta property="og:url" content="http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="cnblogs Post date: 2010-01-06 20:56
+C#中一个继承自C++的优良特性是可以自定义类型转换。
+以前在C++中这样写：">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C#中的自定义类型转换">
+<meta name="twitter:description" content="cnblogs Post date: 2010-01-06 20:56
+C#中一个继承自C++的优良特性是可以自定义类型转换。
+以前在C++中这样写：">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C#中的自定义类型转换</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C#中的自定义类型转换</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2010-01-05T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2010-01-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-p_2010_01_06_cs_learning_user_cast"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C#中的自定义类型转换</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2010年01月06日 0:00" datetime="2010-01-05T16:00:00.000Z"  itemprop="datePublished">2010-01-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/C/">C#</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="http://www.cnblogs.com/pcy0/archive/2010/01/06/cs_learning_user_cast.html" target="_blank" rel="external">cnblogs</a> Post date: 2010-01-06 20:56</p>
+<p>C#中一个继承自C++的优良特性是可以自定义类型转换。</p>
+<p>以前在C++中这样写：<br><a id="more"></a></p>
+<pre><code>class CBrush{ //摘自MFC中CBrush类的部分代码。
+    public:   
+        operator HBRUSH() const;
+};
+</code></pre><p>在C#中也有类似的写法，不过要注意的是C#中这种类型转换函数必须是静态的，相比较与C++，C++中的类型转换则就没有这样的限制。</p>
+<p>此外，自定义类型转换可以设置修饰符explicit或implicit。explicit表示显式，也就是在使用这个转换时必须显式写在代码中。implicit修饰符表示隐式，隐式使用即使用时不必要显式写出来，如下例：</p>
+<pre><code>class A{
+    public static explicit operator A(B b){省略内容} //这是一个显式转换
+    public static implicit operator B(A a){省略内容} //这是一个隐式转换
+}
+
+B b=new B();
+A a=(A)b;   //显式使用显式转换
+b=a;    //隐式使用隐式转换
+</code></pre><p>自定义转换还需要注意的一点与as这个运算符有关。as一般情况下相当于 <code>expression is type ? (type)expression : (type)null</code>但只计算一次 expression。as 运算符只执行引用转换和装箱转换。as 运算符无法执行其他转换，如用户定义的转换，这类转换应使用强制转换表达式来执行。</p>
+<p>然后就是发现在值类型和引用类型之间的自定义转换比较麻烦,装箱和不装箱的值类型在转换时的行为是有区别的。</p>
+<p>下面的MyInt是一个引用类型，用作测试和值类型int之间的转换。</p>
+<pre><code>
+    class MyInt
+    {
+        int data;
+        public MyInt():this(10){}
+        public MyInt(int val)
+        {
+            data = val;
+        }
+
+        public static explicit operator int(MyInt x)
+        {
+            return x.data;
+        }
+
+        public static explicit operator MyInt(int x)
+        {
+            MyInt a = new MyInt();
+            a.data = x;
+            return a;
+        }
+
+        public override string ToString()
+        {
+            return data.ToString();
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        try
+        {
+            MyInt myInt = new MyInt();
+            int t = 100;
+            myInt = (MyInt)t;       //执行自定义转换 operator MyInt(int)
+            Console.WriteLine(&quot;myInt={0}&quot;, (myInt == null ? &quot;null&quot; : myInt.ToString()));  //myInt=100
+            int x = (int)myInt;     //执行自定义转换 operator int(MyInt)
+            Console.WriteLine(&quot;x={0}&quot;, x);  //x=100
+ //         myInt = x as MyInt;     //错误CS0039: 无法通过引用转换、装箱转换、取消装箱转换、包装转换或 Null 类型转换将类型“int”转换为“MyInt” 
+            object xobj = x;        //把x装箱
+            myInt = xobj as MyInt;  //as不会调用自定义转换
+            Console.WriteLine(&quot;myInt={0}&quot;, (myInt == null ? &quot;null&quot; : myInt.ToString())); //myInt=null
+            myInt = (MyInt)xobj;    //装箱后这样转换会出异常
+            //必须要显式拆箱再转换，如:myInt=(MyInt)(int)xobj;
+            Console.WriteLine(&quot;myInt={0}&quot;, (myInt == null ? &quot;null&quot; : myInt.ToString())); //这一句不会执行
+        }
+        catch(Exception e)
+        {
+            Console.Error.WriteLine(e);  //System.InvalidCastException ...
+        }
+    }
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2010/01/06/p_2010_01_06_cs_learning_user_cast/" target="_blank" rel="external">http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Type-Convertion/">Type Convertion</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&title=《C#中的自定义类型转换》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&title=《C#中的自定义类型转换》 — Clarence的博客&source=cnblogs Post date: 2010-01-06 20:56
+C#中一个继承自C++的优良特性是可以自定义类型转换。
+以前在C++中这样写：" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#中的自定义类型转换》 — Clarence的博客&url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2010/01/27/p_2010_01_27_wpf_text_nn_1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">WPF中花文字小感</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用于XML格式存储的工具类</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="p_2010_01_06_cs_learning_user_cast" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&title=《C#中的自定义类型转换》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&title=《C#中的自定义类型转换》 — Clarence的博客&source=cnblogs Post date: 2010-01-06 20:56
+C#中一个继承自C++的优良特性是可以自定义类型转换。
+以前在C++中这样写：" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#中的自定义类型转换》 — Clarence的博客&url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/01/06/p_2010_01_06_cs_learning_user_cast/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aUW4iMRAEUO5/6d0DEGaruu2Ild58IUJm/IxkN9V+veLrz9v1/tdP77y/fv988slP/3XgwsPDw1sP/dOtE97zsJ5hz/d/Hs/HicPDw8O7xkuW6c1msNl42mnCw8PD+2ZePqC2gH5+Ch4eHt7/xUsGMVvi81IeDw8P7xt4SRiRLOJtSDEb+pWsBQ8PD69bq6Mu0ve8vtLfw8PDw1t31fOmVP7gvIV2YLR4eHh4F3ibBtVziTyLKhJYPX14eHh4v87LI4ZNrJDcLY8w8PDw8O7x2qV51h6bFcTtcYSos4eHh4e35m0W66Skbsvo2TYTld14eHh4h3jtLdrtJG//34h98fDw8G7wzi79OWMWRgyPbeHh4eFd4LXVd3uMYD8dB34x4OHh4V3jtXFt3o7atLXymKNIXPDw8PAO8WbXrNidBRP7MAUPDw9vw8uX6fok1yiKbZHRoSs8PDy8o7z21m1QeyrAnYUgeHh4ePd4m+ZWu2S3hXWydUVFOR4eHt4FXjv0ts2/CSNO3QcPDw/vBm92ICBvZZ0trNtYBA8PD2/PmwHyFlTb7N98Gz8o8PDw8K7xZj/v2zb/qQi4iELw8PDwrvHa+LVtmM0abO2W8MM7eHh4eBd4s3K5XaA34Wx+kKueRDw8PLzF2BLxJizIN5t8A3gez6t9AB4eHt6IN4tl28U6X+43Fx4eHt7v8/LDAZvgYBME55sWHh4e3lneasEtDwckwW4bIhduPDw8vEO8thGVtPM3BXoS7LbbBh4eHt4NXnt4NH/w/pBBfrd/hBF4eHh4F3h5cDArnYt0ZL2B4eHh4X0bbzbQFplMXDROPDw8vK/hJaHDJrZog+Zmr8DDw8M7w2uDgLZc3kxW/mWsshY8PDy8mNf+yG83gDyonZXsB4IMPDw8vJT3FydpDQEOnORGAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

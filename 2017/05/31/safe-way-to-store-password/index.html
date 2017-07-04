@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>密码存储中MD5的安全问题与替代方案 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,Security,md5,password">
+    <meta name="description" content="md5安全吗？有多么地不安全？如何才能安全地存储密码？...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码存储中MD5的安全问题与替代方案">
+<meta property="og:url" content="http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="md5安全吗？有多么地不安全？如何才能安全地存储密码？...">
+<meta property="og:updated_time" content="2017-05-31T09:22:55.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="密码存储中MD5的安全问题与替代方案">
+<meta name="twitter:description" content="md5安全吗？有多么地不安全？如何才能安全地存储密码？...">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">密码存储中MD5的安全问题与替代方案</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">密码存储中MD5的安全问题与替代方案</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-30T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-05-31
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Security/">Security</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#md5安全吗？"><span class="post-toc-number">1.</span> <span class="post-toc-text">md5安全吗？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#那么如何提升密码存储的安全性呢？bcrypt"><span class="post-toc-number">2.</span> <span class="post-toc-text">那么如何提升密码存储的安全性呢？bcrypt!</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一个安全地存储密码的方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">一个安全地存储密码的方案</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-safe-way-to-store-password"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">密码存储中MD5的安全问题与替代方案</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年05月31日 0:00" datetime="2017-05-30T16:00:00.000Z"  itemprop="datePublished">2017-05-31</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Security/">Security</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>md5安全吗？有多么地不安全？如何才能安全地存储密码？...</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="md5安全吗？"><a href="#md5安全吗？" class="headerlink" title="md5安全吗？"></a>md5安全吗？</h1><p>经过各种安全事件后，很多系统在存放密码的时候不会直接存放明文密码了，大都改成了存放了 md5 加密（hash）后的密码，可是这样真的安全吗？</p>
+<p><a href="https://gist.github.com/Clarence-pan/5f0c54f94234799f5236fa1c2405133f" target="_blank" rel="external">这儿有个脚本来测试下MD5的速度</a>, 测试结果:</p>
+<pre><code>[root@f4d5945f1d7c tools]# php speed-of-md5.php
+Array
+(
+    [rounds] =&gt; 100
+    [times of a round] =&gt; 1000000
+    [avg] =&gt; 0.23415904045105
+    [max] =&gt; 0.28906106948853
+    [min] =&gt; 0.21188998222351
+)
+</code></pre><p>有没有发现一个问题：MD5速度太快了，导致很容易进行暴力破解.</p>
+<p>简单计算一下：</p>
+<pre><code>&gt; Math.pow(10, 6) / 1000000 * 0.234
+0.234
+&gt; Math.pow(36, 6) / 1000000 * 0.234 / 60
+8.489451110400001
+&gt; Math.pow(62, 6) / 1000000 * 0.234 / 60 / 60
+3.69201531296
+</code></pre><ol>
+<li>使用6位纯数字密码，破解只要0.234秒！</li>
+<li>使用6位数字+小写字母密码，破解只要8.49分钟！</li>
+<li>使用6位数字+大小写混合字母密码，破解只要3.69个小时！</li>
+</ol>
+<p>当然，使用长一点的密码会显著提高破解难度：</p>
+<pre><code>&gt; Math.pow(10, 8) / 1000000 * 0.234
+23.400000000000002
+&gt; Math.pow(36, 8) / 1000000 * 0.234 / 60 / 60 / 24
+7.640505999359999
+&gt; Math.pow(62, 8) / 1000000 * 0.234 / 60 / 60 / 24 / 365
+1.6201035231755982
+</code></pre><ol>
+<li>使用8位纯数字密码，破解要23.4秒！</li>
+<li>使用8位数字+小写字母密码，破解要7.64小时！</li>
+<li>使用8位数字+大小写混合字母密码，破解要1.62年！</li>
+</ol>
+<p>但是，别忘了，这个速度只是用PHP这个解释型语言在笔者的弱鸡个人电脑（i5-4460 CPU 3.20GHz）上跑出来的，还只是利用了一个线程一个CPU核心。若是放到最新的 Xeon E7 v4系列CPU的服务器上跑，充分利用其48个线程，并使用C语言来重写下测试代码，很容易就能提升个几百上千倍速度。那么即使用8位数字+大小写混合字母密码，破解也只要14小时！</p>
+<p>更何况，很多人的密码都是采用比较有规律的字母或数字，更能降低暴力破解的难度... 如果没有加盐或加固定的盐，那么彩虹表破解就更easy了...</p>
+<h1 id="那么如何提升密码存储的安全性呢？bcrypt"><a href="#那么如何提升密码存储的安全性呢？bcrypt" class="headerlink" title="那么如何提升密码存储的安全性呢？bcrypt!"></a>那么如何提升密码存储的安全性呢？bcrypt!</h1><p>提升安全性就是提升密码的破解难度，至少让暴力破解难度提升到攻击者无法负担的地步。（当然用户密码的长度当然也很重要，建议至少8位，越长越安全）</p>
+<p>这里不得不插播一句：PHP果然是世界上最好的语言 -- 标准库里面已经给出了解决方案。</p>
+<p>PHP 5.5 的版本中加入了 <a href="http://php.net/manual/zh/book.password.php" target="_blank" rel="external"><code>password_xxx</code> 系列函数</a>, 而对之前的版本，也有兼容库可以用：<a href="https://github.com/ircmaxell/password_compat" target="_blank" rel="external">password_compat</a>.<br>在这个名叫“密码散列算法”的核心扩展中提供了一系列简洁明了的对密码存储封装的函数。简单介绍下：</p>
+<ol>
+<li><code>password_hash</code> 是对密码进行加密（hash），目前默认用（也只能用）bcrypt算法，相当于一个加强版的md5函数</li>
+<li><code>password_verify</code> 是一个验证密码的函数，内部采用的安全的字符串比较算法，可以预防基于时间的攻击, 相当于 <code>$hashedPassword === md5($inputPassword)</code></li>
+<li><code>password_needs_rehash</code> 是判断是否需要升级的一个函数，这个函数厉害了，下面再来详细讲</li>
+</ol>
+<p><code>password_hash</code> 需要传入一个算法，现在默认和可以使用的都只有bcrypt算法，这个算法是怎么样的一个算法呢？为什么PHP标准库里面会选择bcrypt呢?</p>
+<p>bcrypt是基于 Blowfish 算法的一种专门用于密码哈希的算法，由 Niels Provos 和 David Mazieres 设计的。这个算法的特别之处在于，别的算法都是追求快，这个算法中有一个至关重要的参数：cost. 正如其名，这个值越大，耗费的时间越长，而且是指数级增长 -- 其加密流程中有一部分是这样的：</p>
+<pre><code>EksBlowfishSetup(cost, salt, key)
+    state &lt;- InitState()
+    state &lt;- ExpandKey(state, salt, key)
+    repeat (2^cost)                         // &quot;^&quot;表示指数关系
+        state &lt;- ExpandKey(state, 0, key)
+        state &lt;- ExpandKey(state, 0, salt)
+    return state
+</code></pre><p>比如下面是笔者的一次测试结果（个人弱机PC, i5-4460 CPU 3.20GHz） ：</p>
+<pre><code>      cost       time
+         8   0.021307
+         9   0.037150
+        10   0.079283
+        11   0.175612
+        12   0.317375
+        13   0.663080
+        14   1.330451
+        15   2.245152
+        16   4.291169
+        17   8.318790
+        18  16.472902
+        19  35.146999
+</code></pre><p>附：<a href="https://gist.github.com/Clarence-pan/4c05fd2ea3f31722fa6910bc82976c08" target="_blank" rel="external">测试代码</a></p>
+<p>这个速度与md5相比简直是蜗牛与猎豹的差别 -- 即使按照cost=8, 一个8位的大小写字母+数字的密码也要14万年才能暴力破解掉，更何况一般服务器都会至少设置为10或更大的值（那就需要54万年或更久了）。</p>
+<p>显然，cost不是越大越好，越大的话会越占用服务器的CPU，反而容易引起DOS攻击。建议根据服务器的配置和业务的需求设置为10~12即可。最好同时对同一IP同一用户的登录尝试次数做限制，预防DOS攻击。</p>
+<h1 id="一个安全地存储密码的方案"><a href="#一个安全地存储密码的方案" class="headerlink" title="一个安全地存储密码的方案"></a>一个安全地存储密码的方案</h1><p>总上所述，一个安全地存储密码的方案应该是<a href="https://gist.github.com/Clarence-pan/cf4e7afceb32da1020f8705efff871b2" target="_blank" rel="external">这样子的</a>：（直接放代码吧）</p>
+<pre><code class="php">class User extends BaseModel
+{
+    const PASSWORD_COST = 11; // 这里配置bcrypt算法的代价，根据需要来随时升级
+    const PASSWORD_ALGO = PASSWORD_BCRYPT; // 默认使用（现在也只能用）bcrypt
+
+    /**
+    * 验证密码是否正确
+    *
+    * @param string $plainPassword 用户密码的明文
+    * @param bool  $autoRehash    是否自动重新计算下密码的hash值（如果有必要的话）
+    * @return bool
+    */
+    public function verifyPassword($plainPassword, $autoRehash = true)
+    {
+        if (password_verify($plainPassword, $this-&gt;password)) {
+            if ($autoRehash &amp;&amp; password_needs_rehash($this-&gt;password, self::PASSWORD_ALGO, [&#39;cost&#39; =&gt; self::PASSWORD_COST])) {
+                $this-&gt;updatePassword($plainPassword);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+    * 更新密码
+    *
+    * @param string $newPlainPassword
+    */
+    public function updatePassword($newPlainPassword)
+    {
+        $this-&gt;password = password_hash($newPlainPassword, self::PASSWORD_ALGO, [&#39;cost&#39; =&gt; self::PASSWORD_COST]);
+        $this-&gt;save();
+    }
+}
+</code></pre>
+<p>这样子，在用户注册或修改密码的时候就调用 <code>$user-&gt;updatePassword()</code> 来设置密码，而登录的时候就调用 <code>$user-&gt;verifyPassword()</code> 来验证下密码是否正确。<br>当硬件性能提升到一定程度，而cost=11无法满足安全需求的时候，则修改下 <code>PASSWORD_COST</code> 的值即可无缝升级，让存放的密码更安全。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-31T09:22:55.373Z" itemprop="dateUpdated">2017年5月31日 17:22</time>
+</span><br>
+
+
+        <a href="/2017/05/31/safe-way-to-store-password/" target="_blank" rel="external">http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security/">Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/md5/">md5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/password/">password</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&title=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&title=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&source=
+md5安全吗？有多么地不安全？如何才能安全地存储密码？...
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/15/ftp-server-for-docker/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="safe-way-to-store-password" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&title=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&title=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&source=
+md5安全吗？有多么地不安全？如何才能安全地存储密码？...
+" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《密码存储中MD5的安全问题与替代方案》 — Clarence的博客&url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQY7jMAwEwPz/01lgTwvM2NMkxXgHKJ+COLZVOphMS69XfLz/Hv9+zr/5evbqqq/Puv/lsQMPDw+vNfT7AeXfzM9W73A/iXh4eHh7vLwY9F73VVj1qsvv8fDw8B7lVRvoarGptvV4eHh4v4V3f1UvaLiapgcKAx4eHl7MS17i+YDmk/VA1oKHh4cX8ybt7FOf19f38PDw8Fqr6kmRmIe/STzxbh14eHh4G7wkAjgVrVY3XVUb5cI/Bjw8PLxDvCQUyEOHfANB3kAnWxa+uRYPDw/vKC/ZBNDbmHWqJIyWyvDw8PA+yKuWhHl+nC9oFSYdDw8Pb5k3aYKTYpD/vjeqwpzh4eHhjXnVZroX9U5e9Pl9vmmp8fDw8I7y8ua4B+5tI6gWm2apwMPDwxvweu1ydegby2MRGw8PD+8jvLyxzpep8kiiyjuQEOPh4eG1eHn+mbfFebA7DyMuRXh4eHjLvLwVri5Z5eykJBTuiYeHh3eUNy8A84i2F/5GPTMeHh7eAq/6n726YStpo6sBbjJmPDw8vG1edbEqGVyvu+9tDvhhovHw8PAWePmLuzqsaqSbL60195Th4eHhHeL12uKceiqWbU4NHh4e3hqv2kb3Qt68AEzCiFe+DwIPDw+vxev9+d+Ld+8LwORaPDw8vDkv3yiw/UKvvsmjLQt4eHh4H+RNNhD0hltdGIvO4uHh4S3w8j/2ydl5UUme2ywzeHh4eId47+KRL4ltvOLLkTEeHh7eAu9UBJC/4vOhzONjPDw8vD1eXgyq26eqU5ZPUCEgxsPDw1vj9R5/dpryUCNvyvHw8PCe5VXb5clTJhOKh4eH93/yqsWgF7nmsMt74uHh4a3xqq1wL6KtNtO9koOHh4e3zasugJXjgODOvfa9zMDDw8Ob8v4ADQbQdU5/06sAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

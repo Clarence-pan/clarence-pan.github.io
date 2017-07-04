@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>mac上spacemacs体验小记 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="emacs,spacemacs,mac">
+    <meta name="description" content="安装第一步，安装emacs-macemacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。那就卸载掉以前的emacs，装下吧：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac上spacemacs体验小记">
+<meta property="og:url" content="http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="安装第一步，安装emacs-macemacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。那就卸载掉以前的emacs，装下吧：">
+<meta property="og:image" content="http://clarence-pan.github.io/media/14516227038772/14516227631953.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io/media/14516227038772/14516235396950.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io/media/14516227038772/14516238187335.jpg">
+<meta property="og:image" content="http://clarence-pan.github.io/media/14516227038772/14516246506381.jpg">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac上spacemacs体验小记">
+<meta name="twitter:description" content="安装第一步，安装emacs-macemacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。那就卸载掉以前的emacs，装下吧：">
+<meta name="twitter:image" content="http://clarence-pan.github.io/media/14516227038772/14516227631953.jpg">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">mac上spacemacs体验小记</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">mac上spacemacs体验小记</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-01-03T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2016-01-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/emacs/">emacs</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一步，安装emacs-mac"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">第一步，安装emacs-mac</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二步，克隆下spacemacs的配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第二步，克隆下spacemacs的配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三步，启动emacs"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三步，启动emacs</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#打开文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">打开文件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#执行命令"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">执行命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#查看帮助"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">查看帮助</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-note-of-spacemacs-on-mac"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">mac上spacemacs体验小记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年01月04日 0:00" datetime="2016-01-03T16:00:00.000Z"  itemprop="datePublished">2016-01-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/emacs/">emacs</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="第一步，安装emacs-mac"><a href="#第一步，安装emacs-mac" class="headerlink" title="第一步，安装emacs-mac"></a>第一步，安装emacs-mac</h2><p>emacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。<br>那就卸载掉以前的emacs，装下吧：<br><a id="more"></a></p>
+<pre><code class="sh">$ brew remove emacs
+$ brew tap railwaycat/emacsmacport
+$ brew install emacs-mac --with-spacemacs-icon
+</code></pre>
+<p>其中最后一步会花费比较长的时间，我当时在make阶段足足花费了近10分钟...</p>
+<h2 id="第二步，克隆下spacemacs的配置"><a href="#第二步，克隆下spacemacs的配置" class="headerlink" title="第二步，克隆下spacemacs的配置"></a>第二步，克隆下spacemacs的配置</h2><p>如果以前曾经有<code>.emacs.d</code>的配置，要备份下，再克隆：</p>
+<pre><code class="sh">$ mv ~/.emacs.d ~/.emacs.d.bak
+$ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+</code></pre>
+<h2 id="第三步，启动emacs"><a href="#第三步，启动emacs" class="headerlink" title="第三步，启动emacs"></a>第三步，启动emacs</h2><p>注意：最好启动GUI版的emacs，而不是到控制台上去敲<code>emacs</code>:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/14516227038772/14516227631953.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>第一次启动emacs，相当于安装spacemacs，会有一些选项，我是一路按默认的来。<br>很快就装好了（我一边敲上面的第x步，一边装，敲完了也就装完了）：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/14516227038772/14516235396950.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>看这界面，我滴个神呐，这还是我熟悉的emacs吗？</p>
+<h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><h2 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h2><p>打开个文件试试，还是<code>C-x C-f</code>:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/14516227038772/14516238187335.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>只是这个minibuffer有点小绚丽，居然是竖排的，支持方向键上下移动，左右前进后退；如果输入文件名也能即时筛选文件。</p>
+<h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h2><p>执行命令还是<code>M-x</code>:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/media/14516227038772/14516246506381.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>minibuffer都变成竖排的了</p>
+<h2 id="查看帮助"><a href="#查看帮助" class="headerlink" title="查看帮助"></a>查看帮助</h2><p><code>SPC f e h</code> 是内置的spacemacs的帮助文档 (貌似很多命令都用<code>SPC</code>打头)</p>
+<hr>
+<p>更多内容见spacemacs下的其他文章...</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2016/01/04/note-of-spacemacs-on-mac/" target="_blank" rel="external">http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/emacs/">emacs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spacemacs/">spacemacs</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&title=《mac上spacemacs体验小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&title=《mac上spacemacs体验小记》 — Clarence的博客&source=安装第一步，安装emacs-macemacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。那就卸载掉以前的emacs，装..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mac上spacemacs体验小记》 — Clarence的博客&url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/02/19/use-imagick-to-composite-images-thumbnail/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PHP下使用强大的imagick轻松生成组合缩略图</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/12/30/null-coalesce-operator-in-php/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PHP中的null合并运算符</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="note-of-spacemacs-on-mac" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&title=《mac上spacemacs体验小记》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&title=《mac上spacemacs体验小记》 — Clarence的博客&source=安装第一步，安装emacs-macemacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。那就卸载掉以前的emacs，装..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《mac上spacemacs体验小记》 — Clarence的博客&url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3aO27DMBAFwNz/0gmQNpby9kNbxagyDInmqODSb/n1FV/fv9f991ef70f4e08+5tqFh4eH15r61XX1M8n9yQgT6v0c8PDw8E7zqov+1dKflIReOUmKBB4eHt7TePMtbz5C77fw8PDwnsZLhrufVpIV3G+a8fDw8J7D64UL+VO9KVZHxsPDw3sPr9oAe8Lng/09PDw8vEFXfXnxLW7Zq8XgxQzx8PDwDvDyRn4SyPbC3zzg6IUdeHh4eLu8eQibBLK94KM68gsXHh4e3mFefvgp3ygnJSQ5zlWNdAsJCh4eHl6Ll/+xz4dOXlDeKusVITw8PLxzvPyx3oSqryP59egpPDw8vAO8ZKLVZbq6iM+31M2NNR4eHt6YVx0ib2UlU+kdI2ieUMDDw8Mb8NYONsUb9GpjLA+LX3yPh4eHd4yXN8CSyVWbXtVyVSgYeHh4eAd4yU09UqHBH2Dyz/9kLXh4eHhLvGpA0Nte58enJmcAyqck8PDw8A7weqFAHhz02l3V0fDw8PBO8PIDT1sNqt4LrRYbPDw8vF1etbU/WcTzhlkS6Ubj4OHh4R3gbbWmJkcHqnFttUmGh4eHd4KXl4de0FAdebd5hoeHh3eOV11L5xHGpDx8BxceHh7ee3jVw0/zI1a7LTE8PDy89/B2o4HkBZ3YZEdtMzw8PLwlXr4Q5xvZHDkvP4W6h4eHh7fKS6rHZCs8b7Y1Lzw8PLxVXm/Rnxw7yMF5wHFZMPDw8PAO8KprbN7u6pWiaog8ecV4eHh4E141XNjdwfYAhUgXDw8P7xhvqxl2/02+mZ6XLjw8PLzn8LbChUloW9jW4+Hh4X2Ul4e5vWi4F9ri4eHhfYqXRAbVADeJDPJ7CiQ8PDy8w7xesz8JKfJp5SVhsmXHw8PDG/N+APsw5Ck9B6jPAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

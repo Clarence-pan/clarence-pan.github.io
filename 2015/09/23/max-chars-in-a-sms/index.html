@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>一个短信中最多可以容纳多少中英文混合的字符？ | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="sms,unicode,UCS-2,UTF-16,encoding,string">
+    <meta name="description" content="今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个短信中最多可以容纳多少中英文混合的字符？">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个短信中最多可以容纳多少中英文混合的字符？">
+<meta name="twitter:description" content="今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一个短信中最多可以容纳多少中英文混合的字符？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一个短信中最多可以容纳多少中英文混合的字符？</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-09-23T01:53:36.000Z" itemprop="datePublished" class="page-time">
+  2015-09-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/string/">string</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/string/encoding/">encoding</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">1.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-max-chars-in-a-sms"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一个短信中最多可以容纳多少中英文混合的字符？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年09月23日 9:53" datetime="2015-09-23T01:53:36.000Z"  itemprop="datePublished">2015-09-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/string/">string</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/string/encoding/">encoding</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。</p>
+<a id="more"></a>
+<p>直觉是：</p>
+<ol>
+<li>一条短信最多70个中文字符</li>
+<li>一条短信最多140个英文字符或数字 （一个中文字符 = 2个英文字符或数字）</li>
+<li>混合中文和英文的话，就按中文2字节，英文或数字1字节算，比如一半一半的情况总共有35个中文，70个英文...</li>
+</ol>
+<p>然而，直觉是错误的！</p>
+<p>真实情况：</p>
+<ol>
+<li>一条短信最多70个中文字符 （这个没错）</li>
+<li>一条短信最多160个英文字符或数字 （稍后解释）</li>
+<li>混合中英文的话，最多70个字符，一个中文、英文或数字都算一个字符！ （稍后解释）</li>
+</ol>
+<p>为什么呢？</p>
+<p>当初发明短信的时候，都是使用英文的，然后，估计是拍脑袋，定下了一条短信160个字符的限制 —— 160 = 80 * 2, 貌似刚好是传统打字机两行文本的长度，难道不只是巧合？</p>
+<p>然而，这160个字符在网络上传输的时候，并不是按一个字节8个bit存放一个字符进行传输的——估计是为了节省空间吧，使用了7个bit存放一个字符的方式进行传输，即只能发ASCII字符。算一下，160 <em> 7bit = 1120bit = 140 </em> 8bit, 刚好PDU是140字节。后来这个140字节的限制就写入了短信标准中去了 -- <a href="https://en.wikipedia.org/wiki/GSM_03.38#GSM_7-bit_default_alphabet_and_extension_table_of_3GPP_TS_23.038_.2F_GSM_03.38" target="_blank" rel="external">GSM 03.38</a></p>
+<p>到了手机短信国际化的年代，比如使用中文的时候怎么办? 后来就通常使用16bit来表示一个中文字符，注意哦，这个用的是UCS-2编码，是固定长度的编码方式——即使是英文或数字，也得占用16bit. 算一下，140 <em> 8bit = 1120bit = 70 </em> 16bit, 刚好只能容纳70个字符...详见：<a href="https://en.wikipedia.org/wiki/GSM_03.38#UCS-2_Encoding" target="_blank" rel="external">GSM 03.38</a></p>
+<p>这些标准看起来都是2G时代的标准，不知道以后3G、LTE等的标准是否对此进行了扩展...</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://www.metsky.com/archives/642.html" target="_blank" rel="external">手机短信的编码和长度限制-天缘博客</a></li>
+<li><a href="http://hackipedia.org/Character%20sets/Unicode,%20UTF%20and%20UCS%20encodings/UCS-2.htm" target="_blank" rel="external">UTF-16/UCS-2</a></li>
+<li><a href="https://en.wikipedia.org/wiki/GSM_03.38" target="_blank" rel="external">GSM 03.38</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2015/09/23/max-chars-in-a-sms/" target="_blank" rel="external">http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UCS-2/">UCS-2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UTF-16/">UTF-16</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encoding/">encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sms/">sms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unicode/">unicode</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&title=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&title=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&source=今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/11/30/about-clarence-pan.gitcafe.io/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">关于clarence-pan.gitcafe.io</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/09/10/how-to-embed-comments-to-static-blog/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">如何在静态博客中嵌入评论</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="max-chars-in-a-sms" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&title=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&title=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&source=今天遇到一个问题——一个短信里面最多可以容纳多少个中英文混编的字符？顺手google了以下，发现这个事情跟我的直觉还是不太一样的，特此记录，以备后查。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个短信中最多可以容纳多少中英文混合的字符？》 — Clarence的博客&url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/09/23/max-chars-in-a-sms/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW7DMAwEwPz/0+61QFBlV3IKWBqfCje2NToQpMjXK76uX9dfd97vv/937p23XRgYGI9lXMMr+U3y4fEv37+Vrw0DA+McRv7q5Knxs20IHq8NAwMDow2I64kjBgYGxl0Bdxw086fGoRwDAwOjLWLHAbeF5d+6uRbHwMB4IGMljH7776/0NzAwMB7FuMorbz0mQXO8TcWqMDAwtma0pWa+oBwWFahJQxQDA2NTRtKYnAujbcszD+X1iR0GBsZ2jISUj1nMpXp1yMbAwNia0S5uhZ08246UYWBgnMZIErh2KXm4XC+SMTAwTmDUB/FlOrgyRhY1NTEwMA5grDQJ1n+fb9xSaoiBgfFAxly61hauKyG1PjXEwMDYlJG3G/+n/Vkf3mFgYGzNaIvYuRSwHR2b21YMDIy9GXmIbMvO9TvFsAUGBsamjCSZm0vv8p1rBzgwMDBOY+SfTIJvu7gVNgYGxpmMtnydzD2Xi9il4zYMDIyHM1YStbk25IdULw7NGBgY5zDa8Yh25GtlRCMKuxgYGAcw5orVleP+ujE53lYMDIxNGVd55WG0DdxzQxsYGBgnMNow177oru2YO9TDwMDYiZEPeM21GNukMF9D8WEMDIwtGHPF7dwYWduQqGdGMDAwjmeMl5iPULTHah/egIGBgVGS8lI2OVaLtgYDA+MAxlzQTO7nKWM+doaBgXEao03U2qTwe8MWGBgYBzB+AA8DIuBjF2bYAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

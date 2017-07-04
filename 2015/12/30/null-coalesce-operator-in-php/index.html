@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>PHP中的null合并运算符 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,Null Coalesce">
+    <meta name="description" content="null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP中的null合并运算符">
+<meta property="og:url" content="http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：">
+<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP中的null合并运算符">
+<meta name="twitter:description" content="null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PHP中的null合并运算符</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PHP中的null合并运算符</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-12-29T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2015-12-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-null-coalesce-operator-in-php"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PHP中的null合并运算符</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015年12月30日 0:00" datetime="2015-12-29T16:00:00.000Z"  itemprop="datePublished">2015-12-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用<code>||</code>来搞：<br><a id="more"></a></p>
+<pre><code class="js">function setSomething(a){
+    a = a || &#39;some-default-value&#39;;
+    // ...
+}
+</code></pre>
+<p>而在PHP中，可惜PHP的<code>||</code>总是返回<code>true</code>或<code>false</code>，无法这样来搞。<br><a href="http://PHP.net/manual/en/migration70.new-features.PHP" target="_blank" rel="external">PHP7</a>才正式加入了<code>??</code>这个运算符：</p>
+<pre><code class="PHP">// 获取user参数的值(如果为空，则用&#39;nobody&#39;)
+$username = $_GET[&#39;user&#39;] ?? &#39;nobody&#39;;
+// 等价于:
+$username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#39;;
+</code></pre>
+<p>PHP7 估计还有很长时间才能用到生产环境中，那在目前的PHP5中有没有替代方案呢？<br>据研究，完全有个非常便捷的替代方案：</p>
+<pre><code class="PHP">// 获取user参数的值(如果为空，则用&#39;nobody&#39;)
+$username = @$_GET[&#39;user&#39;] ?: &#39;nobody&#39;;
+// 等价于:
+$username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#39;;
+</code></pre>
+<p>-- 运行此代码: <a href="https://3v4l.org/aDUW8" target="_blank" rel="external">https://3v4l.org/aDUW8</a></p>
+<p>瞪大了眼睛看，跟前面的PHP7的例子差不多，主要是把 <code>??</code> 替换为了 <code>?:</code> 。 这个是个什么鬼呢？其实这就是 <code>(expr1) ? (expr2) : (expr3)</code> 表达式的省略模式：</p>
+<blockquote>
+<p>表达式 (expr1) ? (expr2) : (expr3) 在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。<br>自 PHP 5.3 起，可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 TRUE 时返回 expr1，否则返回 expr3。<br>-- <a href="http://PHP.net/manual/zh/language.operators.comparison.PHP" target="_blank" rel="external">http://PHP.net/manual/zh/language.operators.comparison.PHP</a></p>
+</blockquote>
+<p>当然，这个替代方案也不是完美的 —— 如果 <code>$_GET</code> 中没有 <code>&#39;user&#39;</code>，会有一条 <code>Notice: Undefined index: user</code> 的错误，所以需要用<code>@</code>来抑制这个错误，或者关闭 <code>E_NOTICE</code> 的错误。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+</span><br>
+
+
+        <a href="/2015/12/30/null-coalesce-operator-in-php/" target="_blank" rel="external">http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Null-Coalesce/">Null Coalesce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/01/04/note-of-spacemacs-on-mac/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">mac上spacemacs体验小记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/12/24/plant-uml-instances/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PlantUML的实例参考</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="null-coalesce-operator-in-php" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpElEQVR42u3a0WrrMBAE0P7/T7ev9xJSZnYlk8LxU2hrW0cF7Wakr6/4+v7nev3J6/V67+vnd2+Z3bu68PDw8BZDfzfQU7/9nfFugt5Rk8nFw8PDu8dLHpcs3+2gN7yktODh4eF9Am9WDNoGOmno8fDw8P4uL2cnJef31hkPDw/vc3jJQp/Hqfmwkil4KGvBw8PDi3n5LtLnfL6yv4eHh4e33lXPi8SN7bG8WX/7fDw8PLwLvLMtctIuzxb6vF3Gw8PDe4aXL/ebIGAWT+SRRJFV4+Hh4S14s9Y5H/Rmc+tAVIGHh4f3CO/UUae2zLTg6B+Ah4eHd43XYvKhzBridvqKXTs8PDy8Ne+Z6HZWAGZNeT5leHh4eBteO8S28d3HFnmhKqoKHh4e3oiXL9ab4SYBx6liEIUReHh4eAteEh/MSkXb+LbhQtLW4+Hh4d3gzRbcdsNsE2Ssmm88PDy8C7z9ltLsZW1j3R5HaKIYPDw8vI6XuPM4tT1GMCseeSyCh4eHd4/XHoGaLeWziWuf/N/f4+Hh4V3gtQt6ezggCW33jXVd/fDw8PAWvLz93Q93H0O0ZQYPDw/vHm8WmM4ODbRT0DbTeHh4eM/zkpvPHh1Ilvu8scbDw8O7zWsHN3vBJqSYTVZRJPDw8PBGvHyJz5F5Q5wcL2i3x+rb8PDw8Ba8PJiYtbyzmHhTYPDw8PDu8fYLdBu2zmKI+sLDw8M7yttva82a3fYIwrD5xsPDw7vAO7XGtqRZeFFveuHh4eFd49Vf7w+15pspKMoGHh4e3jVeu7mVL9b7o1ezMoaHh4f3Obw8Gmi30/Iwt5hiPDw8vI/n5U9ri0rS+heZLh4eHt6al0e0efu7v+vAW/Dw8PAu8Oqv94sWeRb4Ht7Nw8PDw5vzfgDEqErfMfHoiAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
