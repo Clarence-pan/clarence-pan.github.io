@@ -5,7 +5,7 @@
 <!-- Google Analytics -->
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-67440907-3', 'auto');
+ga('create', 'UA-67440907-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
@@ -25,55 +25,23 @@ ga('send', 'pageview');
     <title>无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
+    <meta name="theme-color" content="#1F51B5">
     
     
     <meta name="keywords" content="node.js,ftp,docker,container,TypeScript">
-    <meta name="description" content="无图无真相，先放个效果图：
-
-                
-                    
-                    
-                
-                
-            
-背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：
-
-通过数据卷或数据卷容器的方式
-启动容器的时">
+    <meta name="description" content="无图无真相，先放个效果图：                                                                                                            背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：  通过数据卷或数据卷容器的方式 启动容器的时">
+<meta name="keywords" content="node.js,ftp,docker,container,TypeScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件">
 <meta property="og:url" content="http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/index.html">
 <meta property="og:site_name" content="Clarence的博客">
-<meta property="og:description" content="无图无真相，先放个效果图：
-
-                
-                    
-                    
-                
-                
-            
-背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：
-
-通过数据卷或数据卷容器的方式
-启动容器的时">
+<meta property="og:description" content="无图无真相，先放个效果图：                                                                                                            背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：  通过数据卷或数据卷容器的方式 启动容器的时">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bf5f3c73gy1fen656jywdg20tq0j1u0x.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Clarence-pan/node-ftp-server-for-docker/master/screenshots/explore-wordpress.gif">
-<meta property="og:updated_time" content="2017-04-15T03:33:48.059Z">
+<meta property="og:updated_time" content="2017-07-05T03:05:29.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件">
-<meta name="twitter:description" content="无图无真相，先放个效果图：
-
-                
-                    
-                    
-                
-                
-            
-背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：
-
-通过数据卷或数据卷容器的方式
-启动容器的时">
+<meta name="twitter:description" content="无图无真相，先放个效果图：                                                                                                            背景使用 docker 来跑一些服务很方便，但是有的时候想管理容器里面的文件却很麻烦 -- 一般常规做法有3种：  通过数据卷或数据卷容器的方式 启动容器的时">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/bf5f3c73gy1fen656jywdg20tq0j1u0x.gif">
     
         <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
@@ -81,9 +49,6 @@ ga('send', 'pageview');
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.4.14">
     <script>window.lazyScripts=[]</script>
-
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
 </head>
 
 <body>
@@ -193,7 +158,7 @@ ga('send', 'pageview');
         <h1 class="title">无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-04-15T02:46:59.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2017-04-15T10:46:59.000Z" itemprop="datePublished" class="page-time">
   2017-04-15
 </time>
 
@@ -224,7 +189,7 @@ ga('send', 'pageview');
     <div class="post-card">
         <h1 class="post-card-title">无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017年04月15日 10:46" datetime="2017-04-15T02:46:59.000Z"  itemprop="datePublished">2017-04-15</time>
+            <time class="post-time" title="2017年04月15日 10:46" datetime="2017-04-15T10:46:59.000Z"  itemprop="datePublished">2017-04-15</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/docker/">docker</a></li></ul>
@@ -309,7 +274,7 @@ Examples:
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-04-15T03:33:48.059Z" itemprop="dateUpdated">2017年4月15日 11:33</time>
+    最后更新时间：<time datetime="2017-07-05T03:05:29.107Z" itemprop="dateUpdated">2017年7月5日 3:05</time>
 </span><br>
 
 
@@ -418,7 +383,7 @@ Examples:
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cysUkeX5G'; 
-var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var conf = 'prod_60afcdd5c71414aea0e0dce2601a1561'; 
 var width = window.innerWidth || document.documentElement.clientWidth; 
 if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
 </script>
@@ -545,7 +510,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
-lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256461440&web_id=1256461440')
 
 </script>
 

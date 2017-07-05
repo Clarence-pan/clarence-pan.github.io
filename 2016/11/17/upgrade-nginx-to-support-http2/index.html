@@ -5,7 +5,7 @@
 <!-- Google Analytics -->
 <script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-67440907-3', 'auto');
+ga('create', 'UA-67440907-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
@@ -25,59 +25,33 @@ ga('send', 'pageview');
     <title>HTTP2试用小记 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="theme-color" content="#3F51B5">
+    <meta name="theme-color" content="#1F51B5">
     
     
     <meta name="keywords" content="nginx">
-    <meta name="description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
-
-                
-                    
-                    
-                
-                
-            
-支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+    <meta name="description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：                                                                                                            支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta name="keywords" content="nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP2试用小记">
 <meta property="og:url" content="http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/index.html">
 <meta property="og:site_name" content="Clarence的博客">
-<meta property="og:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
-
-                
-                    
-                    
-                
-                
-            
-支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
-<meta property="og:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
-<meta property="og:image" content="http://clarence-pan.github.io//ww2.sinaimg.cn/large/bf5f3c73gw1f9v473ftnoj20a40f7myj.jpg">
-<meta property="og:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v4aad7zsj216x02faag.jpg">
-<meta property="og:image" content="http://clarence-pan.github.io//ww4.sinaimg.cn/large/bf5f3c73gw1f9v4ajjs6bj216w02i0te.jpg">
-<meta property="og:image" content="http://clarence-pan.github.io//ww2.sinaimg.cn/large/bf5f3c73gw1f9v3l9va5nj20mc081acu.jpg">
-<meta property="og:updated_time" content="2017-03-21T07:31:14.084Z">
+<meta property="og:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：                                                                                                            支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/bf5f3c73gw1f9v473ftnoj20a40f7myj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bf5f3c73gw1f9v4aad7zsj216x02faag.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/bf5f3c73gw1f9v4ajjs6bj216w02i0te.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/bf5f3c73gw1f9v3l9va5nj20mc081acu.jpg">
+<meta property="og:updated_time" content="2017-07-05T03:05:29.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP2试用小记">
-<meta name="twitter:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：
-
-                
-                    
-                    
-                
-                
-            
-支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
-<meta name="twitter:image" content="http://clarence-pan.github.io//ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
+<meta name="twitter:description" content="这两天把公司的网站升级到了全站https. 顺便瞄到了HTTP2的浏览器支持情况：                                                                                                            支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿本博客来做示例了。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/bf5f3c73gw1f9v3qb02raj20z90epwij.jpg">
     
         <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.4.14">
     <script>window.lazyScripts=[]</script>
-
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
 </head>
 
 <body>
@@ -187,7 +161,7 @@ ga('send', 'pageview');
         <h1 class="title">HTTP2试用小记</h1>
         <h5 class="subtitle">
             
-                <time datetime="2016-11-16T16:00:00.000Z" itemprop="datePublished" class="page-time">
+                <time datetime="2016-11-17T00:00:00.000Z" itemprop="datePublished" class="page-time">
   2016-11-17
 </time>
 
@@ -218,7 +192,7 @@ ga('send', 'pageview');
     <div class="post-card">
         <h1 class="post-card-title">HTTP2试用小记</h1>
         <div class="post-meta">
-            <time class="post-time" title="2016年11月17日 0:00" datetime="2016-11-16T16:00:00.000Z"  itemprop="datePublished">2016-11-17</time>
+            <time class="post-time" title="2016年11月17日 0:00" datetime="2016-11-17T00:00:00.000Z"  itemprop="datePublished">2016-11-17</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/nginx/">nginx</a></li></ul>
@@ -322,7 +296,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-03-21T07:31:14.084Z" itemprop="dateUpdated">2017年3月21日 15:31</time>
+    最后更新时间：<time datetime="2017-07-05T03:05:29.115Z" itemprop="dateUpdated">2017年7月5日 3:05</time>
 </span><br>
 
 
@@ -434,7 +408,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cysUkeX5G'; 
-var conf = 'prod_60afcdd5c73414aea0e0dce2601a3563'; 
+var conf = 'prod_60afcdd5c71414aea0e0dce2601a1561'; 
 var width = window.innerWidth || document.documentElement.clientWidth; 
 if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
 </script>
@@ -564,7 +538,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
-lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256463440&web_id=1256463440')
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256461440&web_id=1256461440')
 
 </script>
 

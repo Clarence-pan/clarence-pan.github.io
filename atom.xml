@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://clarence-pan.github.io/"/>
-  <updated>2017-05-31T09:22:55.373Z</updated>
+  <updated>2017-07-05T03:05:29.111Z</updated>
   <id>http://clarence-pan.github.io/</id>
   
   <author>
@@ -16,11 +16,172 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【翻译】Monolog使用说明</title>
+    <link href="http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/"/>
+    <id>http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/</id>
+    <published>2017-07-05T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.111Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目中使用的 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="external">Monolog</a> 出了点小问题，去翻其文档，发现居然只有英文的。趁业余时间，翻译一下吧。<br>以下是其<a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md" target="_blank" rel="external">使用说明</a>的中文翻译。更多翻译内容见 <a href="https://github.com/Clarence-pan/monolog-zh-doc" target="_blank" rel="external">clarence-pan/monolog-zh-doc</a>.</p>
+<h1 id="使用-Monolog"><a href="#使用-Monolog" class="headerlink" title="使用 Monolog"></a>使用 Monolog</h1><ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#核心概念">核心概念</a></li>
+<li><a href="#日志级别">日志级别</a></li>
+<li><a href="#配置一个日志服务">配置一个日志服务</a></li>
+<li><a href="#为记录添加额外的数据">为记录添加额外的数据</a></li>
+<li><a href="#使用通道">使用通道</a></li>
+<li><a href="#自定义日志格式">自定义日志格式</a></li>
+</ul>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Monolog 在 Packagist (<a href="http://packagist.org/packages/monolog/monolog" target="_blank" rel="external">monolog/monolog</a>) 上可用，并且可以通过 <a href="http://getcomposer.org/" target="_blank" rel="external">Composer</a> 安装:</p>
+<pre><code class="bash">composer require monolog/monolog
+</code></pre>
+<p>如果你不使用 Composer, 那你可以从 GitHub 上获取代码，然后使用任何兼容 PSR-0 的自动加载器（比如<a href="https://github.com/symfony/ClassLoader" target="_blank" rel="external">Symfony2 ClassLoader 组件</a>）来加载 Monolog 的类</p>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>每一个日志服务实例 (<code>Logger</code>) 都有一个通道（名称），并有一个处理器 (Handler)栈. 无论何时你添加一条 <a href="https://github.com/Clarence-pan/monolog-zh-doc/doc/message-structure.md" target="_blank" rel="external">记录</a> 到对应的日志服务实例，这个处理器栈将被遍历一遍：每个处理器都将依次决定是否要处理这条记录，而如果要处理，则遍历结束（译注：类似DOM事件冒泡）。</p>
+<p>这样子可以创建非常灵活的日志配置。比如一个 <code>StreamHandler</code> 可以把所有日志都写入磁盘，而上面加个<code>MailHandler</code> 可以把错误日志作为邮件发送出去。处理器还有一个 <code>$bubble</code> 属性定义了是否屏蔽某条记录或者处理了某条记录。在这个示例中，配置 <code>MailHandler</code> 的 <code>$bubble</code> 参数为 <code>false</code> 则意味着 <code>MailHandler</code> 将不会把自己已处理过的记录继续冒泡给 <code>StreamHandler</code>.</p>
+<p>你可以创建许多日志服务实例(<code>Logger</code>)，每一个则定义一个通道（比如数据库、请求、路由...）。而每一个日志服务实例都可以组合各种各样的处理器，可以共享处理器也可以不共享。这个通道将会在日志中反映出来，从而允许你可以很容易地查看或者筛选记录。</p>
+<p>每一个处理还会有一个格式化器（Formatter）。如果你没有配置一个，则一个有意义的默认的格式化器将被创建。格式化器用来规范化并格式化输入的记录，以便处理器能输出一些有用的信息。</p>
+<p>不支持自定义的严重性级别。只支持使用<a href="http://tools.ietf.org/html/rfc5424" target="_blank" rel="external">RFC 5424</a>中定义的八个级别（调试/Debug、信息/Info、提示/Notice、警告/Warning、错误/Error、严重/Critical、警报/Alert、紧急/Emergency）来作为基本的筛选目的。不过，如果为了排序或者其他需要灵活性的使用场景，你可以添加加工程序（Processor）从而可以在（处理器）处理前添加额外的信息（标签、用户IP...）。</p>
+<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><p>Monolog 支持一下 <a href="http://tools.ietf.org/html/rfc5424" target="_blank" rel="external">RFC 5424</a> 中的日志级别：</p>
+<ul>
+<li><p><strong>调试/DEBUG</strong> (100): 详细的调试信息。</p>
+</li>
+<li><p><strong>信息/INFO</strong> (200): 有意义的事件，比如用户登录、SQL日志。</p>
+</li>
+<li><p><strong>提示/NOTICE</strong> (250): 正常但是值得注意的事件。</p>
+</li>
+<li><p><strong>警告/WARNING</strong> (300): 异常事件，但是并不是错误。比如使用了废弃了的API，错误地使用了一个API，以及其他不希望发生但是并非必要的错误。</p>
+</li>
+<li><p><strong>错误/ERROR</strong> (400): 运行时的错误，不需要立即注意到，但是需要被专门记录并监控到。</p>
+</li>
+<li><p><strong>严重/CRITICAL</strong> (500): 边界条件/危笃场景。比如应用组件不可用了，未预料到的异常。</p>
+</li>
+<li><p><strong>警报/ALERT</strong> (550): 必须立即采取行动。比如整个网站都挂了，数据库不可用了等。这种情况应该发送短信警报，并把你叫醒。</p>
+</li>
+<li><p><strong>紧急/EMERGENCY</strong> (600): 紧急请求：系统不可用了。</p>
+</li>
+</ul>
+<h2 id="配置一个日志服务"><a href="#配置一个日志服务" class="headerlink" title="配置一个日志服务"></a>配置一个日志服务</h2><p>这里有一个基本的配置，可以记录日志到文件，并在 <code>DEBUG</code> 级别下记录到 firephp 中:</p>
+<pre><code class="php">&lt;?php
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
+
+// 创建日志服务
+$logger = new Logger(&#39;my_logger&#39;);
+
+// 添加一些处理器
+$logger-&gt;pushHandler(new StreamHandler(__DIR__.&#39;/my_app.log&#39;, Logger::DEBUG));
+$logger-&gt;pushHandler(new FirePHPHandler());
+
+// 现在你就可以用日志服务了
+$logger-&gt;info(&#39;My logger is now ready&#39;);
+</code></pre>
+<p>解释一下。第一步是创建日志服务实例，这个实例后将在代码中用到。唯一的参数是通道的名称，它在你有多个日志服务实例的时候很有用。（更多详情参见下面）</p>
+<p>这个日志服务实例自己是不是知道如何处理一条日志记录的。它把记录代理给了一些处理器。上面的代码中注册了两个处理器到栈中，以便允许使用两种不同的方式来处理日志记录。</p>
+<p>注意，<code>FirePHPHandler</code> 是被先调用的，因而它被添加到了栈顶。这允许你临时添加一个禁止冒泡的处理器从而允许你覆盖其他配置的日志（处理器）。</p>
+<blockquote>
+<p>如果你单独使用 Monolog, 并且在寻找一种简单的方式来配置许多处理器，那可以用<br><a href="https://github.com/theorchard/monolog-cascade" target="_blank" rel="external">theorchard/monolog-cascade</a> 。<br>它可以帮你使用PHP数组、YAML或者JSON来构建复杂的日志配置。</p>
+</blockquote>
+<h2 id="为记录添加额外的数据"><a href="#为记录添加额外的数据" class="headerlink" title="为记录添加额外的数据"></a>为记录添加额外的数据</h2><p>Monolog 提供了两种不同的方式来为简单的文本消息增加额外的信息</p>
+<h3 id="使用上下文-context"><a href="#使用上下文-context" class="headerlink" title="使用上下文(context)"></a>使用上下文(<code>context</code>)</h3><p>第一种方式是使用上下文（<code>context</code>），这允许你在传递记录的时候传递一个数组格式的数据：</p>
+<pre><code class="php">&lt;?php
+
+$logger-&gt;info(&#39;Adding a new user&#39;, array(&#39;username&#39; =&gt; &#39;Seldaek&#39;));
+</code></pre>
+<p>简单的处理器（比如<code>StreamHandler</code>）将只是把数组转换成字符串。而复杂的处理器则可以利用上下文的优点（如 FirePHP 则将以一种优美的方式显示数组）。</p>
+<h3 id="使用加工程序-Processor"><a href="#使用加工程序-Processor" class="headerlink" title="使用加工程序(Processor)"></a>使用加工程序(<code>Processor</code>)</h3><p>第二种方式是使用加工程序来为所有的记录添加额外数据。加工程序可以是任何可以调用的函数。<br>加工程序接收日志记录作为参数，并且需要在修改了<code>extra</code>字段后再返回日志记录。让我们来写一个添加一些假数据的加工程序：</p>
+<pre><code class="php">&lt;?php
+
+$logger-&gt;pushProcessor(function ($record) {
+    $record[&#39;extra&#39;][&#39;dummy&#39;] = &#39;Hello world!&#39;;
+
+    return $record;
+});
+</code></pre>
+<p>Monolog提供了一些内置的加工程序，你可以在你的项目中使用它们。请参见<a href="https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md#加工程序" target="_blank" rel="external">对应的章节</a>.</p>
+<blockquote>
+<p>小技巧：加工程序可以被注册到一个特定的处理器上而不是直接在日志服务实例上，从而可以只在对应的处理器上生效。</p>
+</blockquote>
+<h2 id="使用通道"><a href="#使用通道" class="headerlink" title="使用通道"></a>使用通道</h2><p>通道是一种非常棒的方式来区分是应用的哪个部分的日志被记录下来的。这通常在大型项目中非常有用（而且被Symfony2的MonologBundle所使用）。</p>
+<p>假设有两个日志服务实例共享了一个处理器，这个处理器将日志写入单个日志文件。通道则将允许你来区分是哪个日志服务实例记录了哪条日志。你可以很简单地通过通道来筛选日志。</p>
+<pre><code class="php">&lt;?php
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
+
+// 创建一些处理器
+$stream = new StreamHandler(__DIR__.&#39;/my_app.log&#39;, Logger::DEBUG);
+$firephp = new FirePHPHandler();
+
+// 创建应用的主要日志服务实例
+$logger = new Logger(&#39;my_logger&#39;);
+$logger-&gt;pushHandler($stream);
+$logger-&gt;pushHandler($firephp);
+
+// 使用另外的通道来创建安全相关的日志服务示例
+$securityLogger = new Logger(&#39;security&#39;);
+$securityLogger-&gt;pushHandler($stream);
+$securityLogger-&gt;pushHandler($firephp);
+
+// 或者克隆第一个，只是改变下通道
+$securityLogger = $logger-&gt;withName(&#39;security&#39;);
+</code></pre>
+<h2 id="自定义日志格式"><a href="#自定义日志格式" class="headerlink" title="自定义日志格式"></a>自定义日志格式</h2><p>在Monolog中，可以很简单地来自定义日志的格式，无论是写入文件、套接字、邮件、数据库还是其他处理器。大多数处理器都是用 <code>$record[&#39;formatted&#39;]</code> 这个值来自动写入日志设备。这个值依赖格式化器的配置。你可以选择预定义的格式化器类，也可以自己写一个（比如一个可读的多行文本文件）。</p>
+<p>想要配置一个预定义的格式化器类，可以直接把它设置为处理器的字段：</p>
+<pre><code class="php">// 默认的日期格式是 &quot;Y-m-d H:i:s&quot;
+$dateFormat = &quot;Y n j, g:i a&quot;;
+// 默认的输出格式是 &quot;[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n&quot;
+$output = &quot;%datetime% &gt; %level_name% &gt; %message% %context% %extra%\n&quot;;
+// 最后创建一个格式化器
+$formatter = new LineFormatter($output, $dateFormat);
+
+// 创建一个处理器
+$stream = new StreamHandler(__DIR__.&#39;/my_app.log&#39;, Logger::DEBUG);
+$stream-&gt;setFormatter($formatter);
+
+// 将其绑定到日志服务对象上
+$securityLogger = new Logger(&#39;security&#39;);
+$securityLogger-&gt;pushHandler($stream);
+</code></pre>
+<p>// 你还可以在多个处理器之间复用同一个格式化器，并且在多个日志服务实例间共享这些处理器。</p>
+<p><a href="https://github.com/Clarence-pan/monolog-zh-doc/doc/02-handlers-formatters-processors.md" target="_blank" rel="external">处理器、格式化器和加工程序</a> &rarr;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;最近项目中使用的 &lt;a href=&quot;https://github.com/Seldaek/monolog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Monolog&lt;/a&gt; 出了点小问题，去翻其文档，发现居然只有英文的。趁业余时间，翻译一下吧。&lt;br&gt;以下是其&lt;a href=&quot;https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;使用说明&lt;/a&gt;的中文翻译。更多翻译内容见 &lt;a href=&quot;https://github.com/Clarence-pan/monolog-zh-doc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;clarence-pan/monolog-zh-doc&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&quot;使用-Monolog&quot;&gt;&lt;a href=&quot;#使用-Monolog&quot; class=&quot;headerlink&quot; title=&quot;使用 Monolog&quot;&gt;&lt;/a&gt;使用 Monolog&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#安装&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#核心概念&quot;&gt;核心概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#日志级别&quot;&gt;日志级别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#配置一个日志服务&quot;&gt;配置一个日志服务&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#为记录添加额外的数据&quot;&gt;为记录添加额外的数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#使用通道&quot;&gt;使用通道&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#自定义日志格式&quot;&gt;自定义日志格式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+    
+    
+      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+    
+      <category term="Monolog" scheme="http://clarence-pan.github.io/tags/Monolog/"/>
+    
+      <category term="Translations" scheme="http://clarence-pan.github.io/tags/Translations/"/>
+    
+  </entry>
+  
+  <entry>
     <title>密码存储中MD5的安全问题与替代方案</title>
     <link href="http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/"/>
     <id>http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/</id>
-    <published>2017-05-30T16:00:00.000Z</published>
-    <updated>2017-05-31T09:22:55.373Z</updated>
+    <published>2017-05-31T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.115Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>md5安全吗？有多么地不安全？如何才能安全地存储密码？...</p>
@@ -164,8 +325,8 @@ Array
     <title>无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</title>
     <link href="http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/"/>
     <id>http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/</id>
-    <published>2017-04-15T02:46:59.000Z</published>
-    <updated>2017-04-15T03:33:48.059Z</updated>
+    <published>2017-04-15T10:46:59.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>无图无真相，先放个效果图：</p>
 <figure class="image-bubble">
@@ -258,8 +419,8 @@ Examples:
     <title>`express` 框架中的参数小记</title>
     <link href="http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/"/>
     <id>http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/</id>
-    <published>2017-03-31T16:00:00.000Z</published>
-    <updated>2017-04-01T05:09:46.256Z</updated>
+    <published>2017-04-01T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
 <p>比如:</p>
@@ -321,8 +482,8 @@ app.use(bodyParser.urlencoded())
     <title>如何优雅地使用 VSCode 来编辑 vue 文件？</title>
     <link href="http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/"/>
     <id>http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/</id>
-    <published>2017-03-17T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2017-03-18T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个项目使用了 <a href="http://cn.vuejs.org" target="_blank" rel="external">Vue.js</a> ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。</p>
 <p>后来，果断放弃收费的 PHPStorm ，改用 <a href="https://code.visualstudio.com" target="_blank" rel="external">vscode (Visual Stdio Code)</a>.<br>当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件</p>
@@ -545,8 +706,8 @@ app.use(bodyParser.urlencoded())
     
     <summary type="html">
     
-      &lt;p&gt;最近有个项目使用了 &lt;a href=&quot;http://cn.vuejs.org&quot;&gt;Vue.js&lt;/a&gt; ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。&lt;/p&gt;
-&lt;p&gt;后来，果断放弃收费的 PHPStorm ，改用 &lt;a href=&quot;https://code.visualstudio.com&quot;&gt;vscode (Visual Stdio Code)&lt;/a&gt;.&lt;br&gt;当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件&lt;/p&gt;
+      &lt;p&gt;最近有个项目使用了 &lt;a href=&quot;http://cn.vuejs.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vue.js&lt;/a&gt; ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。&lt;/p&gt;
+&lt;p&gt;后来，果断放弃收费的 PHPStorm ，改用 &lt;a href=&quot;https://code.visualstudio.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;vscode (Visual Stdio Code)&lt;/a&gt;.&lt;br&gt;当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件&lt;/p&gt;
     
     </summary>
     
@@ -569,8 +730,8 @@ app.use(bodyParser.urlencoded())
     <title>微信小程序开发踩坑记</title>
     <link href="http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/"/>
     <id>http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/</id>
-    <published>2017-02-15T11:09:50.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2017-02-15T19:09:50.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。<br><a id="more"></a></p>
 <h2 id="坑1：scroll-view与onPullDownRefresh冲突"><a href="#坑1：scroll-view与onPullDownRefresh冲突" class="headerlink" title="坑1：scroll-view与onPullDownRefresh冲突"></a>坑1：scroll-view与onPullDownRefresh冲突</h2><p>由于有几个页面需要将导航tab栏自动置顶，所以使用了scroll-view。然而又想要下拉刷新，本来想直接使用onPullDownRefresh，结果却发现下拉的时候onPullDownRefresh根本没有！囧！</p>
@@ -670,8 +831,8 @@ app.use(bodyParser.urlencoded())
     <title>HTTP2试用小记</title>
     <link href="http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/"/>
     <id>http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/</id>
-    <published>2016-11-16T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-11-17T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.115Z</updated>
     
     <content type="html"><![CDATA[<p>这两天把公司的网站升级到了全站https. 顺便瞄到了<a href="http://caniuse.com/#search=http2" target="_blank" rel="external">HTTP2的浏览器支持情况</a>：</p>
 <figure class="image-bubble">
@@ -757,7 +918,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     
     <summary type="html">
     
-      &lt;p&gt;这两天把公司的网站升级到了全站https. 顺便瞄到了&lt;a href=&quot;http://caniuse.com/#search=http2&quot;&gt;HTTP2的浏览器支持情况&lt;/a&gt;：&lt;/p&gt;
+      &lt;p&gt;这两天把公司的网站升级到了全站https. 顺便瞄到了&lt;a href=&quot;http://caniuse.com/#search=http2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HTTP2的浏览器支持情况&lt;/a&gt;：&lt;/p&gt;
 &lt;figure class=&quot;image-bubble&quot;&gt;
                 &lt;div class=&quot;img-lightbox&quot;&gt;
                     &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
@@ -765,7 +926,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
                 &lt;/div&gt;
                 &lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
             &lt;/figure&gt;
-&lt;p&gt;支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿&lt;a href=&quot;https://www.clarencep.com&quot;&gt;本博客&lt;/a&gt;来做示例了。&lt;/p&gt;
+&lt;p&gt;支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿&lt;a href=&quot;https://www.clarencep.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本博客&lt;/a&gt;来做示例了。&lt;/p&gt;
     
     </summary>
     
@@ -780,8 +941,8 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <title>一个将多说的头像变成https的简单方法</title>
     <link href="http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/"/>
     <id>http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</id>
-    <published>2016-09-23T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-09-24T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>最近启用全站https之后，却发现地址栏里面却还没有小绿锁 -- 检查了下网络请求，发现原来是多说搞的鬼：</p>
 <blockquote>
@@ -837,8 +998,8 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <title>A Note To hash_pbkdf2 in PHP</title>
     <link href="http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/"/>
     <id>http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/</id>
-    <published>2016-09-05T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-09-06T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>Please pay great attention to the <strong>$length</strong> parameter! It is exactly the <strong>return string length</strong>, NOT the length of raw binary hash result.</p>
 <p>I had a big problem about this --<br>I thought that <code>hash_pbkdf2(...false)</code> should equals to <code>bin2hex(hash_pbkdf2(...true))</code> just like <code>md5($x)</code> equals <code>bin2hex(md5($x, true))</code>. However I was wrong:</p>
@@ -868,8 +1029,8 @@ bin2hex(hash_pbkdf2(&#39;sha256&#39;, &#39;123456&#39;, &#39;abc&#39;, 10000, 50
     <title>一个关于systemd私有目录的奇怪问题</title>
     <link href="http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/"/>
     <id>http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/</id>
-    <published>2016-08-11T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-08-12T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个奇怪的问题 -- PHP里面访问不了<code>/tmp/xhprof-data</code>目录，可是这个目录明明是存在的！</p>
 <a id="more"></a>
@@ -931,8 +1092,8 @@ PrivateTmp=true
     <title>如何在静态博客HEXO中只显示摘要信息</title>
     <link href="http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/"/>
     <id>http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/</id>
-    <published>2016-07-19T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-07-20T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>默认情况下<code>hexo</code>博客(如本站)的首页显示的是完整的文章 -- 而文章比较长的时候这无疑会带来诸多不遍。 那怎么样才能只显示个摘要呢？</p>
 <a id="more"></a>
@@ -966,8 +1127,8 @@ PrivateTmp=true
     <title>如何解决Selenium中&quot;Cannot find function addEventListener in object [object HTMLDocument]&quot;的错误</title>
     <link href="http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/"/>
     <id>http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</id>
-    <published>2016-04-27T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-04-28T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个很坑爹的问题，某Selenium自动化用例老是失败，报错如下：</p>
 <a id="more"></a>
@@ -1012,8 +1173,8 @@ Failed to take screen-shot: org.openqa.selenium.htmlunit.HtmlUnitDriver cannot b
     <title>PHP下使用强大的imagick轻松生成组合缩略图</title>
     <link href="http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/"/>
     <id>http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/</id>
-    <published>2016-02-18T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-02-19T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.115Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的<code>imagick</code>扩展。</p>
 <a id="more"></a>
@@ -1206,8 +1367,8 @@ $thumbnail-&gt;writeImage($outputDir.&quot;/example.jpg&quot;);
     <title>mac上spacemacs体验小记</title>
     <link href="http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/"/>
     <id>http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/</id>
-    <published>2016-01-03T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2016-01-04T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.111Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="第一步，安装emacs-mac"><a href="#第一步，安装emacs-mac" class="headerlink" title="第一步，安装emacs-mac"></a>第一步，安装emacs-mac</h2><p>emacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。<br>那就卸载掉以前的emacs，装下吧：<br><a id="more"></a></p>
 <pre><code class="sh">$ brew remove emacs
@@ -1274,8 +1435,8 @@ $ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
     <title>PHP中的null合并运算符</title>
     <link href="http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/"/>
     <id>http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/</id>
-    <published>2015-12-29T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-30T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.111Z</updated>
     
     <content type="html"><![CDATA[<p>null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用<code>||</code>来搞：<br><a id="more"></a></p>
 <pre><code class="js">function setSomething(a){
@@ -1322,8 +1483,8 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
     <title>PlantUML的实例参考</title>
     <link href="http://clarence-pan.github.io/2015/12/24/plant-uml-instances/"/>
     <id>http://clarence-pan.github.io/2015/12/24/plant-uml-instances/</id>
-    <published>2015-12-23T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-24T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.111Z</updated>
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
@@ -1949,8 +2110,8 @@ Alice &amp;lt;-- Bob: another authentication Response
     <title>使用PHPUnit + Selenium进行自动化测试</title>
     <link href="http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/"/>
     <id>http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/</id>
-    <published>2015-12-21T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-22T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一步，安装PHPUnit"><a href="#第一步，安装PHPUnit" class="headerlink" title="第一步，安装PHPUnit"></a>第一步，安装PHPUnit</h2><p>最简单的方式莫过于到<a href="https://phpunit.de/" target="_blank" rel="external">PHPUnit的官网</a>下载PHPUnit，然后把那个下载了的<code>phpunit.phar</code>加到<code>PATH</code>中。</p>
 <a id="more"></a>
@@ -2105,7 +2266,7 @@ function create_browser(){
     
     <summary type="html">
     
-      &lt;h2 id=&quot;第一步，安装PHPUnit&quot;&gt;&lt;a href=&quot;#第一步，安装PHPUnit&quot; class=&quot;headerlink&quot; title=&quot;第一步，安装PHPUnit&quot;&gt;&lt;/a&gt;第一步，安装PHPUnit&lt;/h2&gt;&lt;p&gt;最简单的方式莫过于到&lt;a href=&quot;https://phpunit.de/&quot;&gt;PHPUnit的官网&lt;/a&gt;下载PHPUnit，然后把那个下载了的&lt;code&gt;phpunit.phar&lt;/code&gt;加到&lt;code&gt;PATH&lt;/code&gt;中。&lt;/p&gt;
+      &lt;h2 id=&quot;第一步，安装PHPUnit&quot;&gt;&lt;a href=&quot;#第一步，安装PHPUnit&quot; class=&quot;headerlink&quot; title=&quot;第一步，安装PHPUnit&quot;&gt;&lt;/a&gt;第一步，安装PHPUnit&lt;/h2&gt;&lt;p&gt;最简单的方式莫过于到&lt;a href=&quot;https://phpunit.de/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PHPUnit的官网&lt;/a&gt;下载PHPUnit，然后把那个下载了的&lt;code&gt;phpunit.phar&lt;/code&gt;加到&lt;code&gt;PATH&lt;/code&gt;中。&lt;/p&gt;
     
     </summary>
     
@@ -2124,8 +2285,8 @@ function create_browser(){
     <title>【转】使用Sublime + PlantUML高效地画图</title>
     <link href="http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/"/>
     <id>http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</id>
-    <published>2015-12-16T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-17T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<p>转自: <a href="http://www.jianshu.com/p/e92a52770832" target="_blank" rel="external">http://www.jianshu.com/p/e92a52770832</a> （侵立删）</p>
 <blockquote>
@@ -2423,7 +2584,7 @@ state Configuring {
     
     <summary type="html">
     
-      &lt;p&gt;转自: &lt;a href=&quot;http://www.jianshu.com/p/e92a52770832&quot;&gt;http://www.jianshu.com/p/e92a52770832&lt;/a&gt; （侵立删）&lt;/p&gt;
+      &lt;p&gt;转自: &lt;a href=&quot;http://www.jianshu.com/p/e92a52770832&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.jianshu.com/p/e92a52770832&lt;/a&gt; （侵立删）&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;程序员难免要经常画流程图，状态图，时序图等。以前经常用 visio 画，经常为矩形画多大，摆放在哪等问题费脑筋。有时候修改文字后，为了较好的显示效果不得不再去修改图形。今天介绍的工具是如何使用 Sublime + PlantUML 的插件画流程图，状态图，时序图等。这是一种程序员看了就会爱上的画图方式：自然，高效。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2447,8 +2608,8 @@ state Configuring {
     <title>在MAC OS X上如何启用crontab？</title>
     <link href="http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/"/>
     <id>http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/</id>
-    <published>2015-12-15T16:00:00.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-16T00:00:00.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。</p>
 <a id="more"></a>
@@ -2539,8 +2700,8 @@ ls: /etc/crontab: No such file or directory
     <title>安装PHP扩展</title>
     <link href="http://clarence-pan.github.io/2015/12/12/installing-php-extensions/"/>
     <id>http://clarence-pan.github.io/2015/12/12/installing-php-extensions/</id>
-    <published>2015-12-12T08:08:49.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
+    <published>2015-12-12T16:08:49.000Z</published>
+    <updated>2017-07-05T03:05:29.107Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。</p>
 <a id="more"></a>
@@ -2640,37 +2801,6 @@ brew install php56-mcrypt
       <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
     
       <category term="extension" scheme="http://clarence-pan.github.io/tags/extension/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于clarence-pan.gitcafe.io</title>
-    <link href="http://clarence-pan.github.io/2015/11/30/about-clarence-pan.gitcafe.io/"/>
-    <id>http://clarence-pan.github.io/2015/11/30/about-clarence-pan.gitcafe.io/</id>
-    <published>2015-11-30T05:09:50.000Z</published>
-    <updated>2017-03-21T07:31:14.084Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于github.io在国内访问的会比较慢，并且时常会出现无法连接的现象（原因你懂的），特设立了<a href="http://clarence-pan.gitcafe.io" target="_blank" rel="external">clarence-pan.gitcafe.io</a>作为本博客的镜像站点。欢迎访问。</p>
-<a id="more"></a>
-<p>若问如何架设gitcafe上的博客？<a href="https://help.gitcafe.com/manuals/help/pages-services" target="_blank" rel="external">请移步这里观看官方文档，很简单的。</a></p>
-<hr>
-<p>后记：gitcafe已经挂了，请访问 <a href="http://clarencep.com" target="_blank" rel="external">clarencep.com</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;由于github.io在国内访问的会比较慢，并且时常会出现无法连接的现象（原因你懂的），特设立了&lt;a href=&quot;http://clarence-pan.gitcafe.io&quot;&gt;clarence-pan.gitcafe.io&lt;/a&gt;作为本博客的镜像站点。欢迎访问。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="blog" scheme="http://clarence-pan.github.io/categories/blog/"/>
-    
-      <category term="gitcafe" scheme="http://clarence-pan.github.io/categories/blog/gitcafe/"/>
-    
-    
-      <category term="blog" scheme="http://clarence-pan.github.io/tags/blog/"/>
-    
-      <category term="gitcafe" scheme="http://clarence-pan.github.io/tags/gitcafe/"/>
     
   </entry>
   
