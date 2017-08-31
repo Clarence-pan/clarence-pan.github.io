@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.clarencep.com/"/>
-  <updated>2017-08-31T03:25:26.339Z</updated>
+  <updated>2017-08-31T06:22:01.434Z</updated>
   <id>http://www.clarencep.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/"/>
     <id>http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/</id>
     <published>2017-08-31T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>最近用到了个SVG图片，里面还是带<code>&lt;image&gt;</code>标签的，想要把它嵌入到HTML中还是有些工作要做的。</p>
 <a id="more"></a>
@@ -162,8 +162,8 @@
 <p><code>&lt;picture&gt;</code>标签是HTML5新增的一个专门显示图片的标签。</p>
 <p>注意设置<code>&lt;source&gt;</code>标签的属性<code>srcset</code>而非<code>src</code>. 此外必需要添加一个<code>&lt;img&gt;</code>标签，不过可以在<code>&lt;img&gt;</code>标签中指定另外一张图片，以便在浏览器无法显示<code>&lt;source&gt;</code>指定的图片的时候显示<code>&lt;img&gt;</code>标签中的图片。</p>
 <p><code>&lt;picture&gt;</code>和<code>&lt;img&gt;</code>一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
-<h3 id="附完整带测试代码"><a href="#附完整带测试代码" class="headerlink" title="附完整带测试代码:"></a>附完整带测试代码:</h3><script src="https://gist.github.com/Clarence-pan/be0a2c14df52a39095b93054a77123c9.js"></script>
-
+<h3 id="附完整带测试代码"><a href="#附完整带测试代码" class="headerlink" title="附完整带测试代码:"></a>附完整带测试代码:</h3><p>效果展示：<a href="https://clarencep.github.io/fe-lab/svg-in-html/" target="_blank" rel="external">https://clarencep.github.io/fe-lab/svg-in-html/</a></p>
+<p>源代码：<a href="https://github.com/clarencep/fe-lab/tree/master/svg-in-html/dist" target="_blank" rel="external">https://github.com/clarencep/fe-lab/tree/master/svg-in-html/dist</a></p>
 ]]></content>
     
     <summary type="html">
@@ -186,7 +186,7 @@
     <link href="http://www.clarencep.com/2017/07/05/monolog-usage-zh/"/>
     <id>http://www.clarencep.com/2017/07/05/monolog-usage-zh/</id>
     <published>2017-07-05T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目中使用的 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="external">Monolog</a> 出了点小问题，去翻其文档，发现居然只有英文的。趁业余时间，翻译一下吧。<br>以下是其<a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md" target="_blank" rel="external">使用说明</a>的<a href="https://github.com/Clarence-pan/monolog-zh-doc/blob/master/doc/01-usage.md" target="_blank" rel="external">中文翻译</a>。更多翻译内容见 <a href="https://github.com/Clarence-pan/monolog-zh-doc" target="_blank" rel="external">clarence-pan/monolog-zh-doc</a>.</p>
 <h1 id="使用-Monolog"><a href="#使用-Monolog" class="headerlink" title="使用 Monolog"></a>使用 Monolog</h1><ul>
@@ -351,7 +351,7 @@ $securityLogger-&gt;pushHandler($stream);
     <link href="http://www.clarencep.com/2017/05/31/safe-way-to-store-password/"/>
     <id>http://www.clarencep.com/2017/05/31/safe-way-to-store-password/</id>
     <published>2017-05-31T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>md5安全吗？有多么地不安全？如何才能安全地存储密码？...</p>
@@ -496,7 +496,7 @@ Array
     <link href="http://www.clarencep.com/2017/04/15/ftp-server-for-docker/"/>
     <id>http://www.clarencep.com/2017/04/15/ftp-server-for-docker/</id>
     <published>2017-04-15T10:46:59.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>无图无真相，先放个效果图：</p>
 <figure class="image-bubble">
@@ -590,7 +590,7 @@ Examples:
     <link href="http://www.clarencep.com/2017/04/01/a-note-to-express-params/"/>
     <id>http://www.clarencep.com/2017/04/01/a-note-to-express-params/</id>
     <published>2017-04-01T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.430Z</updated>
     
     <content type="html"><![CDATA[<p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
 <p>比如:</p>
@@ -653,7 +653,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://www.clarencep.com/2017/03/18/edit-vue-file-via-vscode/"/>
     <id>http://www.clarencep.com/2017/03/18/edit-vue-file-via-vscode/</id>
     <published>2017-03-18T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个项目使用了 <a href="http://cn.vuejs.org" target="_blank" rel="external">Vue.js</a> ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。</p>
 <p>后来，果断放弃收费的 PHPStorm ，改用 <a href="https://code.visualstudio.com" target="_blank" rel="external">vscode (Visual Stdio Code)</a>.<br>当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件</p>
@@ -901,7 +901,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://www.clarencep.com/2017/02/15/frustrations-in-developing-wechat-mini-application/"/>
     <id>http://www.clarencep.com/2017/02/15/frustrations-in-developing-wechat-mini-application/</id>
     <published>2017-02-15T19:09:50.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。<br><a id="more"></a></p>
 <h2 id="坑1：scroll-view与onPullDownRefresh冲突"><a href="#坑1：scroll-view与onPullDownRefresh冲突" class="headerlink" title="坑1：scroll-view与onPullDownRefresh冲突"></a>坑1：scroll-view与onPullDownRefresh冲突</h2><p>由于有几个页面需要将导航tab栏自动置顶，所以使用了scroll-view。然而又想要下拉刷新，本来想直接使用onPullDownRefresh，结果却发现下拉的时候onPullDownRefresh根本没有！囧！</p>
@@ -1002,7 +1002,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/"/>
     <id>http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/</id>
     <published>2016-11-17T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.347Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>这两天把公司的网站升级到了全站https. 顺便瞄到了<a href="http://caniuse.com/#search=http2" target="_blank" rel="external">HTTP2的浏览器支持情况</a>：</p>
 <figure class="image-bubble">
@@ -1112,7 +1112,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <link href="http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/"/>
     <id>http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</id>
     <published>2016-09-24T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.430Z</updated>
     
     <content type="html"><![CDATA[<p>最近启用全站https之后，却发现地址栏里面却还没有小绿锁 -- 检查了下网络请求，发现原来是多说搞的鬼：</p>
 <blockquote>
@@ -1169,7 +1169,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <link href="http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/"/>
     <id>http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/</id>
     <published>2016-09-06T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.430Z</updated>
     
     <content type="html"><![CDATA[<p>Please pay great attention to the <strong>$length</strong> parameter! It is exactly the <strong>return string length</strong>, NOT the length of raw binary hash result.</p>
 <p>I had a big problem about this --<br>I thought that <code>hash_pbkdf2(...false)</code> should equals to <code>bin2hex(hash_pbkdf2(...true))</code> just like <code>md5($x)</code> equals <code>bin2hex(md5($x, true))</code>. However I was wrong:</p>
@@ -1200,7 +1200,7 @@ bin2hex(hash_pbkdf2(&#39;sha256&#39;, &#39;123456&#39;, &#39;abc&#39;, 10000, 50
     <link href="http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/"/>
     <id>http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/</id>
     <published>2016-08-12T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.430Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个奇怪的问题 -- PHP里面访问不了<code>/tmp/xhprof-data</code>目录，可是这个目录明明是存在的！</p>
 <a id="more"></a>
@@ -1263,7 +1263,7 @@ PrivateTmp=true
     <link href="http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/"/>
     <id>http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/</id>
     <published>2016-07-20T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>默认情况下<code>hexo</code>博客(如本站)的首页显示的是完整的文章 -- 而文章比较长的时候这无疑会带来诸多不遍。 那怎么样才能只显示个摘要呢？</p>
 <a id="more"></a>
@@ -1298,7 +1298,7 @@ PrivateTmp=true
     <link href="http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/"/>
     <id>http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</id>
     <published>2016-04-28T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个很坑爹的问题，某Selenium自动化用例老是失败，报错如下：</p>
 <a id="more"></a>
@@ -1344,7 +1344,7 @@ Failed to take screen-shot: org.openqa.selenium.htmlunit.HtmlUnitDriver cannot b
     <link href="http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/"/>
     <id>http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/</id>
     <published>2016-02-19T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.347Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的<code>imagick</code>扩展。</p>
 <a id="more"></a>
@@ -1538,7 +1538,7 @@ $thumbnail-&gt;writeImage($outputDir.&quot;/example.jpg&quot;);
     <link href="http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/"/>
     <id>http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/</id>
     <published>2016-01-04T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="第一步，安装emacs-mac"><a href="#第一步，安装emacs-mac" class="headerlink" title="第一步，安装emacs-mac"></a>第一步，安装emacs-mac</h2><p>emacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。<br>那就卸载掉以前的emacs，装下吧：<br><a id="more"></a></p>
 <pre><code class="sh">$ brew remove emacs
@@ -1606,7 +1606,7 @@ $ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
     <link href="http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/"/>
     <id>http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/</id>
     <published>2015-12-30T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用<code>||</code>来搞：<br><a id="more"></a></p>
 <pre><code class="js">function setSomething(a){
@@ -1654,7 +1654,7 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
     <link href="http://www.clarencep.com/2015/12/24/plant-uml-instances/"/>
     <id>http://www.clarencep.com/2015/12/24/plant-uml-instances/</id>
     <published>2015-12-24T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
@@ -2281,7 +2281,7 @@ Alice &amp;lt;-- Bob: another authentication Response
     <link href="http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/"/>
     <id>http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/</id>
     <published>2015-12-22T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一步，安装PHPUnit"><a href="#第一步，安装PHPUnit" class="headerlink" title="第一步，安装PHPUnit"></a>第一步，安装PHPUnit</h2><p>最简单的方式莫过于到<a href="https://phpunit.de/" target="_blank" rel="external">PHPUnit的官网</a>下载PHPUnit，然后把那个下载了的<code>phpunit.phar</code>加到<code>PATH</code>中。</p>
 <a id="more"></a>
@@ -2456,7 +2456,7 @@ function create_browser(){
     <link href="http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/"/>
     <id>http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</id>
     <published>2015-12-17T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<p>转自: <a href="http://www.jianshu.com/p/e92a52770832" target="_blank" rel="external">http://www.jianshu.com/p/e92a52770832</a> （侵立删）</p>
 <blockquote>
@@ -2779,7 +2779,7 @@ state Configuring {
     <link href="http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/"/>
     <id>http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/</id>
     <published>2015-12-16T00:00:00.000Z</published>
-    <updated>2017-08-31T03:25:26.339Z</updated>
+    <updated>2017-08-31T06:22:01.434Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。</p>
 <a id="more"></a>

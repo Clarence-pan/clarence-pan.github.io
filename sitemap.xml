@@ -2,485 +2,485 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.clarencep.com/test/test-local-image-preview.html</loc>
-    
-    <lastmod>2017-08-31T03:25:26.363Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.clarencep.com/test/test-tap-vs-click.html</loc>
     
-    <lastmod>2017-08-31T03:25:26.363Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.458Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.clarencep.com/tags/index.html</loc>
+    <loc>http://www.clarencep.com/test/test-local-image-preview.html</loc>
     
-    <lastmod>2017-08-31T03:25:26.363Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.458Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/test/geo.html</loc>
     
-    <lastmod>2017-08-31T03:25:26.363Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.458Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/</loc>
+    <loc>http://www.clarencep.com/tags/index.html</loc>
     
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2014/12/21/zhuan_ctrl_z_in_linux/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/about-me/index.html</loc>
-    
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.458Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/fe-lab/index.html</loc>
     
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/categories/index.html</loc>
-    
-    <lastmod>2017-08-31T03:25:26.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/05/07/generate_gradient_color/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/12/installing-php-extensions/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/09/23/max-chars-in-a-sms/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2017/07/05/monolog-usage-zh/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2009/11/09/p_2009_11_09_1599112/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2009/11/09/p_2009_11_09_vsAddin-SaveToBuild/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2009/11/20/p_2009_11_20_cs_execute_cmdline/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/01/27/p_2010_01_27_wpf_text_nn_1/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/01/06/p_2010_01_06_cs_learning_user_cast/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/03/08/p_2010_03_08_1681092/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/04/30/p_2010_04_30_WPF_IMG_P1/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/03/p_2010_05_03_SharpSniffer/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/12/p_2010_05_12_1733642/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/19/p_2010_05_19_about_debug_trace_in_dotNet/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/19/p_2010_05_19_1739392/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/05/29/p_2010_05_29_1747258/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/06/20/p_2010_06_20_1761226/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/18/p_2010_07_18_1780101/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/11/p_2010_07_11_1775108/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/23/p_2010_07_23_1783734/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/26/p_2010_07_26_1785583/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/26/p_2010_07_26_json_note_1/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/28/p_2010_07_28_1787302/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/07/30/p_2010_07_30_cnblogs_sercurity_problem/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/08/03/p_2010_08_03_1791048/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/08/03/p_2010_08_03_opera_bug_zzz/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/09/07/p_2010_09_07_nothing/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2010/11/06/p_2010_11_06_1870647/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/06/02/p_2012_06_02_2532374/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/05/19/p_2012_05_19_2508762/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/06/07/p_2012_06_07_2541074/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/11/02/p_2012_11_02_chgEncode/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/11/01/p_2012_11_01_proc_has_what/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2012/12/20/p_2012_12_20_2827283/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2013/01/11/p_2013_01_11_2855675/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2013/01/11/p_2013_01_11_2857145/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/12/24/plant-uml-instances/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2017/05/31/safe-way-to-store-password/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.clarencep.com/2015/11/30/about-clarence-pan.gitcafe.io/</loc>
-    
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.438Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/2017/03/18/edit-vue-file-via-vscode/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/2017/02/15/frustrations-in-developing-wechat-mini-application/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/2017/04/15/ftp-server-for-docker/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.clarencep.com/2017/04/01/a-note-to-express-params/</loc>
+    <loc>http://www.clarencep.com/2015/05/07/generate_gradient_color/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/2015/09/10/how-to-embed-comments-to-static-blog/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/12/installing-php-extensions/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/09/23/max-chars-in-a-sms/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2017/07/05/monolog-usage-zh/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2009/11/09/p_2009_11_09_1599112/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2009/11/09/p_2009_11_09_vsAddin-SaveToBuild/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2009/11/20/p_2009_11_20_cs_execute_cmdline/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2009/12/12/p_2009_12_12_DotNetEx_XmlFormater/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/01/06/p_2010_01_06_cs_learning_user_cast/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/01/27/p_2010_01_27_wpf_text_nn_1/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/03/08/p_2010_03_08_1681092/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/04/30/p_2010_04_30_WPF_IMG_P1/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/03/p_2010_05_03_Cpp_type_cast_note1/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/03/p_2010_05_03_SharpSniffer/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/12/p_2010_05_12_1733642/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/19/p_2010_05_19_1739392/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/19/p_2010_05_19_about_debug_trace_in_dotNet/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/11/30/about-clarence-pan.gitcafe.io/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.clarencep.com/2010/05/29/p_2010_05_29_1747205/</loc>
     
-    <lastmod>2017-08-31T03:25:26.339Z</lastmod>
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/05/29/p_2010_05_29_1747258/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/06/20/p_2010_06_20_1761226/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/11/p_2010_07_11_1775108/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/18/p_2010_07_18_1780101/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/23/p_2010_07_23_1783734/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/26/p_2010_07_26_1785583/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/26/p_2010_07_26_json_note_1/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/28/p_2010_07_28_1787302/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/07/30/p_2010_07_30_cnblogs_sercurity_problem/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/08/03/p_2010_08_03_1791048/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/08/03/p_2010_08_03_opera_bug_zzz/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/09/07/p_2010_09_07_nothing/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2010/11/06/p_2010_11_06_1870647/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/05/19/p_2012_05_19_2508762/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/06/02/p_2012_06_02_2532374/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/06/07/p_2012_06_07_2541074/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/11/01/p_2012_11_01_proc_has_what/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/11/02/p_2012_11_02_chgEncode/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2012/12/20/p_2012_12_20_2827283/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2013/01/11/p_2013_01_11_2855675/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2013/01/11/p_2013_01_11_2857145/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2015/12/24/plant-uml-instances/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2017/05/31/safe-way-to-store-password/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2014/12/21/zhuan_ctrl_z_in_linux/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/about-me/index.html</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/categories/index.html</loc>
+    
+    <lastmod>2017-08-31T06:22:01.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.clarencep.com/2017/04/01/a-note-to-express-params/</loc>
+    
+    <lastmod>2017-08-31T06:22:01.430Z</lastmod>
     
   </url>
   
