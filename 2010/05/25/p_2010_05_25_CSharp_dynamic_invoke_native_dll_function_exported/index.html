@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     
 <!-- Google Analytics -->
 <script>
@@ -18,8 +19,9 @@ ga('send', 'pageview');
 
 
 
-    <meta charset="utf-8">
     
+    
+    <link rel="canonical" href="http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/">
     
     
     <title>C#动态地调用Win32 DLL中导出的函数 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
@@ -33,13 +35,13 @@ ga('send', 'pageview');
 <meta name="keywords" content="C#,Win32,.Net,DLL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C#动态地调用Win32 DLL中导出的函数">
-<meta property="og:url" content="http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/index.html">
+<meta property="og:url" content="http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/index.html">
 <meta property="og:site_name" content="Clarence的博客">
 <meta property="og:description" content="cnblogs Post date: 2010-05-25 20:17 关于这种C#中调用Win32 DLL中导出的函数的方法有很多种了，本文做个小结。">
 <meta property="og:locale" content="en_US, zh_CN">
 <meta property="og:image" content="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif">
 <meta property="og:image" content="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif">
-<meta property="og:updated_time" content="2017-08-31T03:01:37.590Z">
+<meta property="og:updated_time" content="2017-08-31T03:25:26.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C#动态地调用Win32 DLL中导出的函数">
 <meta name="twitter:description" content="cnblogs Post date: 2010-05-25 20:17 关于这种C#中调用Win32 DLL中导出的函数的方法有很多种了，本文做个小结。">
@@ -265,14 +267,14 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-31T03:01:37.590Z" itemprop="dateUpdated">2017年8月31日 3:01</time>
+    最后更新时间：<time datetime="2017-08-31T03:25:26.339Z" itemprop="dateUpdated">2017年8月31日 3:25</time>
 </span><br>
 
 
-        <a href="/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" target="_blank" rel="external">http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/</a>
+        <a href="/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" target="_blank" rel="external">http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/</a>
     </div>
     <footer>
-        <a href="http://clarence-pan.github.io">
+        <a href="http://www.clarencep.com">
             <img src="/img/avatar.jpg" alt="Clarence Pan">
             Clarence Pan
         </a>
@@ -298,7 +300,7 @@ ga('send', 'pageview');
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -308,23 +310,23 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&source=cnblogs Post date: 2010-05-25 20:17
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&source=cnblogs Post date: 2010-05-25 20:17
 关于这种C#中调用Win32 DLL中导出的函数的方法有很多种了，本文做个小结。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&via=http://clarence-pan.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&via=http://www.clarencep.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -451,7 +453,7 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -461,23 +463,23 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&source=cnblogs Post date: 2010-05-25 20:17
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&title=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&source=cnblogs Post date: 2010-05-25 20:17
 关于这种C#中调用Win32 DLL中导出的函数的方法有很多种了，本文做个小结。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&via=http://clarence-pan.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C#动态地调用Win32 DLL中导出的函数》 — Clarence的博客&url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/&via=http://www.clarencep.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2010/05/25/p_2010_05_25_CSharp_dynamic_invoke_native_dll_function_exported/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -488,7 +490,7 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3ay24iQRAEQP7/p9mrpTU4s3qQoIg5IWOGjvEhXY/bLb7uD66f7z7/bPLu/6+f/yS5/9GFjY2N/SHs+9Pr0e+84s6vOOfD+2NjY2OvY7fRkgdbG2CPIiqJz8SCjY2Njf3oQG1h0IKTb8TGxsbGbgPsecy8Iq5mDx0bGxv7G9jtACBp1udhkzT981Lk4l4aNjY29tuzZ2XDe75+yXwbGxsb+43Z9/Jq13HyoBqWEzMFNjY29iJ2e/RZ0dLeoY3P9vzY2NjYu9nJgfIG0/kQ4jzY6jkzNjY29seyz7tT+SJm8vP8hG1kYmNjY38D+/mX5SE3a07NhsF53GJjY2PvY8/Wa9qFm1lr6Xwx6I9iCRsbG3sFO79pHhhXNafaQCo+i42Njb2Inf9/nnxl8hBnR2wfet60wsbGxt7Knq3LnAwAkmBrx8n5Wg82Njb2p7PzNk3bQmqXgZKTJCeMRtfY2NjYX8BOmkRtRF3VQmr/eNjY2Nj72HkDKCkMTsaxOa8dCf/yLjY2NvYidv6B5BCzA+XNo/PhxK19TtjY2Nhvz86bL3l7KK+BzouT4WoRNjY29iJ2XmCclCWzsiGPtHb0i42Njb2JnUdRPnZtr9ljyv88v3wjNjY29jr2yXpNXlqcDxWSU0URi42Njb2IfdKgbxd3ZqF11TrR7eTZYGNjY78xexZLsyFB0vRJ7nnBABgbGxt7NbsFnyAvaA+Nog4bGxt7H7uNotmQ4NpG/2xQjY2Njb2V3f5D34ZHG2Mn5VCxnYSNjY29gt0OaGeBcT4qPh/lFh01bGxs7BXsdqx77YLm7CRt6wobGxt7Hzs/7ixaZkVFXpAkAYyNjY39Dew2hE4iZDYejhpGSZMLGxsbewX7pEhoB7rJA2pLjjyAb3m+YWNjY38UO79mqzyzZtMsnGarn9jY2Ng72EloJYXHK0qUfKGnXffBxsbG3sduQ6ItNmYPJVq+iVN6ON/GxsbGXsc+bwa1vPOIvSDAsLGxsRex86+cPaxrY+yP+TY2Njb2InY+uM0j5BzTtv7zB42NjY29iT0brM6We/IjtuPhBIyNjY29jv0PLs2RzQIh8yUAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADOklEQVR42u3aQW7bQAwF0Nz/0inQVReV8z8pA9H4aVXI8WgeDZQiOV9f8fX997q68/3PdfXdq7+5Wuf1mq/3dtuFjY2N/RD298vranPJaslTXn/39X6S+5fhw8bGxj6O/ToxbDaarH/v06NnYWNjY38kO/n09XbzT2fhwMbGxsZuH5C0ftr0loc4L5OwsbGxP4GdNJWSVJQw8m9tUtptvTRsbGzsX89uB72/+d9vnG9jY2Nj/0r2d3ltCoZ8PNCOhGsFNjY29kHsBJAUD+1YN28zvW9ggI2NjX0Ge3aEsW0D5S37ZNN54XEZDmxsbOyj2UkSaps4bbM+SY15ifKflbGxsbGPY8/Kks1223Q1GzOv2knY2NjYj2LnDZ1Z2mgbSe2z6gIGGxsb+yD2LFXk7f63bLQMTV0nYWNjYz+QnRckbbNpU1rM9lY0sLCxsbEPYs+O0bQJJhkJbMqPJJViY2Njn8reFyH7ACWp666QYWNjY5/HnhUD+2bTbP1Z6C9DiY2NjX0cuy0z2t77LNW144c8fNjY2NjnsTclQZuQ2lQ3K5x+WBMbGxv7CHa70XakOhsb31v8/PA7Y2NjYz+WPRvWDqNbHsFpn/61ybHY2NjYj2XPipDNAKBltOCiRMHGxsY+mj1LRZux6zuGu/VhHWxsbOwHstsRaTLcbdNMvvJs9PufO9jY2NgHsTfHZWYt+32raPbz/HBGCRsbG/ux7Nmr/75UyJNfsk67T2xsbOzz2Df3qILUmI+KN+2ty2dhY2NjH8fO20ZJObFp97RhbUMcZTxsbGzsx7JXL/cxKTmmubkTtbqwsbGxD2Ln/58Plw6QOSwvh6J0iI2NjX0Ee19I5C2ediibhClvV1320rCxsbGPYOcPu7cNlJQ67WrRj4GNjY19HDu/2gM6eRLaDHfrUgcbGxv7IPYwAZTHbtoEmZcWd7W0sLGxsZ/Ozg/fzMK0H9zeFWhsbGzss9nt634eoCRk7fGdfM2oo4aNjY39MezkFT9vP7Xpcz8YLibS2NjY2B/A3hQV7/i0LpywsbGxj2O3KeSuDSXpbZ9o6yk3NjY29qPYs0Fvm2ySrScDgP062NjY2Aex/wBMgN5yrsRaZwAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

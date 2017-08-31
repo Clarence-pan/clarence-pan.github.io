@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     
 <!-- Google Analytics -->
 <script>
@@ -18,8 +19,9 @@ ga('send', 'pageview');
 
 
 
-    <meta charset="utf-8">
     
+    
+    <link rel="canonical" href="http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/">
     
     
     <title>PHP中的null合并运算符 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
@@ -33,11 +35,11 @@ ga('send', 'pageview');
 <meta name="keywords" content="PHP,Null Coalesce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP中的null合并运算符">
-<meta property="og:url" content="http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/index.html">
+<meta property="og:url" content="http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/index.html">
 <meta property="og:site_name" content="Clarence的博客">
 <meta property="og:description" content="null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：">
 <meta property="og:locale" content="en_US, zh_CN">
-<meta property="og:updated_time" content="2017-08-31T03:01:37.590Z">
+<meta property="og:updated_time" content="2017-08-31T03:25:26.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP中的null合并运算符">
 <meta name="twitter:description" content="null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：">
@@ -228,14 +230,14 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-31T03:01:37.590Z" itemprop="dateUpdated">2017年8月31日 3:01</time>
+    最后更新时间：<time datetime="2017-08-31T03:25:26.339Z" itemprop="dateUpdated">2017年8月31日 3:25</time>
 </span><br>
 
 
-        <a href="/2015/12/30/null-coalesce-operator-in-php/" target="_blank" rel="external">http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/</a>
+        <a href="/2015/12/30/null-coalesce-operator-in-php/" target="_blank" rel="external">http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/</a>
     </div>
     <footer>
-        <a href="http://clarence-pan.github.io">
+        <a href="http://www.clarencep.com">
             <img src="/img/avatar.jpg" alt="Clarence Pan">
             Clarence Pan
         </a>
@@ -261,7 +263,7 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -271,22 +273,22 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&via=http://clarence-pan.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&via=http://www.clarencep.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -413,7 +415,7 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -423,22 +425,22 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&title=《PHP中的null合并运算符》 — Clarence的博客&source=null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用||来搞：" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/&via=http://clarence-pan.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP中的null合并运算符》 — Clarence的博客&url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/&via=http://www.clarencep.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -449,7 +451,7 @@ if (width<960){window.document.write('<script id="changyan_mobile_js" charset="u
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACpElEQVR42u3a0WrrMBAE0P7/T7ev9xJSZnYlk8LxU2hrW0cF7Wakr6/4+v7nev3J6/V67+vnd2+Z3bu68PDw8BZDfzfQU7/9nfFugt5Rk8nFw8PDu8dLHpcs3+2gN7yktODh4eF9Am9WDNoGOmno8fDw8P4uL2cnJef31hkPDw/vc3jJQp/Hqfmwkil4KGvBw8PDi3n5LtLnfL6yv4eHh4e33lXPi8SN7bG8WX/7fDw8PLwLvLMtctIuzxb6vF3Gw8PDe4aXL/ebIGAWT+SRRJFV4+Hh4S14s9Y5H/Rmc+tAVIGHh4f3CO/UUae2zLTg6B+Ah4eHd43XYvKhzBridvqKXTs8PDy8Ne+Z6HZWAGZNeT5leHh4eBteO8S28d3HFnmhKqoKHh4e3oiXL9ab4SYBx6liEIUReHh4eAteEh/MSkXb+LbhQtLW4+Hh4d3gzRbcdsNsE2Ssmm88PDy8C7z9ltLsZW1j3R5HaKIYPDw8vI6XuPM4tT1GMCseeSyCh4eHd4/XHoGaLeWziWuf/N/f4+Hh4V3gtQt6ezggCW33jXVd/fDw8PAWvLz93Q93H0O0ZQYPDw/vHm8WmM4ODbRT0DbTeHh4eM/zkpvPHh1Ilvu8scbDw8O7zWsHN3vBJqSYTVZRJPDw8PBGvHyJz5F5Q5wcL2i3x+rb8PDw8Ba8PJiYtbyzmHhTYPDw8PDu8fYLdBu2zmKI+sLDw8M7yttva82a3fYIwrD5xsPDw7vAO7XGtqRZeFFveuHh4eFd49Vf7w+15pspKMoGHh4e3jVeu7mVL9b7o1ezMoaHh4f3Obw8Gmi30/Iwt5hiPDw8vI/n5U9ri0rS+heZLh4eHt6al0e0efu7v+vAW/Dw8PAu8Oqv94sWeRb4Ht7Nw8PDw5vzfgDEqErfMfHoiAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQY7bMBAEQP//0xsgt2AjpXuosTdA6WQYlsTigUP38PWKr6/f1/fP9998v66enP/mtXHh4eHhjYZ+P6BkuC1pNqp8zHh4eHjbvKQYXL0mKR5XS/zsmcXE4eHh4X2Ul29zZ1NzXzDw8PDw/ndesnDnBWBjPHh4eHjbvOTP//0iPnvCLP5YyVrw8PDwYt5JA+xTn9/U38PDw8Mru+rPhgj5JnhWTv4yWjw8PLwFXh6zto3/5FhVvjVv31K8Hg8PD6/kPbDslqT2uEBbZv54Ah4eHt4CL1/o29C2bY+dTFZRHvDw8PCOefmSnX+fT9D9ROQF6XJa8fDw8NZ4swNSJ8cL8pJzVCrw8PDwlnknyWdOeipoiMJfPDw8vLfz8hfkn/MI44GQFw8PD2+NdxLU5rxnAUl0goeHh7fByzEnm+k2bnggwG0fioeHh1fyZq/JF/2TuDaPbi/HhoeHh7fAmz0iPyhwsl3OjzVEU4aHh4d3zMu3rfk296nNdHtXcegKDw8Pb4F30uJqy0MefNTxBx4eHt4C76kAIg9V201zst0vihYeHh7eMa+NXGeN//ZQV7tNj+oeHh4e3qO8WQibVJt2c5z/JipOeHh4eAu8dvGdLfon+LzNFiHx8PDwHuXNAtOTFXh2NCGfJjw8PLwNXr55PRlKfm/b1vpHacHDw8N7O69t7Z9vf2db6uL/AR4eHt4zPaPh3/v2EEBbcmYTF8W4eHh4eAe8r/KaLett+6ptg12OAQ8PD2+Bl19JfNAGu/k3bSnCw8PD2+a1x57ul+N8/94y2kKFh4eHt81rM4yTSckPFjyQteDh4eF9lNc29dt7i7w5b8Xh4eHh/QBePvRZI+0k8L0MI/Dw8PAWeO3meJYWn4ca+Rjw8PDw9nhtAyy/ObkrCX9nxxrw8PDwFni/ABqQnHFjocSeAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 

@@ -4,9 +4,9 @@
   <subtitle>Hard is the road of the world. Learning! -- Blog of Clarence</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://clarence-pan.github.io/"/>
-  <updated>2017-08-31T03:01:37.590Z</updated>
-  <id>http://clarence-pan.github.io/</id>
+  <link href="http://www.clarencep.com/"/>
+  <updated>2017-08-31T03:25:26.339Z</updated>
+  <id>http://www.clarencep.com/</id>
   
   <author>
     <name>Clarence Pan</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>HTML中嵌入SVG图片的N种方式</title>
-    <link href="http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/"/>
-    <id>http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/</id>
+    <link href="http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/"/>
+    <id>http://www.clarencep.com/2017/08/31/n-ways-to-show-svg-image-in-html/</id>
     <published>2017-08-31T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>最近用到了个SVG图片，里面还是带<code>&lt;image&gt;</code>标签的，想要把它嵌入到HTML中还是有些工作要做的。</p>
 <a id="more"></a>
@@ -172,21 +172,21 @@
     
     </summary>
     
-      <category term="SVG" scheme="http://clarence-pan.github.io/categories/SVG/"/>
+      <category term="SVG" scheme="http://www.clarencep.com/categories/SVG/"/>
     
     
-      <category term="HTML" scheme="http://clarence-pan.github.io/tags/HTML/"/>
+      <category term="HTML" scheme="http://www.clarencep.com/tags/HTML/"/>
     
-      <category term="SVG" scheme="http://clarence-pan.github.io/tags/SVG/"/>
+      <category term="SVG" scheme="http://www.clarencep.com/tags/SVG/"/>
     
   </entry>
   
   <entry>
     <title>【翻译】Monolog使用说明</title>
-    <link href="http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/"/>
-    <id>http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/</id>
+    <link href="http://www.clarencep.com/2017/07/05/monolog-usage-zh/"/>
+    <id>http://www.clarencep.com/2017/07/05/monolog-usage-zh/</id>
     <published>2017-07-05T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目中使用的 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="external">Monolog</a> 出了点小问题，去翻其文档，发现居然只有英文的。趁业余时间，翻译一下吧。<br>以下是其<a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md" target="_blank" rel="external">使用说明</a>的<a href="https://github.com/Clarence-pan/monolog-zh-doc/blob/master/doc/01-usage.md" target="_blank" rel="external">中文翻译</a>。更多翻译内容见 <a href="https://github.com/Clarence-pan/monolog-zh-doc" target="_blank" rel="external">clarence-pan/monolog-zh-doc</a>.</p>
 <h1 id="使用-Monolog"><a href="#使用-Monolog" class="headerlink" title="使用 Monolog"></a>使用 Monolog</h1><ul>
@@ -316,7 +316,7 @@ $securityLogger-&gt;pushHandler($stream);
 <p><a href="https://github.com/Clarence-pan/monolog-zh-doc/blob/master/doc/02-handlers-formatters-processors.md" target="_blank" rel="external">处理器、格式化器和加工程序</a> &rarr;</p>
 <hr>
 <blockquote>
-<p>说明：本文首发地址：<a href="https://www.clarencep.com/2017/07/05/monolog-usage-zh/" target="_blank" rel="external">https://www.clarencep.com/2017/07/05/monolog-usage-zh/</a>，转载请注明出处，如有翻译得不当之处欢迎指正。</p>
+<p>说明：本文首发地址：<a href="https://www.clarencep.com/2017/07/05/monolog-usage-zh/">https://www.clarencep.com/2017/07/05/monolog-usage-zh/</a>，转载请注明出处，如有翻译得不当之处欢迎指正。</p>
 </blockquote>
 ]]></content>
     
@@ -335,23 +335,23 @@ $securityLogger-&gt;pushHandler($stream);
     
     </summary>
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
-      <category term="Monolog" scheme="http://clarence-pan.github.io/tags/Monolog/"/>
+      <category term="Monolog" scheme="http://www.clarencep.com/tags/Monolog/"/>
     
-      <category term="Translations" scheme="http://clarence-pan.github.io/tags/Translations/"/>
+      <category term="Translations" scheme="http://www.clarencep.com/tags/Translations/"/>
     
   </entry>
   
   <entry>
     <title>密码存储中MD5的安全问题与替代方案</title>
-    <link href="http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/"/>
-    <id>http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/</id>
+    <link href="http://www.clarencep.com/2017/05/31/safe-way-to-store-password/"/>
+    <id>http://www.clarencep.com/2017/05/31/safe-way-to-store-password/</id>
     <published>2017-05-31T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.594Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>md5安全吗？有多么地不安全？如何才能安全地存储密码？...</p>
@@ -478,25 +478,25 @@ Array
     
     </summary>
     
-      <category term="Security" scheme="http://clarence-pan.github.io/categories/Security/"/>
+      <category term="Security" scheme="http://www.clarencep.com/categories/Security/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
-      <category term="Security" scheme="http://clarence-pan.github.io/tags/Security/"/>
+      <category term="Security" scheme="http://www.clarencep.com/tags/Security/"/>
     
-      <category term="md5" scheme="http://clarence-pan.github.io/tags/md5/"/>
+      <category term="md5" scheme="http://www.clarencep.com/tags/md5/"/>
     
-      <category term="password" scheme="http://clarence-pan.github.io/tags/password/"/>
+      <category term="password" scheme="http://www.clarencep.com/tags/password/"/>
     
   </entry>
   
   <entry>
     <title>无需安装 vsftpd , 直接使用 FTP 来管理 docker 容器中的文件</title>
-    <link href="http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/"/>
-    <id>http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/</id>
+    <link href="http://www.clarencep.com/2017/04/15/ftp-server-for-docker/"/>
+    <id>http://www.clarencep.com/2017/04/15/ftp-server-for-docker/</id>
     <published>2017-04-15T10:46:59.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>无图无真相，先放个效果图：</p>
 <figure class="image-bubble">
@@ -570,27 +570,27 @@ Examples:
     
     </summary>
     
-      <category term="docker" scheme="http://clarence-pan.github.io/categories/docker/"/>
+      <category term="docker" scheme="http://www.clarencep.com/categories/docker/"/>
     
     
-      <category term="node.js" scheme="http://clarence-pan.github.io/tags/node-js/"/>
+      <category term="node.js" scheme="http://www.clarencep.com/tags/node-js/"/>
     
-      <category term="ftp" scheme="http://clarence-pan.github.io/tags/ftp/"/>
+      <category term="ftp" scheme="http://www.clarencep.com/tags/ftp/"/>
     
-      <category term="docker" scheme="http://clarence-pan.github.io/tags/docker/"/>
+      <category term="docker" scheme="http://www.clarencep.com/tags/docker/"/>
     
-      <category term="container" scheme="http://clarence-pan.github.io/tags/container/"/>
+      <category term="container" scheme="http://www.clarencep.com/tags/container/"/>
     
-      <category term="TypeScript" scheme="http://clarence-pan.github.io/tags/TypeScript/"/>
+      <category term="TypeScript" scheme="http://www.clarencep.com/tags/TypeScript/"/>
     
   </entry>
   
   <entry>
     <title>`express` 框架中的参数小记</title>
-    <link href="http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/"/>
-    <id>http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/</id>
+    <link href="http://www.clarencep.com/2017/04/01/a-note-to-express-params/"/>
+    <id>http://www.clarencep.com/2017/04/01/a-note-to-express-params/</id>
     <published>2017-04-01T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
 <p>比如:</p>
@@ -639,21 +639,21 @@ app.use(bodyParser.urlencoded())
     
     </summary>
     
-      <category term="express" scheme="http://clarence-pan.github.io/categories/express/"/>
+      <category term="express" scheme="http://www.clarencep.com/categories/express/"/>
     
     
-      <category term="node.js" scheme="http://clarence-pan.github.io/tags/node-js/"/>
+      <category term="node.js" scheme="http://www.clarencep.com/tags/node-js/"/>
     
-      <category term="express" scheme="http://clarence-pan.github.io/tags/express/"/>
+      <category term="express" scheme="http://www.clarencep.com/tags/express/"/>
     
   </entry>
   
   <entry>
     <title>如何优雅地使用 VSCode 来编辑 vue 文件？</title>
-    <link href="http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/"/>
-    <id>http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/</id>
+    <link href="http://www.clarencep.com/2017/03/18/edit-vue-file-via-vscode/"/>
+    <id>http://www.clarencep.com/2017/03/18/edit-vue-file-via-vscode/</id>
     <published>2017-03-18T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个项目使用了 <a href="http://cn.vuejs.org" target="_blank" rel="external">Vue.js</a> ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。</p>
 <p>后来，果断放弃收费的 PHPStorm ，改用 <a href="https://code.visualstudio.com" target="_blank" rel="external">vscode (Visual Stdio Code)</a>.<br>当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件</p>
@@ -881,27 +881,27 @@ app.use(bodyParser.urlencoded())
     
     </summary>
     
-      <category term="vscode" scheme="http://clarence-pan.github.io/categories/vscode/"/>
+      <category term="vscode" scheme="http://www.clarencep.com/categories/vscode/"/>
     
     
-      <category term="vscode" scheme="http://clarence-pan.github.io/tags/vscode/"/>
+      <category term="vscode" scheme="http://www.clarencep.com/tags/vscode/"/>
     
-      <category term="Visual Stdio Code" scheme="http://clarence-pan.github.io/tags/Visual-Stdio-Code/"/>
+      <category term="Visual Stdio Code" scheme="http://www.clarencep.com/tags/Visual-Stdio-Code/"/>
     
-      <category term="vue" scheme="http://clarence-pan.github.io/tags/vue/"/>
+      <category term="vue" scheme="http://www.clarencep.com/tags/vue/"/>
     
-      <category term="Vue.js" scheme="http://clarence-pan.github.io/tags/Vue-js/"/>
+      <category term="Vue.js" scheme="http://www.clarencep.com/tags/Vue-js/"/>
     
-      <category term="js" scheme="http://clarence-pan.github.io/tags/js/"/>
+      <category term="js" scheme="http://www.clarencep.com/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>微信小程序开发踩坑记</title>
-    <link href="http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/"/>
-    <id>http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/</id>
+    <link href="http://www.clarencep.com/2017/02/15/frustrations-in-developing-wechat-mini-application/"/>
+    <id>http://www.clarencep.com/2017/02/15/frustrations-in-developing-wechat-mini-application/</id>
     <published>2017-02-15T19:09:50.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。<br><a id="more"></a></p>
 <h2 id="坑1：scroll-view与onPullDownRefresh冲突"><a href="#坑1：scroll-view与onPullDownRefresh冲突" class="headerlink" title="坑1：scroll-view与onPullDownRefresh冲突"></a>坑1：scroll-view与onPullDownRefresh冲突</h2><p>由于有几个页面需要将导航tab栏自动置顶，所以使用了scroll-view。然而又想要下拉刷新，本来想直接使用onPullDownRefresh，结果却发现下拉的时候onPullDownRefresh根本没有！囧！</p>
@@ -982,27 +982,27 @@ app.use(bodyParser.urlencoded())
     
     </summary>
     
-      <category term="微信小程序" scheme="http://clarence-pan.github.io/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="微信小程序" scheme="http://www.clarencep.com/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
-      <category term="微信" scheme="http://clarence-pan.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
+      <category term="微信" scheme="http://www.clarencep.com/tags/%E5%BE%AE%E4%BF%A1/"/>
     
-      <category term="小程序" scheme="http://clarence-pan.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="小程序" scheme="http://www.clarencep.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="微信小程序" scheme="http://clarence-pan.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="微信小程序" scheme="http://www.clarencep.com/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
-      <category term="开发" scheme="http://clarence-pan.github.io/tags/%E5%BC%80%E5%8F%91/"/>
+      <category term="开发" scheme="http://www.clarencep.com/tags/%E5%BC%80%E5%8F%91/"/>
     
-      <category term="坑" scheme="http://clarence-pan.github.io/tags/%E5%9D%91/"/>
+      <category term="坑" scheme="http://www.clarencep.com/tags/%E5%9D%91/"/>
     
   </entry>
   
   <entry>
     <title>HTTP2试用小记</title>
-    <link href="http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/"/>
-    <id>http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/</id>
+    <link href="http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/"/>
+    <id>http://www.clarencep.com/2016/11/17/upgrade-nginx-to-support-http2/</id>
     <published>2016-11-17T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.594Z</updated>
+    <updated>2017-08-31T03:25:26.347Z</updated>
     
     <content type="html"><![CDATA[<p>这两天把公司的网站升级到了全站https. 顺便瞄到了<a href="http://caniuse.com/#search=http2" target="_blank" rel="external">HTTP2的浏览器支持情况</a>：</p>
 <figure class="image-bubble">
@@ -1012,7 +1012,7 @@ app.use(bodyParser.urlencoded())
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿<a href="https://www.clarencep.com" target="_blank" rel="external">本博客</a>来做示例了。</p>
+<p>支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿<a href="https://www.clarencep.com">本博客</a>来做示例了。</p>
 <a id="more"></a>
 <h2 id="升级nginx"><a href="#升级nginx" class="headerlink" title="升级nginx"></a>升级nginx</h2><p>主流浏览器基本上都支持了HTTP2，但是nginx只有升级到1.10以上版本才行 -- 鄙站之前用的还是nginx 1.6的某个版本。</p>
 <p>更新了下apt-get，发现仓库中没有1.10版本 -- 囧 -- 只好自己编译吧：</p>
@@ -1081,7 +1081,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>上图是<a href="https://www.clarencep.com" target="_blank" rel="external">本博客首页</a>在相同nginx、相同PC、相同网络条件下对HTTP2和HTTP1.1分别测试的PK结果。 可见虽然HTTP2的网络加载时间（Load）比HTTP1.1要短，但是DOM渲染时间（DOMContentLoaded）却比HTTP1.1要长。。。</p>
+<p>上图是<a href="https://www.clarencep.com">本博客首页</a>在相同nginx、相同PC、相同网络条件下对HTTP2和HTTP1.1分别测试的PK结果。 可见虽然HTTP2的网络加载时间（Load）比HTTP1.1要短，但是DOM渲染时间（DOMContentLoaded）却比HTTP1.1要长。。。</p>
 <p>可能是由于本博没有专门为HTTP2优化所至。也可能是浏览器渲染没有为HTTP2优化的缘故。</p>
 <p>最后总结一句：HTTP2入坑要谨慎。</p>
 ]]></content>
@@ -1096,23 +1096,23 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
                 &lt;/div&gt;
                 &lt;div class=&quot;image-caption&quot;&gt;&lt;/div&gt;
             &lt;/figure&gt;
-&lt;p&gt;支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿&lt;a href=&quot;https://www.clarencep.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;本博客&lt;/a&gt;来做示例了。&lt;/p&gt;
+&lt;p&gt;支持得还都蛮好的嘛。忍不住试用了一把HTTP2 -- 就直接拿&lt;a href=&quot;https://www.clarencep.com&quot;&gt;本博客&lt;/a&gt;来做示例了。&lt;/p&gt;
     
     </summary>
     
-      <category term="nginx" scheme="http://clarence-pan.github.io/categories/nginx/"/>
+      <category term="nginx" scheme="http://www.clarencep.com/categories/nginx/"/>
     
     
-      <category term="nginx" scheme="http://clarence-pan.github.io/tags/nginx/"/>
+      <category term="nginx" scheme="http://www.clarencep.com/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>一个将多说的头像变成https的简单方法</title>
-    <link href="http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/"/>
-    <id>http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</id>
+    <link href="http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/"/>
+    <id>http://www.clarencep.com/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</id>
     <published>2016-09-24T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>最近启用全站https之后，却发现地址栏里面却还没有小绿锁 -- 检查了下网络请求，发现原来是多说搞的鬼：</p>
 <blockquote>
@@ -1153,23 +1153,23 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     
     </summary>
     
-      <category term="多说" scheme="http://clarence-pan.github.io/categories/%E5%A4%9A%E8%AF%B4/"/>
+      <category term="多说" scheme="http://www.clarencep.com/categories/%E5%A4%9A%E8%AF%B4/"/>
     
     
-      <category term="https" scheme="http://clarence-pan.github.io/tags/https/"/>
+      <category term="https" scheme="http://www.clarencep.com/tags/https/"/>
     
-      <category term="多说" scheme="http://clarence-pan.github.io/tags/%E5%A4%9A%E8%AF%B4/"/>
+      <category term="多说" scheme="http://www.clarencep.com/tags/%E5%A4%9A%E8%AF%B4/"/>
     
-      <category term="blog" scheme="http://clarence-pan.github.io/tags/blog/"/>
+      <category term="blog" scheme="http://www.clarencep.com/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>A Note To hash_pbkdf2 in PHP</title>
-    <link href="http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/"/>
-    <id>http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/</id>
+    <link href="http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/"/>
+    <id>http://www.clarencep.com/2016/09/06/a-note-to-php-hash_pbkdf2/</id>
     <published>2016-09-06T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>Please pay great attention to the <strong>$length</strong> parameter! It is exactly the <strong>return string length</strong>, NOT the length of raw binary hash result.</p>
 <p>I had a big problem about this --<br>I thought that <code>hash_pbkdf2(...false)</code> should equals to <code>bin2hex(hash_pbkdf2(...true))</code> just like <code>md5($x)</code> equals <code>bin2hex(md5($x, true))</code>. However I was wrong:</p>
@@ -1188,19 +1188,19 @@ bin2hex(hash_pbkdf2(&#39;sha256&#39;, &#39;123456&#39;, &#39;abc&#39;, 10000, 50
     
     </summary>
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
   </entry>
   
   <entry>
     <title>一个关于systemd私有目录的奇怪问题</title>
-    <link href="http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/"/>
-    <id>http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/</id>
+    <link href="http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/"/>
+    <id>http://www.clarencep.com/2016/08/12/a-strange-problem-about-systemd-private/</id>
     <published>2016-08-12T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.586Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个奇怪的问题 -- PHP里面访问不了<code>/tmp/xhprof-data</code>目录，可是这个目录明明是存在的！</p>
 <a id="more"></a>
@@ -1247,23 +1247,23 @@ PrivateTmp=true
     
     </summary>
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
-      <category term="httpd" scheme="http://clarence-pan.github.io/tags/httpd/"/>
+      <category term="httpd" scheme="http://www.clarencep.com/tags/httpd/"/>
     
-      <category term="systemd" scheme="http://clarence-pan.github.io/tags/systemd/"/>
+      <category term="systemd" scheme="http://www.clarencep.com/tags/systemd/"/>
     
   </entry>
   
   <entry>
     <title>如何在静态博客HEXO中只显示摘要信息</title>
-    <link href="http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/"/>
-    <id>http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/</id>
+    <link href="http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/"/>
+    <id>http://www.clarencep.com/2016/07/20/how-to-show-less-in-home-page-of-hexo/</id>
     <published>2016-07-20T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>默认情况下<code>hexo</code>博客(如本站)的首页显示的是完整的文章 -- 而文章比较长的时候这无疑会带来诸多不遍。 那怎么样才能只显示个摘要呢？</p>
 <a id="more"></a>
@@ -1284,21 +1284,21 @@ PrivateTmp=true
     
     </summary>
     
-      <category term="blog" scheme="http://clarence-pan.github.io/categories/blog/"/>
+      <category term="blog" scheme="http://www.clarencep.com/categories/blog/"/>
     
     
-      <category term="blog" scheme="http://clarence-pan.github.io/tags/blog/"/>
+      <category term="blog" scheme="http://www.clarencep.com/tags/blog/"/>
     
-      <category term="hexo" scheme="http://clarence-pan.github.io/tags/hexo/"/>
+      <category term="hexo" scheme="http://www.clarencep.com/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>如何解决Selenium中&quot;Cannot find function addEventListener in object [object HTMLDocument]&quot;的错误</title>
-    <link href="http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/"/>
-    <id>http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</id>
+    <link href="http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/"/>
+    <id>http://www.clarencep.com/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</id>
     <published>2016-04-28T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个很坑爹的问题，某Selenium自动化用例老是失败，报错如下：</p>
 <a id="more"></a>
@@ -1326,25 +1326,25 @@ Failed to take screen-shot: org.openqa.selenium.htmlunit.HtmlUnitDriver cannot b
     
     </summary>
     
-      <category term="Selenium" scheme="http://clarence-pan.github.io/categories/Selenium/"/>
+      <category term="Selenium" scheme="http://www.clarencep.com/categories/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://clarence-pan.github.io/tags/Selenium/"/>
+      <category term="Selenium" scheme="http://www.clarencep.com/tags/Selenium/"/>
     
-      <category term="Java" scheme="http://clarence-pan.github.io/tags/Java/"/>
+      <category term="Java" scheme="http://www.clarencep.com/tags/Java/"/>
     
-      <category term="JavaScript" scheme="http://clarence-pan.github.io/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.clarencep.com/tags/JavaScript/"/>
     
-      <category term="HTMLUnit" scheme="http://clarence-pan.github.io/tags/HTMLUnit/"/>
+      <category term="HTMLUnit" scheme="http://www.clarencep.com/tags/HTMLUnit/"/>
     
   </entry>
   
   <entry>
     <title>PHP下使用强大的imagick轻松生成组合缩略图</title>
-    <link href="http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/"/>
-    <id>http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/</id>
+    <link href="http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/"/>
+    <id>http://www.clarencep.com/2016/02/19/use-imagick-to-composite-images-thumbnail/</id>
     <published>2016-02-19T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.594Z</updated>
+    <updated>2017-08-31T03:25:26.347Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的<code>imagick</code>扩展。</p>
 <a id="more"></a>
@@ -1522,23 +1522,23 @@ $thumbnail-&gt;writeImage($outputDir.&quot;/example.jpg&quot;);
     
     </summary>
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
-      <category term="imagick" scheme="http://clarence-pan.github.io/tags/imagick/"/>
+      <category term="imagick" scheme="http://www.clarencep.com/tags/imagick/"/>
     
-      <category term="thumbnail" scheme="http://clarence-pan.github.io/tags/thumbnail/"/>
+      <category term="thumbnail" scheme="http://www.clarencep.com/tags/thumbnail/"/>
     
   </entry>
   
   <entry>
     <title>mac上spacemacs体验小记</title>
-    <link href="http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/"/>
-    <id>http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/</id>
+    <link href="http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/"/>
+    <id>http://www.clarencep.com/2016/01/04/note-of-spacemacs-on-mac/</id>
     <published>2016-01-04T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="第一步，安装emacs-mac"><a href="#第一步，安装emacs-mac" class="headerlink" title="第一步，安装emacs-mac"></a>第一步，安装emacs-mac</h2><p>emacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。<br>那就卸载掉以前的emacs，装下吧：<br><a id="more"></a></p>
 <pre><code class="sh">$ brew remove emacs
@@ -1590,23 +1590,23 @@ $ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
     
     </summary>
     
-      <category term="emacs" scheme="http://clarence-pan.github.io/categories/emacs/"/>
+      <category term="emacs" scheme="http://www.clarencep.com/categories/emacs/"/>
     
     
-      <category term="emacs" scheme="http://clarence-pan.github.io/tags/emacs/"/>
+      <category term="emacs" scheme="http://www.clarencep.com/tags/emacs/"/>
     
-      <category term="spacemacs" scheme="http://clarence-pan.github.io/tags/spacemacs/"/>
+      <category term="spacemacs" scheme="http://www.clarencep.com/tags/spacemacs/"/>
     
-      <category term="mac" scheme="http://clarence-pan.github.io/tags/mac/"/>
+      <category term="mac" scheme="http://www.clarencep.com/tags/mac/"/>
     
   </entry>
   
   <entry>
     <title>PHP中的null合并运算符</title>
-    <link href="http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/"/>
-    <id>http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/</id>
+    <link href="http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/"/>
+    <id>http://www.clarencep.com/2015/12/30/null-coalesce-operator-in-php/</id>
     <published>2015-12-30T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用<code>||</code>来搞：<br><a id="more"></a></p>
 <pre><code class="js">function setSomething(a){
@@ -1640,21 +1640,21 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
     
     </summary>
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/categories/PHP/"/>
     
     
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="http://www.clarencep.com/tags/PHP/"/>
     
-      <category term="Null Coalesce" scheme="http://clarence-pan.github.io/tags/Null-Coalesce/"/>
+      <category term="Null Coalesce" scheme="http://www.clarencep.com/tags/Null-Coalesce/"/>
     
   </entry>
   
   <entry>
     <title>PlantUML的实例参考</title>
-    <link href="http://clarence-pan.github.io/2015/12/24/plant-uml-instances/"/>
-    <id>http://clarence-pan.github.io/2015/12/24/plant-uml-instances/</id>
+    <link href="http://www.clarencep.com/2015/12/24/plant-uml-instances/"/>
+    <id>http://www.clarencep.com/2015/12/24/plant-uml-instances/</id>
     <published>2015-12-24T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.594Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
@@ -2267,21 +2267,21 @@ Alice &amp;lt;-- Bob: another authentication Response
     
     </summary>
     
-      <category term="UML" scheme="http://clarence-pan.github.io/categories/UML/"/>
+      <category term="UML" scheme="http://www.clarencep.com/categories/UML/"/>
     
     
-      <category term="PlantUML" scheme="http://clarence-pan.github.io/tags/PlantUML/"/>
+      <category term="PlantUML" scheme="http://www.clarencep.com/tags/PlantUML/"/>
     
-      <category term="UML" scheme="http://clarence-pan.github.io/tags/UML/"/>
+      <category term="UML" scheme="http://www.clarencep.com/tags/UML/"/>
     
   </entry>
   
   <entry>
     <title>使用PHPUnit + Selenium进行自动化测试</title>
-    <link href="http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/"/>
-    <id>http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/</id>
+    <link href="http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/"/>
+    <id>http://www.clarencep.com/2015/12/22/how-to-use-phpunit-selenium-test/</id>
     <published>2015-12-22T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一步，安装PHPUnit"><a href="#第一步，安装PHPUnit" class="headerlink" title="第一步，安装PHPUnit"></a>第一步，安装PHPUnit</h2><p>最简单的方式莫过于到<a href="https://phpunit.de/" target="_blank" rel="external">PHPUnit的官网</a>下载PHPUnit，然后把那个下载了的<code>phpunit.phar</code>加到<code>PATH</code>中。</p>
 <a id="more"></a>
@@ -2440,23 +2440,23 @@ function create_browser(){
     
     </summary>
     
-      <category term="Selenium" scheme="http://clarence-pan.github.io/categories/Selenium/"/>
+      <category term="Selenium" scheme="http://www.clarencep.com/categories/Selenium/"/>
     
     
-      <category term="Selenium" scheme="http://clarence-pan.github.io/tags/Selenium/"/>
+      <category term="Selenium" scheme="http://www.clarencep.com/tags/Selenium/"/>
     
-      <category term="PHPUnit" scheme="http://clarence-pan.github.io/tags/PHPUnit/"/>
+      <category term="PHPUnit" scheme="http://www.clarencep.com/tags/PHPUnit/"/>
     
-      <category term="Test" scheme="http://clarence-pan.github.io/tags/Test/"/>
+      <category term="Test" scheme="http://www.clarencep.com/tags/Test/"/>
     
   </entry>
   
   <entry>
     <title>【转】使用Sublime + PlantUML高效地画图</title>
-    <link href="http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/"/>
-    <id>http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</id>
+    <link href="http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/"/>
+    <id>http://www.clarencep.com/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</id>
     <published>2015-12-17T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<p>转自: <a href="http://www.jianshu.com/p/e92a52770832" target="_blank" rel="external">http://www.jianshu.com/p/e92a52770832</a> （侵立删）</p>
 <blockquote>
@@ -2761,25 +2761,25 @@ state Configuring {
     
     </summary>
     
-      <category term="UML" scheme="http://clarence-pan.github.io/categories/UML/"/>
+      <category term="UML" scheme="http://www.clarencep.com/categories/UML/"/>
     
     
-      <category term="sublime" scheme="http://clarence-pan.github.io/tags/sublime/"/>
+      <category term="sublime" scheme="http://www.clarencep.com/tags/sublime/"/>
     
-      <category term="PlantUML" scheme="http://clarence-pan.github.io/tags/PlantUML/"/>
+      <category term="PlantUML" scheme="http://www.clarencep.com/tags/PlantUML/"/>
     
-      <category term="UML" scheme="http://clarence-pan.github.io/tags/UML/"/>
+      <category term="UML" scheme="http://www.clarencep.com/tags/UML/"/>
     
-      <category term="diagram" scheme="http://clarence-pan.github.io/tags/diagram/"/>
+      <category term="diagram" scheme="http://www.clarencep.com/tags/diagram/"/>
     
   </entry>
   
   <entry>
     <title>在MAC OS X上如何启用crontab？</title>
-    <link href="http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/"/>
-    <id>http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/</id>
+    <link href="http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/"/>
+    <id>http://www.clarencep.com/2015/12/16/how-to-enable-crontab-on-osx/</id>
     <published>2015-12-16T00:00:00.000Z</published>
-    <updated>2017-08-31T03:01:37.590Z</updated>
+    <updated>2017-08-31T03:25:26.339Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。</p>
 <a id="more"></a>
@@ -2851,18 +2851,18 @@ ls: /etc/crontab: No such file or directory
     
     </summary>
     
-      <category term="OS X" scheme="http://clarence-pan.github.io/categories/OS-X/"/>
+      <category term="OS X" scheme="http://www.clarencep.com/categories/OS-X/"/>
     
-      <category term="crontab" scheme="http://clarence-pan.github.io/categories/OS-X/crontab/"/>
+      <category term="crontab" scheme="http://www.clarencep.com/categories/OS-X/crontab/"/>
     
     
-      <category term="OS X" scheme="http://clarence-pan.github.io/tags/OS-X/"/>
+      <category term="OS X" scheme="http://www.clarencep.com/tags/OS-X/"/>
     
-      <category term="MAC" scheme="http://clarence-pan.github.io/tags/MAC/"/>
+      <category term="MAC" scheme="http://www.clarencep.com/tags/MAC/"/>
     
-      <category term="crontab" scheme="http://clarence-pan.github.io/tags/crontab/"/>
+      <category term="crontab" scheme="http://www.clarencep.com/tags/crontab/"/>
     
-      <category term="定时任务" scheme="http://clarence-pan.github.io/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+      <category term="定时任务" scheme="http://www.clarencep.com/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
