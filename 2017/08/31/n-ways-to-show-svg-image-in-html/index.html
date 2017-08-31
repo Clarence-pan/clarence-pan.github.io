@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>HTML中嵌入SVG图片的N种方式 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#1F51B5">
+    
+    
+    <meta name="keywords" content="HTML,SVG">
+    <meta name="description" content="最近用到了个SVG图片，里面还是带&amp;lt;image&amp;gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。">
+<meta name="keywords" content="HTML,SVG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML中嵌入SVG图片的N种方式">
+<meta property="og:url" content="http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="最近用到了个SVG图片，里面还是带&amp;lt;image&amp;gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。">
+<meta property="og:locale" content="en_US, zh_CN">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nvw72qlj30i809ljs0.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nxkg180j309806wwf7.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oqz27nej309r07j3yi.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oudb4bjj309504wq31.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pw6rk46j309o05l74e.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pwi60wcj309e05edgb.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pww813uj309j07bt8n.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2px7d87xj309o05e0su.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxh0j7gj309g054wel.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxsxvt2j309h05gjrv.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2py3gul6j309l05bdgb.jpg">
+<meta property="og:updated_time" content="2017-08-31T02:57:46.608Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML中嵌入SVG图片的N种方式">
+<meta name="twitter:description" content="最近用到了个SVG图片，里面还是带&amp;lt;image&amp;gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nvw72qlj30i809ljs0.jpg">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">HTML中嵌入SVG图片的N种方式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">HTML中嵌入SVG图片的N种方式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-31T00:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-08-31
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SVG/">SVG</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#经历"><span class="post-toc-number">1.</span> <span class="post-toc-text">经历</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结HTML中嵌入SVG图片的N种方式"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结HTML中嵌入SVG图片的N种方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-使用-lt-svg-gt-标签"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">0. 使用<svg>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-使用-lt-img-gt-标签"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1. 使用<img>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用-lt-iframe-gt-标签"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2. 使用<iframe>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用-lt-embed-gt-标签"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">3. 使用<embed>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-使用-lt-object-gt-标签"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">4. 使用<object>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-使用-lt-div-gt-的背景图片"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">5. 使用<div>的背景图片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-使用-lt-picture-gt-标签"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">6. 使用<picture>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#附完整带测试代码"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">附完整带测试代码:</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-n-ways-to-show-svg-image-in-html"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">HTML中嵌入SVG图片的N种方式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年08月31日 0:00" datetime="2017-08-31T00:00:00.000Z"  itemprop="datePublished">2017-08-31</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/SVG/">SVG</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近用到了个SVG图片，里面还是带<code>&lt;image&gt;</code>标签的，想要把它嵌入到HTML中还是有些工作要做的。</p>
+<a id="more"></a>
+<h2 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h2><p>最初的图片是这样写的：</p>
+<pre><code class="svg">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+&lt;svg version=&quot;1.1&quot;
+     preserveAspectRatio=&quot;xMinYMin meet&quot;
+     width=&quot;660&quot; height=&quot;342&quot;
+     xmlns=&quot;http://www.w3.org/2000/svg&quot;
+     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+    &lt;image xlink:href=&quot;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png&quot; width=&quot;660&quot; height=&quot;342&quot;/&gt;
+
+    &lt;rect x=&quot;2&quot; y=&quot;284&quot; width=&quot;656&quot; height=&quot;58&quot; fill=&quot;rgba(0,0,0,0.6)&quot; stroke-width=&quot;1&quot; &gt;&lt;/rect&gt;
+
+    &lt;text text-anchor=&quot;start&quot;
+          font-family=&quot;Microsoft Yahei, sans-serif&quot; font-size=&quot;28&quot;
+          x=&quot;20&quot; y=&quot;322&quot; fill=&quot;#fff&quot;&gt;这是百度&lt;/text&gt;
+    &lt;text text-anchor=&quot;end&quot;
+          font-family=&quot;Microsoft Yahei, sans-serif&quot; font-size=&quot;28&quot;
+          x=&quot;640&quot; y=&quot;322&quot; fill=&quot;#fff&quot;&gt;😄&lt;/text&gt;
+&lt;/svg&gt;
+</code></pre>
+<p>p.s. 先拿百度的图片来凑个数</p>
+<p>显示效果应该是：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nvw72qlj30i809ljs0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>但是通过<code>&lt;img&gt;</code>标签插入到HTML中后却变成了这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nxkg180j309806wwf7.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>W.T.F!</p>
+<p>查了半天<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/image" target="_blank" rel="external">MDN</a>，也没有什么收获。</p>
+<p>最后在 <a href="https://stackoverflow.com/questions/41195669/images-in-svg-image-tags-not-showing-up-in-chrome-but-displays-locally" target="_blank" rel="external">StackOverflow</a> 上找到了一个解决方案：即使用<code>&lt;embed&gt;</code>标签。</p>
+<p>修改成<code>&lt;embed src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;</code>后却显示成了：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oqz27nej309r07j3yi.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>只显示了图片左上角那部分有木有！这张图片是按2倍图做的，应该要缩小一半，虽然给<code>&lt;embed&gt;</code>的元素加了宽高，但是却没能把svg内容给缩放！</p>
+<p>怎办？又找了半天解决方案，发现这种情况应该设置svg图片的viewBox -- 在<code>&lt;svg&gt;</code>元素上增加<code>viewBox=&quot;0 0 660 342&quot;</code>即可解决这个问题：</p>
+<blockquote>
+<p>viewBox属性允许指定一个给定的一组图形伸展以适应特定的容器元素。<br>-- <a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox" target="_blank" rel="external">viewBox - MDN</a></p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oudb4bjj309504wq31.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>完美！</p>
+<h2 id="总结HTML中嵌入SVG图片的N种方式"><a href="#总结HTML中嵌入SVG图片的N种方式" class="headerlink" title="总结HTML中嵌入SVG图片的N种方式"></a>总结HTML中嵌入SVG图片的N种方式</h2><p>在解决这个问题的过程中，顺便查了下，发现除了<code>&lt;img&gt;</code>和<code>&lt;embed&gt;</code>外还有几种嵌入SVG图片的方法。在此总结下：</p>
+<h3 id="0-使用-lt-svg-gt-标签"><a href="#0-使用-lt-svg-gt-标签" class="headerlink" title="0. 使用&lt;svg&gt;标签"></a>0. 使用<code>&lt;svg&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pw6rk46j309o05l74e.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>即直接把svg整个标签内容（除了开头的xml和doctype声明外的svg文件内容）都丢到 HTML 中即可。<br>可惜不适合本例 -- 我们这次的svg是外部的，不好放入HTML中。</p>
+<h3 id="1-使用-lt-img-gt-标签"><a href="#1-使用-lt-img-gt-标签" class="headerlink" title="1. 使用&lt;img&gt;标签"></a>1. 使用<code>&lt;img&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pwi60wcj309e05edgb.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;img src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
+</code></pre>
+<p>这个是最容易想到的 -- 因为svg图片也是图片嘛。<br>需要注意的是，svg里面带的<code>&lt;image&gt;</code>标签将无法正常显示。<code>&lt;img&gt;</code>标签适合显示纯矢量+文本的SVG图片。</p>
+<h3 id="2-使用-lt-iframe-gt-标签"><a href="#2-使用-lt-iframe-gt-标签" class="headerlink" title="2. 使用&lt;iframe&gt;标签"></a>2. 使用<code>&lt;iframe&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pww813uj309j07bt8n.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;iframe src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px;border:none;&quot; &gt;&lt;/iframe&gt;
+</code></pre>
+<p>万能的iframe当然什么都能显示，但是无法控制内容大小 -- viewBox也搞不定，估计只能用百分比来定位了，太麻烦了，不建议使用。</p>
+<h3 id="3-使用-lt-embed-gt-标签"><a href="#3-使用-lt-embed-gt-标签" class="headerlink" title="3. 使用&lt;embed&gt;标签"></a>3. 使用<code>&lt;embed&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2px7d87xj309o05e0su.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;embed src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
+</code></pre>
+<p>注意使用viewBox，<code>&lt;embed&gt;</code>标签的兼容性也很不错的，是个不错的选择。</p>
+<h3 id="4-使用-lt-object-gt-标签"><a href="#4-使用-lt-object-gt-标签" class="headerlink" title="4. 使用&lt;object&gt;标签"></a>4. 使用<code>&lt;object&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxh0j7gj309g054wel.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;object type=&quot;image/svg+xml&quot; data=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; &gt;
+    &lt;param name=&quot;src&quot; value=&quot;./test.svg&quot; &gt;
+&lt;/object&gt;
+</code></pre>
+<p><code>&lt;object&gt;</code>与<code>&lt;embed&gt;</code>类似，也要注意配置viewBox.</p>
+<h3 id="5-使用-lt-div-gt-的背景图片"><a href="#5-使用-lt-div-gt-的背景图片" class="headerlink" title="5. 使用&lt;div&gt;的背景图片"></a>5. 使用<code>&lt;div&gt;</code>的背景图片</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxsxvt2j309h05gjrv.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;div style=&quot;display:block;width:330px;height:240px;background: url(./test.svg) no-repeat;background-size: 100%;&quot; &gt;&lt;/div&gt;
+</code></pre>
+<p>svg图片是可以作为背景图片的。不过和<code>&lt;img&gt;</code>标签一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
+<h3 id="6-使用-lt-picture-gt-标签"><a href="#6-使用-lt-picture-gt-标签" class="headerlink" title="6. 使用&lt;picture&gt;标签"></a>6. 使用<code>&lt;picture&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2py3gul6j309l05bdgb.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;picture &gt;
+    &lt;source srcset=&quot;./test.svg&quot;  type=&quot;image/svg+xml&quot;&gt;
+    &lt;img src=&quot;./test.png&quot; style=&quot;display:block;width:330px;height:240px&quot;&gt;
+&lt;/picture&gt;
+</code></pre>
+<p><code>&lt;picture&gt;</code>标签是HTML5新增的一个专门显示图片的标签。</p>
+<p>注意设置<code>&lt;source&gt;</code>标签的属性<code>srcset</code>而非<code>src</code>. 此外必需要添加一个<code>&lt;img&gt;</code>标签，不过可以在<code>&lt;img&gt;</code>标签中指定另外一张图片，以便在浏览器无法显示<code>&lt;source&gt;</code>指定的图片的时候显示<code>&lt;img&gt;</code>标签中的图片。</p>
+<p><code>&lt;picture&gt;</code>和<code>&lt;img&gt;</code>一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
+<h3 id="附完整带测试代码"><a href="#附完整带测试代码" class="headerlink" title="附完整带测试代码:"></a>附完整带测试代码:</h3><script src="https://gist.github.com/Clarence-pan/be0a2c14df52a39095b93054a77123c9.js"></script>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-31T02:57:46.608Z" itemprop="dateUpdated">2017年8月31日 2:57</time>
+</span><br>
+
+
+        <a href="/2017/08/31/n-ways-to-show-svg-image-in-html/" target="_blank" rel="external">http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/</a>
+    </div>
+    <footer>
+        <a href="http://clarence-pan.github.io">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVG/">SVG</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&title=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&title=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&source=最近用到了个SVG图片，里面还是带&lt;image&gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/05/monolog-usage-zh/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【翻译】Monolog使用说明</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="n-ways-to-show-svg-image-in-html" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c71414aea0e0dce2601a1561'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&title=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&pic=http://clarence-pan.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&title=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&source=最近用到了个SVG图片，里面还是带&lt;image&gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《HTML中嵌入SVG图片的N种方式》 — Clarence的博客&url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/&via=http://clarence-pan.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQW7jMAwF0Nz/0jNAMYsBCjufpOimwPMqaG1HTwuJ+eLrFV9/vq6rz/9fyT33d35/6vt/D194eHh4raHng7jH96ajN577e/Dw8PC2eclmcMVIBlEFXN2fjxkPDw/vE3jlV8fvTN6Mh4eH9xt59wt9kgbkQ+8FE3h4eHhP8iY//vNiOo8ekpj4cNaCh4eHV/u9PzoAe/7zo+d7eHh4ePGWMFmseyHvqc3p31N4eHh4C7xenHr/VFLm9poGevEEHh4e3vO8nNSbuHxjaBbfeHh4eEd5k/h10iJwat2+31Tw8PDwNnjVMrp6YDaJaJPvLbQp4OHh4R3i3ZeteXRbDTV67QXljQcPDw9vjZfAqlFC73z/VBGPh4eHt8fLh9iLX+fNptXy/U1KjYeHhzfm9crZaljQY+TF/SUYDw8Pb4F3inSq4O7BygU6Hh4e3oDXPCsrBr7zdtjqdhIB8PDw8A7x8vbTXgGdAHqTgoeHh/dTvN7G0Fv0TwUTl5/x8PDw1nj5V05aoKoNXr2gJDrZw8PDwxvwNiKJvJjO78kDi8vOCDw8PLwF3iu4kuihOojJsVnUvIWHh4e3xutdeVlcfUP12cuyGw8PD2+Bl28A+WZQXr7jkVTDETw8PLyzvGRx75W8Vcz8v5cBLh4eHt4yL2kLSJqlJiX4qRYuPDw8vA1e76d+fvXaAiaTUohx8fDw8Fq83rKbbxVVZDk1ub8HDw8P70Fe77CqGkzksW/v73h4eHgbvGpxnB/z52nqvHmrupHg4eHhzXn5ZpAv0L1mguoGk0w3Hh4e3h5vshnMD7EmITIeHh7eJ/N6vUzVRoQkYiiU2nh4eHgfwOsNMd9gepP4JqvGw8PDW+BVC99qE9XZxoV8uvHw8PA2eNUDsOpAJ/cnE9o808PDw8Pr8P4CASoiFtGdZcwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256461440&web_id=1256461440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

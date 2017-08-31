@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://clarence-pan.github.io/"/>
-  <updated>2017-07-05T03:30:06.651Z</updated>
+  <updated>2017-08-31T02:57:46.608Z</updated>
   <id>http://clarence-pan.github.io/</id>
   
   <author>
@@ -16,11 +16,177 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HTML中嵌入SVG图片的N种方式</title>
+    <link href="http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/"/>
+    <id>http://clarence-pan.github.io/2017/08/31/n-ways-to-show-svg-image-in-html/</id>
+    <published>2017-08-31T00:00:00.000Z</published>
+    <updated>2017-08-31T02:57:46.608Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近用到了个SVG图片，里面还是带<code>&lt;image&gt;</code>标签的，想要把它嵌入到HTML中还是有些工作要做的。</p>
+<a id="more"></a>
+<h2 id="经历"><a href="#经历" class="headerlink" title="经历"></a>经历</h2><p>最初的图片是这样写的：</p>
+<pre><code class="svg">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+&lt;svg version=&quot;1.1&quot;
+     preserveAspectRatio=&quot;xMinYMin meet&quot;
+     width=&quot;660&quot; height=&quot;342&quot;
+     xmlns=&quot;http://www.w3.org/2000/svg&quot;
+     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+    &lt;image xlink:href=&quot;https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png&quot; width=&quot;660&quot; height=&quot;342&quot;/&gt;
+
+    &lt;rect x=&quot;2&quot; y=&quot;284&quot; width=&quot;656&quot; height=&quot;58&quot; fill=&quot;rgba(0,0,0,0.6)&quot; stroke-width=&quot;1&quot; &gt;&lt;/rect&gt;
+
+    &lt;text text-anchor=&quot;start&quot;
+          font-family=&quot;Microsoft Yahei, sans-serif&quot; font-size=&quot;28&quot;
+          x=&quot;20&quot; y=&quot;322&quot; fill=&quot;#fff&quot;&gt;这是百度&lt;/text&gt;
+    &lt;text text-anchor=&quot;end&quot;
+          font-family=&quot;Microsoft Yahei, sans-serif&quot; font-size=&quot;28&quot;
+          x=&quot;640&quot; y=&quot;322&quot; fill=&quot;#fff&quot;&gt;😄&lt;/text&gt;
+&lt;/svg&gt;
+</code></pre>
+<p>p.s. 先拿百度的图片来凑个数</p>
+<p>显示效果应该是：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nvw72qlj30i809ljs0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>但是通过<code>&lt;img&gt;</code>标签插入到HTML中后却变成了这样：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2nxkg180j309806wwf7.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>W.T.F!</p>
+<p>查了半天<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/image" target="_blank" rel="external">MDN</a>，也没有什么收获。</p>
+<p>最后在 <a href="https://stackoverflow.com/questions/41195669/images-in-svg-image-tags-not-showing-up-in-chrome-but-displays-locally" target="_blank" rel="external">StackOverflow</a> 上找到了一个解决方案：即使用<code>&lt;embed&gt;</code>标签。</p>
+<p>修改成<code>&lt;embed src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;</code>后却显示成了：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oqz27nej309r07j3yi.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>只显示了图片左上角那部分有木有！这张图片是按2倍图做的，应该要缩小一半，虽然给<code>&lt;embed&gt;</code>的元素加了宽高，但是却没能把svg内容给缩放！</p>
+<p>怎办？又找了半天解决方案，发现这种情况应该设置svg图片的viewBox -- 在<code>&lt;svg&gt;</code>元素上增加<code>viewBox=&quot;0 0 660 342&quot;</code>即可解决这个问题：</p>
+<blockquote>
+<p>viewBox属性允许指定一个给定的一组图形伸展以适应特定的容器元素。<br>-- <a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/viewBox" target="_blank" rel="external">viewBox - MDN</a></p>
+</blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2oudb4bjj309504wq31.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>完美！</p>
+<h2 id="总结HTML中嵌入SVG图片的N种方式"><a href="#总结HTML中嵌入SVG图片的N种方式" class="headerlink" title="总结HTML中嵌入SVG图片的N种方式"></a>总结HTML中嵌入SVG图片的N种方式</h2><p>在解决这个问题的过程中，顺便查了下，发现除了<code>&lt;img&gt;</code>和<code>&lt;embed&gt;</code>外还有几种嵌入SVG图片的方法。在此总结下：</p>
+<h3 id="0-使用-lt-svg-gt-标签"><a href="#0-使用-lt-svg-gt-标签" class="headerlink" title="0. 使用&lt;svg&gt;标签"></a>0. 使用<code>&lt;svg&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pw6rk46j309o05l74e.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>即直接把svg整个标签内容（除了开头的xml和doctype声明外的svg文件内容）都丢到 HTML 中即可。<br>可惜不适合本例 -- 我们这次的svg是外部的，不好放入HTML中。</p>
+<h3 id="1-使用-lt-img-gt-标签"><a href="#1-使用-lt-img-gt-标签" class="headerlink" title="1. 使用&lt;img&gt;标签"></a>1. 使用<code>&lt;img&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pwi60wcj309e05edgb.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;img src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
+</code></pre>
+<p>这个是最容易想到的 -- 因为svg图片也是图片嘛。<br>需要注意的是，svg里面带的<code>&lt;image&gt;</code>标签将无法正常显示。<code>&lt;img&gt;</code>标签适合显示纯矢量+文本的SVG图片。</p>
+<h3 id="2-使用-lt-iframe-gt-标签"><a href="#2-使用-lt-iframe-gt-标签" class="headerlink" title="2. 使用&lt;iframe&gt;标签"></a>2. 使用<code>&lt;iframe&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pww813uj309j07bt8n.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;iframe src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px;border:none;&quot; &gt;&lt;/iframe&gt;
+</code></pre>
+<p>万能的iframe当然什么都能显示，但是无法控制内容大小 -- viewBox也搞不定，估计只能用百分比来定位了，太麻烦了，不建议使用。</p>
+<h3 id="3-使用-lt-embed-gt-标签"><a href="#3-使用-lt-embed-gt-标签" class="headerlink" title="3. 使用&lt;embed&gt;标签"></a>3. 使用<code>&lt;embed&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2px7d87xj309o05e0su.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;embed src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
+</code></pre>
+<p>注意使用viewBox，<code>&lt;embed&gt;</code>标签的兼容性也很不错的，是个不错的选择。</p>
+<h3 id="4-使用-lt-object-gt-标签"><a href="#4-使用-lt-object-gt-标签" class="headerlink" title="4. 使用&lt;object&gt;标签"></a>4. 使用<code>&lt;object&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxh0j7gj309g054wel.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;object type=&quot;image/svg+xml&quot; data=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; &gt;
+    &lt;param name=&quot;src&quot; value=&quot;./test.svg&quot; &gt;
+&lt;/object&gt;
+</code></pre>
+<p><code>&lt;object&gt;</code>与<code>&lt;embed&gt;</code>类似，也要注意配置viewBox.</p>
+<h3 id="5-使用-lt-div-gt-的背景图片"><a href="#5-使用-lt-div-gt-的背景图片" class="headerlink" title="5. 使用&lt;div&gt;的背景图片"></a>5. 使用<code>&lt;div&gt;</code>的背景图片</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxsxvt2j309h05gjrv.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;div style=&quot;display:block;width:330px;height:240px;background: url(./test.svg) no-repeat;background-size: 100%;&quot; &gt;&lt;/div&gt;
+</code></pre>
+<p>svg图片是可以作为背景图片的。不过和<code>&lt;img&gt;</code>标签一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
+<h3 id="6-使用-lt-picture-gt-标签"><a href="#6-使用-lt-picture-gt-标签" class="headerlink" title="6. 使用&lt;picture&gt;标签"></a>6. 使用<code>&lt;picture&gt;</code>标签</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2py3gul6j309l05bdgb.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<pre><code class="html">&lt;picture &gt;
+    &lt;source srcset=&quot;./test.svg&quot;  type=&quot;image/svg+xml&quot;&gt;
+    &lt;img src=&quot;./test.png&quot; style=&quot;display:block;width:330px;height:240px&quot;&gt;
+&lt;/picture&gt;
+</code></pre>
+<p><code>&lt;picture&gt;</code>标签是HTML5新增的一个专门显示图片的标签。</p>
+<p>注意设置<code>&lt;source&gt;</code>标签的属性<code>srcset</code>而非<code>src</code>. 此外必需要添加一个<code>&lt;img&gt;</code>标签，不过可以在<code>&lt;img&gt;</code>标签中指定另外一张图片，以便在浏览器无法显示<code>&lt;source&gt;</code>指定的图片的时候显示<code>&lt;img&gt;</code>标签中的图片。</p>
+<p><code>&lt;picture&gt;</code>和<code>&lt;img&gt;</code>一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
+<h3 id="附完整带测试代码"><a href="#附完整带测试代码" class="headerlink" title="附完整带测试代码:"></a>附完整带测试代码:</h3><script src="https://gist.github.com/Clarence-pan/be0a2c14df52a39095b93054a77123c9.js"></script>
+
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近用到了个SVG图片，里面还是带&lt;code&gt;&amp;lt;image&amp;gt;&lt;/code&gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SVG" scheme="http://clarence-pan.github.io/categories/SVG/"/>
+    
+    
+      <category term="HTML" scheme="http://clarence-pan.github.io/tags/HTML/"/>
+    
+      <category term="SVG" scheme="http://clarence-pan.github.io/tags/SVG/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【翻译】Monolog使用说明</title>
     <link href="http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/"/>
     <id>http://clarence-pan.github.io/2017/07/05/monolog-usage-zh/</id>
     <published>2017-07-05T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近项目中使用的 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="external">Monolog</a> 出了点小问题，去翻其文档，发现居然只有英文的。趁业余时间，翻译一下吧。<br>以下是其<a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md" target="_blank" rel="external">使用说明</a>的<a href="https://github.com/Clarence-pan/monolog-zh-doc/blob/master/doc/01-usage.md" target="_blank" rel="external">中文翻译</a>。更多翻译内容见 <a href="https://github.com/Clarence-pan/monolog-zh-doc" target="_blank" rel="external">clarence-pan/monolog-zh-doc</a>.</p>
 <h1 id="使用-Monolog"><a href="#使用-Monolog" class="headerlink" title="使用 Monolog"></a>使用 Monolog</h1><ul>
@@ -185,7 +351,7 @@ $securityLogger-&gt;pushHandler($stream);
     <link href="http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/"/>
     <id>http://clarence-pan.github.io/2017/05/31/safe-way-to-store-password/</id>
     <published>2017-05-31T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.663Z</updated>
+    <updated>2017-08-31T02:57:46.612Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>md5安全吗？有多么地不安全？如何才能安全地存储密码？...</p>
@@ -330,7 +496,7 @@ Array
     <link href="http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/"/>
     <id>http://clarence-pan.github.io/2017/04/15/ftp-server-for-docker/</id>
     <published>2017-04-15T10:46:59.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>无图无真相，先放个效果图：</p>
 <figure class="image-bubble">
@@ -424,7 +590,7 @@ Examples:
     <link href="http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/"/>
     <id>http://clarence-pan.github.io/2017/04/01/a-note-to-express-params/</id>
     <published>2017-04-01T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
 <p>比如:</p>
@@ -487,7 +653,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/"/>
     <id>http://clarence-pan.github.io/2017/03/18/edit-vue-file-via-vscode/</id>
     <published>2017-03-18T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个项目使用了 <a href="http://cn.vuejs.org" target="_blank" rel="external">Vue.js</a> ，本来一直使用的是 PHPStorm 来进行开发，可是遇到了很多问题。</p>
 <p>后来，果断放弃收费的 PHPStorm ，改用 <a href="https://code.visualstudio.com" target="_blank" rel="external">vscode (Visual Stdio Code)</a>.<br>当然 vscode 对 vue 也不是原生支持的，今天来扒一扒如何配置 vscode 以便优雅地编辑 vue 文件</p>
@@ -735,7 +901,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/"/>
     <id>http://clarence-pan.github.io/2017/02/15/frustrations-in-developing-wechat-mini-application/</id>
     <published>2017-02-15T19:09:50.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>微信小程序自去年公测以来，我司也申请了一个帐号开发，春节前后开始开发，现在终于告一个段落了。谨以此文记录下踩过的坑。<br><a id="more"></a></p>
 <h2 id="坑1：scroll-view与onPullDownRefresh冲突"><a href="#坑1：scroll-view与onPullDownRefresh冲突" class="headerlink" title="坑1：scroll-view与onPullDownRefresh冲突"></a>坑1：scroll-view与onPullDownRefresh冲突</h2><p>由于有几个页面需要将导航tab栏自动置顶，所以使用了scroll-view。然而又想要下拉刷新，本来想直接使用onPullDownRefresh，结果却发现下拉的时候onPullDownRefresh根本没有！囧！</p>
@@ -836,7 +1002,7 @@ app.use(bodyParser.urlencoded())
     <link href="http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/"/>
     <id>http://clarence-pan.github.io/2016/11/17/upgrade-nginx-to-support-http2/</id>
     <published>2016-11-17T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.663Z</updated>
+    <updated>2017-08-31T02:57:46.612Z</updated>
     
     <content type="html"><![CDATA[<p>这两天把公司的网站升级到了全站https. 顺便瞄到了<a href="http://caniuse.com/#search=http2" target="_blank" rel="external">HTTP2的浏览器支持情况</a>：</p>
 <figure class="image-bubble">
@@ -946,7 +1112,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <link href="http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/"/>
     <id>http://clarence-pan.github.io/2016/09/24/a-simple-way-to-make-duoshuo-avatar-https/</id>
     <published>2016-09-24T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>最近启用全站https之后，却发现地址栏里面却还没有小绿锁 -- 检查了下网络请求，发现原来是多说搞的鬼：</p>
 <blockquote>
@@ -1003,7 +1169,7 @@ sudo ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
     <link href="http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/"/>
     <id>http://clarence-pan.github.io/2016/09/06/a-note-to-php-hash_pbkdf2/</id>
     <published>2016-09-06T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>Please pay great attention to the <strong>$length</strong> parameter! It is exactly the <strong>return string length</strong>, NOT the length of raw binary hash result.</p>
 <p>I had a big problem about this --<br>I thought that <code>hash_pbkdf2(...false)</code> should equals to <code>bin2hex(hash_pbkdf2(...true))</code> just like <code>md5($x)</code> equals <code>bin2hex(md5($x, true))</code>. However I was wrong:</p>
@@ -1034,7 +1200,7 @@ bin2hex(hash_pbkdf2(&#39;sha256&#39;, &#39;123456&#39;, &#39;abc&#39;, 10000, 50
     <link href="http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/"/>
     <id>http://clarence-pan.github.io/2016/08/12/a-strange-problem-about-systemd-private/</id>
     <published>2016-08-12T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个奇怪的问题 -- PHP里面访问不了<code>/tmp/xhprof-data</code>目录，可是这个目录明明是存在的！</p>
 <a id="more"></a>
@@ -1097,7 +1263,7 @@ PrivateTmp=true
     <link href="http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/"/>
     <id>http://clarence-pan.github.io/2016/07/20/how-to-show-less-in-home-page-of-hexo/</id>
     <published>2016-07-20T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>默认情况下<code>hexo</code>博客(如本站)的首页显示的是完整的文章 -- 而文章比较长的时候这无疑会带来诸多不遍。 那怎么样才能只显示个摘要呢？</p>
 <a id="more"></a>
@@ -1132,7 +1298,7 @@ PrivateTmp=true
     <link href="http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/"/>
     <id>http://clarence-pan.github.io/2016/04/28/how-to-resolve-cannot-find-function-addEventListener-error-in-selenium/</id>
     <published>2016-04-28T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>今天遇到一个很坑爹的问题，某Selenium自动化用例老是失败，报错如下：</p>
 <a id="more"></a>
@@ -1178,7 +1344,7 @@ Failed to take screen-shot: org.openqa.selenium.htmlunit.HtmlUnitDriver cannot b
     <link href="http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/"/>
     <id>http://clarence-pan.github.io/2016/02/19/use-imagick-to-composite-images-thumbnail/</id>
     <published>2016-02-19T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.663Z</updated>
+    <updated>2017-08-31T02:57:46.612Z</updated>
     
     <content type="html"><![CDATA[<p>最近有个需求是要把多张图片组合起来生成缩略图，刚好可以用强大的<code>imagick</code>扩展。</p>
 <a id="more"></a>
@@ -1372,7 +1538,7 @@ $thumbnail-&gt;writeImage($outputDir.&quot;/example.jpg&quot;);
     <link href="http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/"/>
     <id>http://clarence-pan.github.io/2016/01/04/note-of-spacemacs-on-mac/</id>
     <published>2016-01-04T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.659Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="第一步，安装emacs-mac"><a href="#第一步，安装emacs-mac" class="headerlink" title="第一步，安装emacs-mac"></a>第一步，安装emacs-mac</h2><p>emacs-mac是对GNU的emacs为mac环境进行了一定的定制，可能体验会更好一点。<br>那就卸载掉以前的emacs，装下吧：<br><a id="more"></a></p>
 <pre><code class="sh">$ brew remove emacs
@@ -1440,7 +1606,7 @@ $ git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
     <link href="http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/"/>
     <id>http://clarence-pan.github.io/2015/12/30/null-coalesce-operator-in-php/</id>
     <published>2015-12-30T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.659Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>null合并运算符是一个好东西，有了它我们就能很方便的获取一个参数，并能在其为空的情况下提供一个默认值。比如在js中可以用<code>||</code>来搞：<br><a id="more"></a></p>
 <pre><code class="js">function setSomething(a){
@@ -1488,7 +1654,7 @@ $username = isset($_GET[&#39;user&#39;]) ? $_GET[&#39;user&#39;] : &#39;nobody&#
     <link href="http://clarence-pan.github.io/2015/12/24/plant-uml-instances/"/>
     <id>http://clarence-pan.github.io/2015/12/24/plant-uml-instances/</id>
     <published>2015-12-24T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.663Z</updated>
+    <updated>2017-08-31T02:57:46.612Z</updated>
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
@@ -2115,7 +2281,7 @@ Alice &amp;lt;-- Bob: another authentication Response
     <link href="http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/"/>
     <id>http://clarence-pan.github.io/2015/12/22/how-to-use-phpunit-selenium-test/</id>
     <published>2015-12-22T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一步，安装PHPUnit"><a href="#第一步，安装PHPUnit" class="headerlink" title="第一步，安装PHPUnit"></a>第一步，安装PHPUnit</h2><p>最简单的方式莫过于到<a href="https://phpunit.de/" target="_blank" rel="external">PHPUnit的官网</a>下载PHPUnit，然后把那个下载了的<code>phpunit.phar</code>加到<code>PATH</code>中。</p>
 <a id="more"></a>
@@ -2290,7 +2456,7 @@ function create_browser(){
     <link href="http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/"/>
     <id>http://clarence-pan.github.io/2015/12/17/how-to-use-sublime-and-plant-uml-draw-diagram/</id>
     <published>2015-12-17T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<p>转自: <a href="http://www.jianshu.com/p/e92a52770832" target="_blank" rel="external">http://www.jianshu.com/p/e92a52770832</a> （侵立删）</p>
 <blockquote>
@@ -2613,7 +2779,7 @@ state Configuring {
     <link href="http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/"/>
     <id>http://clarence-pan.github.io/2015/12/16/how-to-enable-crontab-on-osx/</id>
     <published>2015-12-16T00:00:00.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
+    <updated>2017-08-31T02:57:46.608Z</updated>
     
     <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本本上又一些东东是比较重要的，我使用了git进行管理，从而可以将其备份到某个git仓库上。可是鄙人喜欢偷懒，不喜欢老是手动执行备份的一系列命令，于是乎我就想到了写个备份脚本，想通过 crontab 来定期备份。</p>
 <a id="more"></a>
@@ -2697,114 +2863,6 @@ ls: /etc/crontab: No such file or directory
       <category term="crontab" scheme="http://clarence-pan.github.io/tags/crontab/"/>
     
       <category term="定时任务" scheme="http://clarence-pan.github.io/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装PHP扩展</title>
-    <link href="http://clarence-pan.github.io/2015/12/12/installing-php-extensions/"/>
-    <id>http://clarence-pan.github.io/2015/12/12/installing-php-extensions/</id>
-    <published>2015-12-12T16:08:49.000Z</published>
-    <updated>2017-07-05T03:30:06.651Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。</p>
-<a id="more"></a>
-<p>由于PHP版本也是在不断地更新，某些问题的解决方案以后可能会失效，所以此文仅作参考。</p>
-<p>若有发现某个解决方案失效了，还请见谅，并欢迎指出以便更正。</p>
-<h2 id="pecl-pear的安装"><a href="#pecl-pear的安装" class="headerlink" title="pecl/pear的安装"></a>pecl/pear的安装</h2><p>使用pecl/pear可以很方便地安装一些PHP扩展。<br>下载go-pear: <a href="http://pear.PHP.net/go-pear.phar" target="_blank" rel="external">http://pear.PHP.net/go-pear.phar</a><br>然后执行这个phar文件：</p>
-<pre><code class="sh">sudo PHP go-pear.phar
-</code></pre>
-<p>至于提示的目录设置，一般而言默认的就够用了。如需定制请自便。</p>
-<p>安装好了后，建议将pear和pecl的目录加入到PATH中，或者可以加个软连接到path的某个目录中，以便以后使用，如：</p>
-<pre><code class="sh">ln -s /usr/local/Cellar/php56/5.6.16/bin/pecl /usr/local/bin/
-ln -s /usr/local/Cellar/php56/5.6.16/bin/pear /usr/local/bin/
-</code></pre>
-<h2 id="安装intl扩展"><a href="#安装intl扩展" class="headerlink" title="安装intl扩展"></a>安装intl扩展</h2><h3 id="使用包管理进行安装"><a href="#使用包管理进行安装" class="headerlink" title="使用包管理进行安装"></a>使用包管理进行安装</h3><p>在debian/ubuntu/centos上都有对应的包：php5-intl, 直接使用apt或yum来安装即可:</p>
-<pre><code class="sh">sudo apt-get install -y php5-intl
-</code></pre>
-<p>可惜在 mac OS X 上并不能这样安装，只能通过pecl或源码安装</p>
-<h3 id="使用pecl进行安装"><a href="#使用pecl进行安装" class="headerlink" title="使用pecl进行安装"></a>使用pecl进行安装</h3><pre><code class="sh">sudo pecl update-channels
-sudo pecl install intl
-</code></pre>
-<p>如遇到询问icu的路径，则请寻找其路径并提供给安装程序，如：/usr/local/Cellar/icu4c/56.1</p>
-<h3 id="从源码安装"><a href="#从源码安装" class="headerlink" title="从源码安装"></a>从源码安装</h3><p>下载地址： <a href="http://pecl.PHP.net/package/intl" target="_blank" rel="external">http://pecl.PHP.net/package/intl</a><br>下载最新版本，然后解压缩后：</p>
-<pre><code class="sh">phpize
-./configure
-make
-sudo make install
-</code></pre>
-<p>成功的安装将创建 intl.so 并放置于 PHP 的扩展库目录中。需要调整 PHP.ini，加入 extension=intl.so 这一行之后才能使用此扩展库。</p>
-<h3 id="问题：icu-config找不到？"><a href="#问题：icu-config找不到？" class="headerlink" title="问题：icu-config找不到？"></a>问题：icu-config找不到？</h3><p>现象：</p>
-<pre><code>checking for icu-config... no
-checking for location of ICU headers and libraries... not found
-configure: error: Unable to detect ICU prefix or no failed. Please verify ICU install prefix and make sure icu-config works.
-</code></pre><p>解决方案：<br>对于debian/ubuntu/centos则可以安装下<code>icu libicu libicu-devel</code>：</p>
-<pre><code class="sh">sudo apt-get install -y icu libicu libicu-devel
-</code></pre>
-<p>对于mac OS X则需要安装<code>icu4c</code>:</p>
-<pre><code class="sh">brew install icu4c
-</code></pre>
-<p>然后再编译intl的时候提供这个icu的路径，如：</p>
-<pre><code class="sh">cd path/to/intl-v3.0.0
-./configure --with-icu-dir=/usr/local/Cellar/icu4c/56.1
-</code></pre>
-<p>注意：替换下版本号。</p>
-<h2 id="安装mcrypt扩展"><a href="#安装mcrypt扩展" class="headerlink" title="安装mcrypt扩展"></a>安装mcrypt扩展</h2><p>mcrypt是一个功能很强大的加密算法扩展库，一般直接有这个的包</p>
-<h3 id="使用包管理功能安装"><a href="#使用包管理功能安装" class="headerlink" title="使用包管理功能安装"></a>使用包管理功能安装</h3><pre><code class="sh"># for ubuntu/debian
-sudo apt-get install php5-mcrypt
-
-# for centos
-sudo yum install libmcrypt libmcrypt-devel
-sudo yum install PHP-mcrypt
-
-# for OS X
-brew install php56-mcrypt
-</code></pre>
-<h3 id="从源码安装-1"><a href="#从源码安装-1" class="headerlink" title="从源码安装"></a>从源码安装</h3><p>// TODO: 待续 -- 目前在安装其依赖的mhash的时候一直有问题还没解决</p>
-<h2 id="一个常用的PHP编译配置参数"><a href="#一个常用的PHP编译配置参数" class="headerlink" title="一个常用的PHP编译配置参数"></a>一个常用的PHP编译配置参数</h2><pre><code class="sh">./configure --prefix=/usr/local/PHP\
- --with-libdir=lib64\
- --enable-fpm\
- --with-fpm-user=PHP-fpm\
- --with-fpm-group=www\
- --enable-mysqlnd\
- --with-mysql=mysqlnd\
- --with-mysqli=mysqlnd\
- --with-pdo-mysql=mysqlnd\
- --enable-opcache\
- --enable-pcntl\
- --enable-mbstring\
- --enable-soap\
- --enable-zip\
- --enable-calendar\
- --enable-bcmath\
- --enable-exif\
- --enable-ftp\
- --enable-intl\
- --with-openssl\
- --with-zlib\
- --with-curl\
- --with-gd\
- --with-zlib-dir=/usr/lib\
- --with-png-dir=/usr/lib\
- --with-jpeg-dir=/usr/lib\
- --with-gettext\
- --with-mhash\
- --with-ldap
-</code></pre>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;PHP 的扩展相当丰富，可是有些扩展安装起来并不是那么地顺利，谨以此文汇总下我曾经遇到过的问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="PHP" scheme="http://clarence-pan.github.io/categories/PHP/"/>
-    
-    
-      <category term="PHP" scheme="http://clarence-pan.github.io/tags/PHP/"/>
-    
-      <category term="extension" scheme="http://clarence-pan.github.io/tags/extension/"/>
     
   </entry>
   
