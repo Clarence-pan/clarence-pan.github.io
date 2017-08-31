@@ -48,7 +48,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxh0j7gj309g054wel.jpg">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxsxvt2j309h05gjrv.jpg">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2py3gul6j309l05bdgb.jpg">
-<meta property="og:updated_time" content="2017-08-31T02:57:46.608Z">
+<meta property="og:updated_time" content="2017-08-31T03:01:37.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML中嵌入SVG图片的N种方式">
 <meta name="twitter:description" content="最近用到了个SVG图片，里面还是带&amp;lt;image&amp;gt;标签的，想要把它嵌入到HTML中还是有些工作要做的。">
@@ -189,7 +189,7 @@ ga('send', 'pageview');
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#经历"><span class="post-toc-number">1.</span> <span class="post-toc-text">经历</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结HTML中嵌入SVG图片的N种方式"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结HTML中嵌入SVG图片的N种方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-使用-lt-svg-gt-标签"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">0. 使用<svg>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-使用-lt-img-gt-标签"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1. 使用<img>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用-lt-iframe-gt-标签"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2. 使用<iframe>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用-lt-embed-gt-标签"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">3. 使用<embed>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-使用-lt-object-gt-标签"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">4. 使用<object>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-使用-lt-div-gt-的背景图片"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">5. 使用<div>的背景图片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-使用-lt-picture-gt-标签"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">6. 使用<picture>标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#附完整带测试代码"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">附完整带测试代码:</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#经历"><span class="post-toc-number">1.</span> <span class="post-toc-text">经历</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结HTML中嵌入SVG图片的N种方式"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结HTML中嵌入SVG图片的N种方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0-使用svg标签"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">0. 使用svg标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-使用img标签"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">1. 使用img标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-使用iframe标签"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2. 使用iframe标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-使用embed标签"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">3. 使用embed标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-使用object标签"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">4. 使用object标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-使用div的背景图片"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">5. 使用div的背景图片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-使用picture标签"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">6. 使用picture标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#附完整带测试代码"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">附完整带测试代码:</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -281,7 +281,7 @@ ga('send', 'pageview');
             </figure>
 <p>完美！</p>
 <h2 id="总结HTML中嵌入SVG图片的N种方式"><a href="#总结HTML中嵌入SVG图片的N种方式" class="headerlink" title="总结HTML中嵌入SVG图片的N种方式"></a>总结HTML中嵌入SVG图片的N种方式</h2><p>在解决这个问题的过程中，顺便查了下，发现除了<code>&lt;img&gt;</code>和<code>&lt;embed&gt;</code>外还有几种嵌入SVG图片的方法。在此总结下：</p>
-<h3 id="0-使用-lt-svg-gt-标签"><a href="#0-使用-lt-svg-gt-标签" class="headerlink" title="0. 使用&lt;svg&gt;标签"></a>0. 使用<code>&lt;svg&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="0-使用svg标签"><a href="#0-使用svg标签" class="headerlink" title="0. 使用svg标签"></a>0. 使用<code>svg</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pw6rk46j309o05l74e.jpg" alt="" title="">
@@ -289,7 +289,7 @@ ga('send', 'pageview');
                 <div class="image-caption"></div>
             </figure>
 <p>即直接把svg整个标签内容（除了开头的xml和doctype声明外的svg文件内容）都丢到 HTML 中即可。<br>可惜不适合本例 -- 我们这次的svg是外部的，不好放入HTML中。</p>
-<h3 id="1-使用-lt-img-gt-标签"><a href="#1-使用-lt-img-gt-标签" class="headerlink" title="1. 使用&lt;img&gt;标签"></a>1. 使用<code>&lt;img&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="1-使用img标签"><a href="#1-使用img标签" class="headerlink" title="1. 使用img标签"></a>1. 使用<code>img</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pwi60wcj309e05edgb.jpg" alt="" title="">
@@ -299,7 +299,7 @@ ga('send', 'pageview');
 <pre><code class="html">&lt;img src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
 </code></pre>
 <p>这个是最容易想到的 -- 因为svg图片也是图片嘛。<br>需要注意的是，svg里面带的<code>&lt;image&gt;</code>标签将无法正常显示。<code>&lt;img&gt;</code>标签适合显示纯矢量+文本的SVG图片。</p>
-<h3 id="2-使用-lt-iframe-gt-标签"><a href="#2-使用-lt-iframe-gt-标签" class="headerlink" title="2. 使用&lt;iframe&gt;标签"></a>2. 使用<code>&lt;iframe&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="2-使用iframe标签"><a href="#2-使用iframe标签" class="headerlink" title="2. 使用iframe标签"></a>2. 使用<code>iframe</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pww813uj309j07bt8n.jpg" alt="" title="">
@@ -309,7 +309,7 @@ ga('send', 'pageview');
 <pre><code class="html">&lt;iframe src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px;border:none;&quot; &gt;&lt;/iframe&gt;
 </code></pre>
 <p>万能的iframe当然什么都能显示，但是无法控制内容大小 -- viewBox也搞不定，估计只能用百分比来定位了，太麻烦了，不建议使用。</p>
-<h3 id="3-使用-lt-embed-gt-标签"><a href="#3-使用-lt-embed-gt-标签" class="headerlink" title="3. 使用&lt;embed&gt;标签"></a>3. 使用<code>&lt;embed&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="3-使用embed标签"><a href="#3-使用embed标签" class="headerlink" title="3. 使用embed标签"></a>3. 使用<code>embed</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2px7d87xj309o05e0su.jpg" alt="" title="">
@@ -319,7 +319,7 @@ ga('send', 'pageview');
 <pre><code class="html">&lt;embed src=&quot;./test.svg&quot; style=&quot;display:block;width:330px;height:240px&quot; /&gt;
 </code></pre>
 <p>注意使用viewBox，<code>&lt;embed&gt;</code>标签的兼容性也很不错的，是个不错的选择。</p>
-<h3 id="4-使用-lt-object-gt-标签"><a href="#4-使用-lt-object-gt-标签" class="headerlink" title="4. 使用&lt;object&gt;标签"></a>4. 使用<code>&lt;object&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="4-使用object标签"><a href="#4-使用object标签" class="headerlink" title="4. 使用object标签"></a>4. 使用<code>object</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxh0j7gj309g054wel.jpg" alt="" title="">
@@ -331,7 +331,7 @@ ga('send', 'pageview');
 &lt;/object&gt;
 </code></pre>
 <p><code>&lt;object&gt;</code>与<code>&lt;embed&gt;</code>类似，也要注意配置viewBox.</p>
-<h3 id="5-使用-lt-div-gt-的背景图片"><a href="#5-使用-lt-div-gt-的背景图片" class="headerlink" title="5. 使用&lt;div&gt;的背景图片"></a>5. 使用<code>&lt;div&gt;</code>的背景图片</h3><figure class="image-bubble">
+<h3 id="5-使用div的背景图片"><a href="#5-使用div的背景图片" class="headerlink" title="5. 使用div的背景图片"></a>5. 使用<code>div</code>的背景图片</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2pxsxvt2j309h05gjrv.jpg" alt="" title="">
@@ -341,7 +341,7 @@ ga('send', 'pageview');
 <pre><code class="html">&lt;div style=&quot;display:block;width:330px;height:240px;background: url(./test.svg) no-repeat;background-size: 100%;&quot; &gt;&lt;/div&gt;
 </code></pre>
 <p>svg图片是可以作为背景图片的。不过和<code>&lt;img&gt;</code>标签一样，无法显示SVG内嵌的<code>&lt;image&gt;</code>.</p>
-<h3 id="6-使用-lt-picture-gt-标签"><a href="#6-使用-lt-picture-gt-标签" class="headerlink" title="6. 使用&lt;picture&gt;标签"></a>6. 使用<code>&lt;picture&gt;</code>标签</h3><figure class="image-bubble">
+<h3 id="6-使用picture标签"><a href="#6-使用picture标签" class="headerlink" title="6. 使用picture标签"></a>6. 使用<code>picture</code>标签</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://ww1.sinaimg.cn/large/006Vei6ogy1fj2py3gul6j309l05bdgb.jpg" alt="" title="">
@@ -365,7 +365,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-31T02:57:46.608Z" itemprop="dateUpdated">2017年8月31日 2:57</time>
+    最后更新时间：<time datetime="2017-08-31T03:01:37.590Z" itemprop="dateUpdated">2017年8月31日 3:01</time>
 </span><br>
 
 
