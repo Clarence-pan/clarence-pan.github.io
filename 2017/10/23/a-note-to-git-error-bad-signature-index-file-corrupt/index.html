@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-67440907-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    
+    
+    <link rel="canonical" href="http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/">
+    
+    
+    <title>git报错bad signature和index file corrupt的处理方法 | Clarence的博客 | Hard is the road of the world. Learning! -- Blog of Clarence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#1F51B5">
+    
+    
+    <meta name="keywords" content="git,error">
+    <meta name="description" content="今天打开工程，习惯性的git status下，发下报错： λ git status error: bad signature fatal: index file corrupt 这该怎么办呢？">
+<meta name="keywords" content="git,error">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git报错bad signature和index file corrupt的处理方法">
+<meta property="og:url" content="http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/index.html">
+<meta property="og:site_name" content="Clarence的博客">
+<meta property="og:description" content="今天打开工程，习惯性的git status下，发下报错： λ git status error: bad signature fatal: index file corrupt 这该怎么办呢？">
+<meta property="og:locale" content="en_US, zh_CN">
+<meta property="og:updated_time" content="2017-10-23T05:56:10.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git报错bad signature和index file corrupt的处理方法">
+<meta name="twitter:description" content="今天打开工程，习惯性的git status下，发下报错： λ git status error: bad signature fatal: index file corrupt 这该怎么办呢？">
+    
+        <link rel="alternative" href="/atom.xml" title="Clarence的博客" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script> (adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-8574497594871258", enable_page_level_ads: true });</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Clarence Pan</h5>
+          <a href="mailto:" class="mail"></a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Clarence-pan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://clarencep.github.io/fe-lab/" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                前端实验室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/northernfighter" target="_blank" >
+                <i class="icon icon-lg icon-sf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">git报错bad signature和index file corrupt的处理方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">git报错bad signature和index file corrupt的处理方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-23T00:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/git/">git</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-a-note-to-git-error-bad-signature-index-file-corrupt"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">git报错bad signature和index file corrupt的处理方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年10月23日 0:00" datetime="2017-10-23T00:00:00.000Z"  itemprop="datePublished">2017-10-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/git/">git</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天打开工程，习惯性的<code>git status</code>下，发下报错：</p>
+<pre><code>λ git status
+error: bad signature
+fatal: index file corrupt
+</code></pre><p>这该怎么办呢？</p>
+<a id="more"></a>
+<p><code>index file</code>在 git 里面一般指的是 <code>.git/index</code> 这个文件。这个文件保存的是暂存区的信息（索引信息）。<br>可以通过 <code>git ls-files --stage</code> 来查看暂存区的内容。这个文件很重要！但是现在报 <code>index file corrupt</code>，说明这个文件已经损坏了。<br>还好，我们有办法重新来生成这个文件：<code>git read-tree</code> 或者直接 <code>git reset</code>.</p>
+<p>TL; DR.</p>
+<p>解决办法：</p>
+<ol>
+<li>进入到工程目录下: <code>cd /path/to/dir</code></li>
+<li>删除或重命名 <code>.git/index</code> 文件： <code>rm -f .git/index</code> 或 <code>mv .git/index{,.bak}</code></li>
+<li>重建 <code>.git/index</code> : <code>git read-tree</code> 或者直接 <code>git reset</code></li>
+</ol>
+<p>这样3步后再运行<code>git status</code>即可正常显示git状态了：</p>
+<pre><code>λ git status
+On branch master
+Your branch is up-to-date with &#39;origin/master&#39;.
+nothing to commit, working directory clean
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-23T05:56:10.288Z" itemprop="dateUpdated">2017年10月23日 5:56</time>
+</span><br>
+
+
+        <a href="/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/" target="_blank" rel="external">http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/</a>
+    </div>
+    <footer>
+        <a href="http://www.clarencep.com">
+            <img src="/img/avatar.jpg" alt="Clarence Pan">
+            Clarence Pan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/error/">error</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&title=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&title=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&source=今天打开工程，习惯性的git status下，发下报错：
+λ git status
+error: bad signature
+fatal: index f..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&via=http://www.clarencep.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/31/n-ways-to-show-svg-image-in-html/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HTML中嵌入SVG图片的N种方式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+  
+
+<div id="SOHUCS" sid="a-note-to-git-error-bad-signature-index-file-corrupt" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysUkeX5G'; 
+var conf = 'prod_60afcdd5c71414aea0e0dce2601a1561'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+</script>
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="display:none">
+    </div>
+    <div class="bottom">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Clarence的博客 &copy; 2011 - 2017</span>
+            <a rel="nofollow" href="http://www.miitbeian.gov.cn/">苏ICP备16036486号</a>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&title=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&pic=http://www.clarencep.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&title=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&source=今天打开工程，习惯性的git status下，发下报错：
+λ git status
+error: bad signature
+fatal: index f..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《git报错bad signature和index file corrupt的处理方法》 — Clarence的博客&url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/&via=http://www.clarencep.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.clarencep.com/2017/10/23/a-note-to-git-error-bad-signature-index-file-corrupt/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3aS27jMBAFwNz/0pntAEGk97o1A5surgJboVjctPvz9RWv78v19zM/n092/vn3b59c7/DwwsbGxn4Tdk66xuTfzi7ot+evz/nr/tjY2NjHsfPQ0l5HG1Oug1keRG+M2NjY2B/MTgLS5qD50bGxsbGx9+w2IZlVe7CxsbGxE/bsJ/41NSruLJ78T7U0bGxs7Jdnb8o9r/b3P+lvY2NjY78w+7tcSbjatBDaMaDv0cLGxsY+iZ0HgOujtyM4eXqQXPpsH2xsbOzz2O2IzKZBuyn3t2OaX+3dY2NjYx/BTl42C3t5e6ANkHVzAhsbG/sIdjsWk5SZkrBUpw1lknNzodjY2NiHsjeb7n/nz9KVfMDo14iNjY2NfRB71qBNvr3ebd9ars+PjY2NfRB7E0jyElLblM1D46pFjY2Njf0x7DZdSQJJG3LaNsMDAQwbGxv7bdmz4ZjNANBm/+vru7FgY2NjH8RuD5enFm1Ban81bVEMGxsb+wz2JpDkL76+slm6smktY2NjY5/Bbkcq8wLQUzvMwtXNRWBjY2Mfys6DwVPP5wnMLEGKAhg2Njb2oezZIfLyU55mPHt9Ua0LGxsb+63YbUBqn2w/z68sWTdXgI2NjX0cuy3Ht6lIO8pTFInKUSFsbGzsk9jXpGcbtG0ak4e3etwHGxsb+1D2Jp3Yw2aXOBwtwsbGxj6InacNbYDJh2ySNsC+zHQzc4qNjY39tuy8YNQGiVmDNm8qR9WyWVEJGxsb+63YTwWPTRugfUvbnIj629jY2NhHsGcNgFmxaTYe1KY3UVEJGxsb+1D2bCAmbw/kF7dJTuoAho2NjX0Ee/PitsW7aRvsAyo2Njb2eez8Z/1TsLoMVCYqN4ENGxsb+wj2JgjNUoK2CdGODUVvxMbGxj6Ina8kUcnbsZsdNu2BGo+NjY39Jux9QX92fZtmcx7A6loaNjY29tuy28AwO3SbfrRpybCWho2Njf3B7FmxafO/bUv4ZmQHGxsb+yPZ+UDPU8nGvtCPjY2N/Qns2QjmU/hNs/aftwewsbGxX56dB4D8k7yg3waezegnNjY29nHsP95hDDed30XUAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1256461440&web_id=1256461440')
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
